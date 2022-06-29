@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
         <div class="container-fluid my-1">
-          <a class="navbar-brand " href="animalHouse.php">AnimalHouse</a>
+          <a class="navbar-brand " href="index.php">AnimalHouse</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -54,21 +57,27 @@
                   </div>
               </div>
 
-              <!-- Email input -->
+                <!-- Email input -->
               <div class="form-outline mb-4">
-                  <input type="text" id="form3Example3" name="usernameRegister" class="form-control" placeholder="Username" required/>
+                  <input type="text" id="form3Example3" name="emailRegister" class="form-control" placeholder="Email" required/>
+              </div>
+
+              <!-- Username input -->
+              <div class="form-outline mb-4">
+                  <input type="text" id="form3Example4" name="usernameRegister" class="form-control" placeholder="Username" required/>
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4" name="passwordRegister" class="form-control" placeholder="Password" required/>
+                  <input type="password" id="form3Example5" name="passwordRegister" class="form-control" placeholder="Password" required/>
               </div>
 
               <!-- Password confirm -->
               <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4" name="confirmPasswordRegister" class="form-control" placeholder="Confirm Password" required/>
+                  <input type="password" id="form3Example6" name="confirmPasswordRegister" class="form-control" placeholder="Confirm Password" required/>
               </div>
 
+              <!--
               <div class="mb-4">
                       <div class="row">
 
@@ -91,13 +100,18 @@
                           </div>
                       </div>
               </div>
-
+                -->
               <div class="d-flex justify-content-center my-5">
                   <!-- Submit button -->
                   <button type="submit" class="btn btn-dark btn-block w-50">
                   Sign up
                   </button>
               </div>
+        <?php
+        if(isset($_SESSION['auth_error'])){
+            echo $_SESSION['auth_error'];
+        }
+        ?>
 
 
           

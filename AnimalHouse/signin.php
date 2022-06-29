@@ -17,7 +17,7 @@ session_start();
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
         <div class="container-fluid my-1">
-          <a class="navbar-brand " href="animalHouse.php">AnimalHouse</a>
+          <a class="navbar-brand " href="index.php">AnimalHouse</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -70,6 +70,9 @@ session_start();
           if(isset($_SESSION['auth_error'])){
             echo $_SESSION['auth_error'];
           }
+          if(isset($_SESSION['auth_success'])){
+            echo '<p style="margin: 0; color: green;">'.$_SESSION['auth_success'].'</p>';
+          }
           ?>
       </div>
 
@@ -82,4 +85,5 @@ session_start();
 </html>
 <?php
 unset($_SESSION['auth_error']);
+unset($_SESSION['auth_success']);
 ?>

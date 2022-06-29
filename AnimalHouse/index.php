@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,19 +15,29 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
         <div class="container-fluid my-1">
-          <a class="navbar-brand " href="animalHouse.php">AnimalHouse</a>
+          <a class="navbar-brand " href="index.php">AnimalHouse</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item ">
                 <a class="nav-link" href="signin.php">Sign in</a>
               </li>
-    
+              <?php
+                    if(isset($_SESSION['user'])){
+                        echo '<li class="nav-item dropdown">';
+                        echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome '.$_SESSION['user']['name'].'</a>';
+                        echo '<ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">';
+                        echo '<li><a class="dropdown-item" href="php/authentication.php?logout">Logout</a></li>';
+                        echo '</ul>';
+                        echo '</li>';
+                    }
+                ?>
             </ul>
           </div>
         </div>
