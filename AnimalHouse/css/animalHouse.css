@@ -1,6 +1,4 @@
-body{
 
-}
 
 .footer{
     position: fixed;
@@ -15,4 +13,19 @@ body{
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
+}
+
+#backgroundImg{
+    background-image: url("../animalBG.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#btnStart{
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    padding: 1em;
+    background-color: rgb(255,255,255, 0.3);
+    border-radius: 5em;
 }

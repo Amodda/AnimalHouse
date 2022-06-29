@@ -10,7 +10,7 @@
     <title> </title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-5 shadow">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
         <div class="container-fluid my-1">
           <a class="navbar-brand " href="animalHouse.php">AnimalHouse</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,9 @@
               <li class="nav-item active">
                 <a class="nav-link" href="#">Home</a>
               </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="signin.php">Sign in</a>
+              </li>
     
             </ul>
           </div>
@@ -28,74 +31,84 @@
     </nav>
 
 
-    <div class="container d-flex flex-row align-items-center ">
-
+    <div class="d-flex flex-row align-items-center w-100" style="height: 100vh" id="backgroundImg">
+        <div class="w-100 d-flex flex-row align-items-center" style="height: 100vh; background: rgb(0,0,0,0.5)">
+            <div class=" w-50 d-flex align-items-center justify-content-end mx-4">
+                <h1 class="text-white">Welcome to Animal House</h1>
+            </div>
+            <div class="w-50 d-flex align-items-center justify-content-center mx-4">
+              <a href="#communityGames" class="btn shadow" id="btnStart">Start Now</a>
+            </div>
+        </div>
     </div>
 
     <div class="container d-flex flex-column align-items-center my-3">
-        <div class="w-100 d-flex align-items-center justify-content-center">
-            <h4>Community</h4>
-        </div>
-    <div class="d-flex flex-row align-items-center my-3">
-        <div class="bg-light gameCard shadow">
-            <div class="m-4">
-                <div class="d-flex align-items-center justify-content-center">
-                    <h4>AnimalCuriosity</h4>
-                    
+        <div id="communityGames">
+            <div class="w-100 d-flex align-items-center justify-content-center">
+                <h4>Community</h4>
+            </div>
+            <div class="d-flex flex-row align-items-center my-3">
+                <div class="bg-light gameCard shadow">
+                    <div class="m-4">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h4>AnimalCuriosity</h4>
+                            
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="" alt="">
+                        </div>
+                        <div>
+                            <p>AnimalCuriosity is a funny game where you can learn a lot of things you didn't know about animals.</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center w-100">
+                            <a class="w-50 btn btn-dark" href="animalCuriosity.html">Start</a>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="d-flex align-items-center justify-content-center">
-                    <img src="" alt="">
+                <div class="bg-light gameCard mx-3 shadow">
+                    <div class="m-4">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h4>Memory</h4>
+                            
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="" alt="">
+                        </div>
+                        <div>
+                            <p>Play memory with random animals! You might love it!</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center w-100">
+                            <a class="w-50 btn btn-dark" href="">Start</a>
+                        </div>
+                    </div>
+
                 </div>
-                <div>
-                    <p>AnimalCuriosity is a funny game where you can learn a lot of things you didn't know about animals.</p>
-                </div>
-                <div class="d-flex align-items-center justify-content-center w-100">
-                    <a class="w-50 btn btn-dark" href="animalCuriosity.html">Start</a>
+                <div class="bg-light gameCard shadow">
+                    <div class="m-4">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h4>Hangman</h4>
+                            
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="" alt="">
+                        </div>
+                        <div>
+                            <p>AnimalCuriosity is a funny game where you can find out a lot of things you didn't know about animals.</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center w-100">
+                            <a class="w-50 btn btn-dark" href="hangman.html">Start</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
-        <div class="bg-light gameCard mx-3 shadow">
-            <div class="m-4">
-                <div class="d-flex align-items-center justify-content-center">
-                    <h4>Memory</h4>
-                    
-                </div>
-                <div class="d-flex align-items-center justify-content-center">
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <p>Play memory with random animals! You might love it!</p>
-                </div>
-                <div class="d-flex align-items-center justify-content-center w-100">
-                    <a class="w-50 btn btn-dark" href="">Start</a>
-                </div>
-            </div>
 
-        </div>
-        <div class="bg-light gameCard">
-            <div class="m-4">
-                <div class="d-flex align-items-center justify-content-center">
-                    <h4>Hangman</h4>
-                    
-                </div>
-                <div class="d-flex align-items-center justify-content-center">
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <p>AnimalCuriosity is a funny game where you can find out a lot of things you didn't know about animals.</p>
-                </div>
-                <div class="d-flex align-items-center justify-content-center w-100">
-                    <a class="w-50 btn btn-dark" href="hangman.html">Start</a>
-                </div>
-            </div>
-
-        </div>
     </div>
-    </div>
 
 
-    <footer class="bg-light text-center w-100 mt-4 footer" >
+    <footer class="bg-light text-center w-100 mt-4" >
 
 
         <!-- Copyright -->
