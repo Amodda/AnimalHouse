@@ -57,10 +57,10 @@ session_start();
 
     <div class="container d-flex flex-column align-items-center my-3">
         <div id="communityGames">
-            <div class="w-100 d-flex align-items-center justify-content-center">
-                <h4>Community</h4>
+            <div class="w-100 d-flex align-items-center justify-content-center mt-5">
+                <h4>Games</h4>
             </div>
-            <div class="d-flex flex-row align-items-center my-3">
+            <div class="d-flex align-items-center my-3" id="gamesList">
                 <div class="bg-light gameCard shadow">
                     <div class="m-4">
                         <div class="d-flex align-items-center justify-content-center">
@@ -74,7 +74,7 @@ session_start();
                             <p>AnimalCuriosity is a funny game where you can learn a lot of things you didn't know about animals.</p>
                         </div>
                         <div class="d-flex align-items-center justify-content-center w-100">
-                            <a class="w-50 btn btn-dark" href="animalCuriosity.html">Start</a>
+                            <a class="w-50 btn btn-success" href="animalCuriosity.html">Start</a>
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@ session_start();
                             <p>Play memory with random animals! You might love it!</p>
                         </div>
                         <div class="d-flex align-items-center justify-content-center w-100">
-                            <a class="w-50 btn btn-dark" href="">Start</a>
+                            <a class="w-50 btn btn-success" href="">Start</a>
                         </div>
                     </div>
 
@@ -110,15 +110,126 @@ session_start();
                             <p>AnimalCuriosity is a funny game where you can find out a lot of things you didn't know about animals.</p>
                         </div>
                         <div class="d-flex align-items-center justify-content-center w-100">
-                            <a class="w-50 btn btn-dark" href="hangman.html">Start</a>
+                            <a class="w-50 btn btn-success" href="hangman.html">Start</a>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-
     </div>
+    <?php
+
+    if(isset($_SESSION['user'])){
+        $jsonData = file_get_contents("users.json");
+        $users = json_decode($jsonData, true);
+        
+        function sortQuiz($a, $b) {
+            return $a['gamesPoints']['quiz'] > $b['gamesPoints']['quiz'];
+        }
+        function sortMemory($a, $b) {
+            return $a['gamesPoints']['memory'] > $b['gamesPoints']['memory'];
+        }
+        function sortHangman($a, $b) {
+            return $a['gamesPoints']['hangman'] > $b['gamesPoints']['hangman'];
+        }
+        //leaderboard
+        echo '<div class="container-fluid d-flex flex-column bg-dark">';
+            echo '<div class="w-100 d-flex align-items-center justify-content-center my-3 mt-5">';
+                echo '<h4 class="text-white">Leaderboard</h4>';
+            echo '</div>';
+
+            echo '<div class="container d-flex w-100 align-items-center justify-content-center flex-row">';
+                echo '<div class="d-flex w-100 justify-content-around" id="gamesleaderboard">';
+                    echo '<div class="d-flex flex-column align-items-center justify-content-center" id="quizLeaderboard">';
+                    echo '<h5 class="text-white">AnimalQuiz</h5>';
+                    echo '<table class="table table-dark table-hover my-3">';
+                        echo '<tr><th>Place</th><th>User</th><th>Points</th></tr>';
+                        usort($users, 'sortQuiz');
+                        $place = 1;
+                        for($i = count($users)-1; $i >= count($users)-5; $i--){
+                            echo '<tr><td>'.$place.'</td><td>'.$users[$i]['username'].'</td><td>'.$users[$i]['gamesPoints']['quiz'].'</td></tr>';
+                            $place++;
+                        }
+                    echo '</table>';
+                    echo '</div>';
+                    echo '<div class="d-flex flex-column align-items-center justify-content-center" id="memoryLeaderboard">';
+                    echo '<h5 class="text-white">Memory</h5>';
+                    echo '<table class="table table-dark table-hover my-3">';
+                        echo '<tr><th>Place</th><th>User</th><th>Points</th></tr>';
+                        usort($users, 'sortMemory');
+                        $place = 1;
+                        for($i = count($users)-1; $i >= count($users)-5; $i--){
+                            echo '<tr><td>'.$place.'</td><td>'.$users[$i]['username'].'</td><td>'.$users[$i]['gamesPoints']['memory'].'</td></tr>';
+                            $place++;
+                        }
+                    echo '</table>';
+                    echo '</div>';
+                    echo '<div class="d-flex flex-column align-items-center justify-content-center" id="hangmanLeaderboard">';
+                    echo '<h5 class="text-white">Hangman</h5>';
+                    echo '<table class="table table-dark table-hover my-3">';
+                        echo '<tr><th>Place</th><th>User</th><th>Points</th></tr>';
+                        usort($users, 'sortHangman');
+                        $place = 1;
+                        for($i = count($users)-1; $i >= count($users)-5; $i--){
+                            echo '<tr><td>'.$place.'</td><td>'.$users[$i]['username'].'</td><td>'.$users[$i]['gamesPoints']['hangman'].'</td></tr>';
+                            $place++;
+                        }
+                    echo '</table>';
+                    echo '</div>';
+                echo '</div>';
+            echo '</div>';
+        echo '</div>';
+        
+        //Forum
+        echo '<div class="container-fluid d-flex flex-column ">';
+
+            echo '<div class="container d-flex w-100 align-items-center justify-content-around flex-row ">';
+                echo '<div class="w-100 d-flex flex-column justify-content-start my-5">';
+                    echo '<h1>Forum</h1>';
+                    echo '<h5>Share your stories with other users</h5>';
+                    echo '<div class="w-100 d-flex align-items-center justify-content-center mt-5">';
+                    echo '<a class="btn btn-success" href="forum.php">Open forum</a>';
+                    echo '</div>';
+                echo '</div>';
+                echo '<div class="w-100 d-flex flex-column align-items-center justify-content-center my-5">';
+                    //echo '<a class="btn" style="font-size: 30px; padding: 1em; background: lightgreen; opacity: 0.7; border-radius: 1em;" href="">OPEN FORUM</a>';
+                    echo '<img src="animalBG.jpeg" style="width: 100%;">';
+                echo '</div>';
+            echo '</div>';
+        echo '</div>';
+    } else {
+        //Locked view 
+        echo '<div class="container-fluid d-flex flex-column bg-dark">';
+        echo '<div class="w-100 d-flex align-items-center justify-content-center my-3">';
+            echo '<h4 class="text-white">Community</h4>';
+        echo '</div>';
+        echo '<div class="container d-flex w-100 flex-row align-items-center text-white my-3">';
+            echo '<div class="w-100 d-flex flex-column align-items-center justify-content-center" style=" opacity: 0.7">';
+                echo '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/></svg>';
+                echo '<p class="my-3" style="font-size: 25px;">Sign in to unlock content</p>';
+            echo '</div>';
+            echo '<div class="w-100 d-flex flex-column align-items-center justify-content-start">';
+                echo '<div class="m-1 w-100">';
+                    echo '<h5>Games leaderboard</h5>';
+                    echo '<p class="mx-3" style="opacity: 0.7">Get access to the games leaderboard. Play your game and get to the top.</p>';
+                echo '</div>';
+                echo '<div class="m-1 w-100">';
+                    echo '<h5>Forum</h5>';
+                    echo '<p class="mx-3" style="opacity: 0.7">Share posts about animals with another users. </p>';
+                echo '</div>';
+                echo '<div class="m-1 w-100">';
+                    echo '<h5>E-Commerce</h5>';
+                    echo '<p class="mx-3" style="opacity: 0.7">Get access to an entire list of animal products that you can buy with a simple click</p>';
+            echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        
+    echo '</div>';
+    }
+    ?>
+
+
 
 
     <footer class="bg-light text-center w-100 mt-4" >

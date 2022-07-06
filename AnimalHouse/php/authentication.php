@@ -60,7 +60,12 @@ if (isset($_GET['register'])) {
                         "lastname" => $lastname,
                         "email" => $email,
                         "username" => $username,
-                        "password" => $password_hash
+                        "password" => $password_hash,
+                        "gamesPoints" => [
+                            "quiz" => 0,
+                            "hangman" => 0,
+                            "memory" => 0
+                        ]
                     ];
                     $newUsers = $users;
                     array_push($newUsers, $user);
@@ -75,51 +80,7 @@ if (isset($_GET['register'])) {
                     
                 }
         }
-        /*
-        if ($rowCount > 0) {
-            $msg = 'Username già in uso %s';
-            header('Location: ../index.php');
-            //echo $msg;
-        } else {
-            $sql1 = 'call registrazioneUtente(:username,:password_hash,:name,:lastname,:birthDate,:place);';
-            //$res -> bindParam(':username', $username, PDO::PARAM_STR);
-            $res = $pdo -> prepare($sql1);
-            $res -> execute(array(
-                ':username' => $username,
-                ':password_hash' => $password_hash,
-                ':name' => $name,
-                ':lastname' => $lastname,
-                ':birthDate' => $birthDate,
-                ':place' => $place
 
-            ));
-            $rowCount1 = $res->rowCount();
-            $res -> closeCursor();
-
-            if ($rowCount1 > 0) {
-                $_SESSION['auth_success'] = 'Registrazione eseguita con successo';
-                
-                $doc = ([
-                    'ActionDate' => $date = date('Y-m-d H:i:s'),
-                    'ActionType' => 'New user',
-                    'ActionDetails' => 'User '.$username.' registered to the platform',
-                    ]);
-                    
-                $bulk -> insert($doc);
-                $resultMongoDB = $manager -> executeBulkWrite($db,$bulk);
-                
-                header('Location: ../index.php#authentication');
-            } else {
-                $msg = 'Problemi con l\'inserimento dei dati %s';
-                header('Location: ../index.php');
-                
-            }
-        }
-    }
-    if(isset($msg)){
-        $_SESSION['auth_error'] = $msg; 
-    }
-    */
     }
     if(isset($msg)){
         $_SESSION['auth_error'] = $msg; 
@@ -127,44 +88,7 @@ if (isset($_GET['register'])) {
    
 }
 
-/*
-if (isset($_GET['login'])) {
-    $username = $_POST['usernameLogin'];
-    $password = $_POST['passwordLogin'];
-    
-    if (empty($username) || empty($password)) {
-        $msg = 'Inserisci username e password %s';
-    } else {
-        $sql = 'call loginUtente("'.$username.'")';
-        $result = $conn -> query($sql);
 
-        if($result -> num_rows > 0){
-            $result = $result -> fetch_assoc();
-        } else {
-            $_SESSION['auth_error'] = 'Credenziali utente errate';
-            header('Location: ../index.php');
-        }
-        
-        
-        if ($result['Username'] == '' || password_verify($password, $result['Password']) === false) {
-            $msg = 'Credenziali utente errate';
-            header('Location: ../index.php');
-
-        } else {
-            //session_regenerate_id();
-           // $_SESSION['session_id'] = session_id();
-            $_SESSION['session_user'] = $result['Username'];
-            $_SESSION['session_userType'] = $result['Tipo'];
-
-            header('Location: ../index.php');
-            //exit;
-        }
-    }
-    
-    //printf($msg, '<a href="../login.html">torna indietro</a>');
-    $_SESSION['auth_error'] = $msg;
-}
-*/
 
 if (isset($_GET['login'])) {
 

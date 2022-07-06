@@ -1,1 +1,3 @@
-[{"name":"Alessandro","lastname":"Modelli","email":"alessandro.modelli99@gmail.com","username":"alemodda","password":"$2y$10$7JWBobIENLvrtw0RlzuaGuN7ZFynlx73xodmii\/u4xzRP\/1oCq3Ha"}]
+[{"name":"Alessandro","lastname":"Modelli","email":"alessandro.modelli99@gmail.com","username":"alemodda","password":"$2y$10$7JWBobIENLvrtw0RlzuaGuN7ZFynlx73xodmii\/u4xzRP\/1oCq3Ha","gamesPoints":{"quiz":4,"hangman":1,"memory":1}},
+{"name":"fneahbano","lastname":"hfafwbaiun","email":"bbueuayf","username":"fauiwfhbiu","password":"$2y$10$SDAAbrnGI330CISJGiFmROguTMkIvNTR0iXRIaf61pSTFMipjJij6","gamesPoints":{"quiz":0,"hangman":0,"memory":0}},
+{"name":"fneahbano","lastname":"hfafwbaiun","email":"bbueuayf","username":"fauiwfhbiu","password":"$2y$10$SDAAbrnGI330CISJGiFmROguTMkIvNTR0iXRIaf61pSTFMipjJij6","gamesPoints":{"quiz":2,"hangman":0,"memory":0}}]
