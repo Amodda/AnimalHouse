@@ -14,7 +14,7 @@ session_start();
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
-        <div class="container-fluid my-1">
+        <div class="container-fluid ">
           <a class="navbar-brand " href="index.php">AnimalHouse</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,10 +25,12 @@ session_start();
               <li class="nav-item">
                 <a class="nav-link active" href="#">Home</a>
               </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="signin.php">Sign in</a>
-              </li>
               <?php
+                    if(!isset($_SESSION['user'])){
+                        echo '<li class="nav-item ">';
+                            echo '<a class="nav-link" href="signin.php">Sign in</a>';
+                        echo '</li>';
+                    }
                     if(isset($_SESSION['user'])){
                         echo '<li class="nav-item dropdown">';
                         echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome '.$_SESSION['user']['name'].'</a>';
@@ -55,10 +57,10 @@ session_start();
         </div>
     </div>
 
-    <div class="container d-flex flex-column align-items-center my-3">
+    <div class="container d-flex flex-column align-items-center my-5">
         <div id="communityGames">
             <div class="w-100 d-flex align-items-center justify-content-center mt-5">
-                <h4>Games</h4>
+                <h4 class="mt-3">Games</h4>
             </div>
             <div class="d-flex align-items-center my-3" id="gamesList">
                 <div class="bg-light gameCard shadow">
@@ -136,11 +138,11 @@ session_start();
         //leaderboard
         echo '<div class="container-fluid d-flex flex-column bg-dark">';
             echo '<div class="w-100 d-flex align-items-center justify-content-center my-3 mt-5">';
-                echo '<h4 class="text-white">Leaderboard</h4>';
+                echo '<h4 class="text-white mt-3">Leaderboard</h4>';
             echo '</div>';
 
             echo '<div class="container d-flex w-100 align-items-center justify-content-center flex-row">';
-                echo '<div class="d-flex w-100 justify-content-around" id="gamesleaderboard">';
+                echo '<div class="d-flex w-100 justify-content-around my-4" id="gamesleaderboard">';
                     echo '<div class="d-flex flex-column align-items-center justify-content-center" id="quizLeaderboard">';
                     echo '<h5 class="text-white">AnimalQuiz</h5>';
                     echo '<table class="table table-dark table-hover my-3">';

@@ -1,34 +1,53 @@
-
-    [
-        {
-            "id": 0,
-            "category": "Dogs",
-            "items": [
-            {
-                "id": 0,
-                "date": "2022-07-06",
-                "user": "alemodda",
-                "title": "Primo",
-                "text": "Primo post!",
-                "img": ""
-            },
-            {
-                "id": 1,
-                "date": "2022-07-06",
-                "user": "alemodda",
-                "title": "Secondo",
-                "text": "Secondo post!",
-                "img": "fnawbfwaj.png"
-            }
-
-            ]
-        },
-        {
-            "id" : 1,
-            "category": "Cats",
-            "items" : [
-
-            ]
-        }
-    ]
-
+[
+    {
+       "id":0,
+       "category":"Dogs",
+       "items":[
+          {
+             "id":0,
+             "date":"2022-07-06",
+             "user":"alemodda",
+             "title":"Primo",
+             "text":"Primo post!",
+             "img":""
+          },
+          {
+             "id":1,
+             "date":"2022-07-06",
+             "user":"alemodda",
+             "title":"Secondo",
+             "text":"Secondo post!",
+             "img":"fnawbfwaj.png"
+          },
+          {
+             "id":2,
+             "date":"2022-07-07",
+             "user":"alemodda",
+             "title":"Le avventure dei cani",
+             "text":"I cani di razza Amstaff sono i migliori.",
+             "img":""
+          }
+       ]
+    },
+    {
+       "id":1,
+       "category":"Cats",
+       "items":[
+          {
+             "id":0,
+             "date":"2022-07-06",
+             "user":"alemodda",
+             "title":"Primo",
+             "text":"Primo post di gatti!",
+             "img":""
+          }
+       ]
+    },
+    {
+       "id":2,
+       "category":"Others",
+       "items":[
+          
+       ]
+    }
+ ]
