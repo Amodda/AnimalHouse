@@ -13,7 +13,7 @@ if(!isset($_SESSION['user'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/forum.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <title>Forum</title>
+    <title>AnimalStore</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
@@ -38,7 +38,10 @@ if(!isset($_SESSION['user'])){
                     }
                     if(isset($_SESSION['user'])){
                         echo '<li class="nav-item">';
-                            echo '<a class="nav-link active" href="">Forum</a>';
+                            echo '<a class="nav-link active" href="">Store</a>';
+                        echo '</li>';
+                        echo '<li class="nav-item">';
+                            echo '<a class="nav-link" href="">Forum</a>';
                         echo '</li>';
                         echo '<li class="nav-item dropdown">';
                         echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome '.$_SESSION['user']['name'].'</a>';
@@ -184,48 +187,7 @@ if(!isset($_SESSION['user'])){
         </div>
     </div>
     <div class=" w-100 d-flex flex-column align-items-center justify-content-start bg-dark" id="newPost">
-                    <h4 class="text-white mt-5">New post</h4>
-                    <div class="container my-4" id="newPostDiv">
-                        <form action="php/posts.php?createPost" method="post" enctype="multipart/form-data">
-                        
 
-                        
-                                <div class="form-outline mb-4 shadow-sm">
-                                    <input type="text"  name="postTitle" class="form-control" placeholder="Title"/>
-                                </div>
-                                <div class="form-outline mb-4 shadow-sm">
-                                    <textarea name="postText" id="" class="form-control" placeholder="Text" rows="5"></textarea>
-                                </div>
-                                <div class="form-outline mb-4 shadow-sm">
-                                    <select class="form-select" name="postCategory" aria-label="Default select example">
-                                        <option value="" selected disabled>Select category</option>
-                                        <option value="0">Dogs</option>
-                                        <option value="1">Cats</option>
-                                        <option value="2">Others</option>
-                                    </select>
-                                </div>
-
-                                <!-- Logo input -->
-                                <div class="d-flex flex-row align-items-center justify-content-center mb-4">
-                                    <p class="mb-0"><strong>Img: </strong></p>
-                                    <div class="form-outline w-50 mx-3">
-                                        <input class="form-control" type="file" name="postImg" id="formFile">
-                                    </div>
-                                </div>
-                                <div class="w-100 d-flex align-items-center justify-content-end">
-                                    <button type="submit" class="btn btn-success">Post</button>
-                                </div>
-
-                        
-                        </form>
-                        <?php
-                            if(isset($_SESSION['error_msg'])){
-                                echo '<div class="w-100 d-flex align-items-center justify-content-center">';
-                                echo '<p style="color: red;">'.$_SESSION['error_msg'].'</p>';
-                                echo '</div>';
-                            }
-                        ?>
-                    </div>
             </div>
     
 

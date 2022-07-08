@@ -11,3 +11,28 @@
     position: fixed;
     bottom: 0;
 }
+
+#forumContainer{
+    flex-direction: row;
+    justify-content: space-between;
+}
+#shareStory{
+    width: 25%;
+}
+#newPostDiv{
+    width: 50%;
+}
+
+@media only screen and (max-device-width : 780px) {
+    #forumContainer{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #shareStory{
+        width: 75%;
+    }
+    #newPostDiv{
+        width: 75%;
+    }
+}

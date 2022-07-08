@@ -1,0 +1,16 @@
+[
+    {
+        "category" : "dog",
+        "name" : "Croccantini per cani",
+        "description" : "Croccantini per cani al tonno",
+        "price" : 22.5,
+        "img" : ""
+    },
+    {
+        "category" : "cat",
+        "name" : "Croccantini per gatti",
+        "description" : "Croccantini per gatti al tonno",
+        "price" : 23.5,
+        "img" : ""
+    }
+]
