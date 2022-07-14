@@ -1,0 +1,31 @@
+.storeProductImg{
+    width: 20vh;
+    height: 20vh;
+}
+
+.productsContainer{
+    width: 100%;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.productCard{
+    width: 25%;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+}
+
+
+@media only screen and (max-device-width : 780px) {
+    .productsContainer{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .productCard{
+        width: 75%;
+    }
+}

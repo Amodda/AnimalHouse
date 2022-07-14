@@ -198,7 +198,7 @@ session_start();
                     echo '<h1>E-Commerce</h1>';
                     echo '<h5>Do you need anything for your animal? Take a look at our store!</h5>';
                     echo '<div class="container w-100 d-flex align-items-center justify-content-end mt-5">';
-                    echo '<a class="btn btn-success" href="forum.php">Open store <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bag" viewBox="0 0 20 20">
+                    echo '<a class="btn btn-success" href="store.php">Open store <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bag" viewBox="0 0 20 20">
                         <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
                       </svg></a>';
                     echo '</div>';

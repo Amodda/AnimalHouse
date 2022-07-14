@@ -1,16 +1,43 @@
-[
+
     {
-        "category" : "dog",
-        "name" : "Croccantini per cani",
-        "description" : "Croccantini per cani al tonno",
-        "price" : 22.5,
-        "img" : ""
-    },
-    {
-        "category" : "cat",
-        "name" : "Croccantini per gatti",
-        "description" : "Croccantini per gatti al tonno",
-        "price" : 23.5,
-        "img" : ""
+        "categories" : ["Health","Accessories","Food","Toys"],
+        "tags" : ["dog","cat","rabbit","fish","bird"],
+        "products" : [
+            {
+            "id": "ahfwjfuahij9j2",
+            "name" : "Croccantini per cani",
+            "description" : "Croccantini per cani al tonno",
+            "price" : 22.5,
+            "img" : "",
+            "category" : "Food",
+            "tags" : ["dog"]
+        },
+        {
+            "id" : "fawfkihfakiwfn",
+            "name" : "Croccantini per gatti",
+            "description" : "Croccantini per gatti al tonno",
+            "price" : 23.5,
+            "img" : "",
+            "category" : "Food",
+            "tags" : ["cat"]
+        },
+        {
+            "id" : "fawfkihffuibakiwfn",
+            "name" : "Croccantini per gatti",
+            "description" : "Croccantini per gatti al tonno",
+            "price" : 23.5,
+            "img" : "animalBG.jpeg",
+            "category" : "Health",
+            "tags" : ["cat"]
+        },
+        {
+            "id" : "fawfkihfwahfwajakiwfn",
+            "name" : "Croccantini per gatti",
+            "description" : "Croccantini per gatti al tonno",
+            "price" : 23.5,
+            "img" : "animalBG.jpeg",
+            "category" : "Health",
+            "tags" : ["cat"]
+        }
+    ]
     }
-]

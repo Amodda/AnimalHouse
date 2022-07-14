@@ -65,7 +65,8 @@ if (isset($_GET['register'])) {
                             "quiz" => 0,
                             "hangman" => 0,
                             "memory" => 0
-                        ]
+                        ],
+                        "type" => "user"
                     ];
                     $newUsers = $users;
                     array_push($newUsers, $user);

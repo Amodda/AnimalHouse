@@ -38,6 +38,9 @@ if(!isset($_SESSION['user'])){
                     }
                     if(isset($_SESSION['user'])){
                         echo '<li class="nav-item">';
+                            echo '<a class="nav-link" href="store.php">Store</a>';
+                        echo '</li>';
+                        echo '<li class="nav-item">';
                             echo '<a class="nav-link active" href="">Forum</a>';
                         echo '</li>';
                         echo '<li class="nav-item dropdown">';
@@ -199,9 +202,11 @@ if(!isset($_SESSION['user'])){
                                 <div class="form-outline mb-4 shadow-sm">
                                     <select class="form-select" name="postCategory" aria-label="Default select example">
                                         <option value="" selected disabled>Select category</option>
-                                        <option value="0">Dogs</option>
-                                        <option value="1">Cats</option>
-                                        <option value="2">Others</option>
+                                    <?php
+                                    for($i = 0; $i < count($posts); $i++){
+                                        echo '<option value="'.$i.'">'.$posts[$i]['category'].'</option>';
+                                    }
+                                    ?>
                                     </select>
                                 </div>
 

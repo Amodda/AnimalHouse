@@ -3,6 +3,48 @@ session_start();
 if(!isset($_SESSION['user'])){
     header('Location: index.php');
 }
+
+function showProducts($category) {
+    $jsonData = file_get_contents("data/store.json");
+    $store = json_decode($jsonData, true);
+    $storeProducts = [];
+        for($i = 0; $i < count($store['products']);$i++){
+            if($store['products'][$i]['category'] == $category){  
+                array_push($storeProducts, $store['products'][$i]);
+            }
+        }
+
+        echo '<p class="container m-3" style="font-size: 18px;">'.count($storeProducts).' products available</p>';
+        for($i = 0; $i < count($storeProducts);$i++){
+            echo '<div class="container w-100 d-flex justify-content-start productsContainer" style="max-width: 100%">';
+                for($j = $i; $j < $i + 3; $j++){
+                    if($storeProducts[$j] != null){
+                        echo '<div class="w-25 m-3 d-flex flex-column justify-content-center rounded border shadow-sm" id="product'.$j.'">';
+                        echo '<div class="container w-100 d-flex justify-content-center">';
+                            if($storeProducts[$j]['img'] == ""){
+                                echo '<img src="noimage.png" class="storeProductImg">';
+                            }else{
+                                echo '<img src="'.$storeProducts[$j]['img'].'" class="storeProductImg">';
+                            }
+                            
+                        echo '</div>';
+                        echo '<div class="m-4">';
+                            echo '<h4>'.$storeProducts[$j]['name'].'</h4>';
+                            echo '<p style="margin: 0; font-size: 15px;">'.$storeProducts[$j]['description'].'</p>';
+                            echo '<div class="container w-100 d-flex align-items-center justify-content-end mt-3" style="font-weight:bold">';
+                                echo '<p class="m-0">'.$storeProducts[$j]['price'].' €</p>';
+                            echo '</div>';
+                        echo '</div>';
+
+                    echo '</div>';
+                    }
+                }
+            $i = $i +2;
+            echo '</div>';
+            }
+
+}   
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +53,7 @@ if(!isset($_SESSION['user'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/forum.css">
+    <link rel="stylesheet" href="css/store.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>AnimalStore</title>
 </head>
@@ -31,6 +73,7 @@ if(!isset($_SESSION['user'])){
 
 
               <?php
+              
                     if(!isset($_SESSION['user'])){
                         echo '<li class="nav-item ">';
                             echo '<a class="nav-link" href="signin.php">Sign in</a>';
@@ -41,7 +84,7 @@ if(!isset($_SESSION['user'])){
                             echo '<a class="nav-link active" href="">Store</a>';
                         echo '</li>';
                         echo '<li class="nav-item">';
-                            echo '<a class="nav-link" href="">Forum</a>';
+                            echo '<a class="nav-link" href="forum.php">Forum</a>';
                         echo '</li>';
                         echo '<li class="nav-item dropdown">';
                         echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome '.$_SESSION['user']['name'].'</a>';
@@ -59,123 +102,91 @@ if(!isset($_SESSION['user'])){
     <div class="container d-flex flex-column align-items-center my-3" style="min-height: 100vh;">
         <div class="w-100" id="communityGames">
             <div class="w-100 d-flex align-items-center justify-content-start mt-5">
-                <h4>Welcome to the Community Forum</h4>
+                <h1>Store</h1>
             </div>
-            <div class="w-100 d-flex flex-column  justify-content-start m-3" id="postsList">
+            <div class="w-100 d-flex flex-column justify-content-start" id="postsList">
                 <?php
-                    $jsonData = file_get_contents("posts.json");
-                    $posts = json_decode($jsonData, true);
-                    /*
-                    for($i = 0; $i < count($posts); $i++){
-                        echo '<div class=" postCard shadow border">';
-                            echo '<div class="m-4 mb-0">';
-                                echo '<div class="d-flex align-items-center justify-content-start">';
-                                    echo '<h4>'.$posts[$i]['title'].'</h4>';
-                                    
-                                echo '</div>';
 
-                                echo '<div>';
-                                    echo '<p>'.$posts[$i]['text'].'</p>';
-                                echo '</div>';
-                                echo '<div class="d-flex align-items-center justify-content-end w-100">';
-                                    echo '<p style="font-size: 12px">posted by '.$posts[$i]['user']." on ".$posts[$i]['date'].'</p>';
-                                echo '</div>';
-                            echo '</div>';
+                $jsonData = file_get_contents("data/store.json");
+                $store = json_decode($jsonData, true);
+                $storeProducts = [];
+
+                    echo '<div class="d-flex flex-row align-items-center mt-3" style="overflow: auto; width: 100%;">';
+                    
+                    if(isset($_GET['category'])){
+                        echo '<div class="w-50 d-flex flex-row align-items-center justify-content-center border shadow-sm m-3" style="border-radius: 2em;">';
+                    }else {
+                        echo '<div class="w-50 d-flex flex-row align-items-center justify-content-center border shadow-sm m-3" style="border-radius: 2em; background: #d9d9d9">';
+                    }
+                            echo '<a class="w-100 h4 p-3 m-0" style="text-decoration: none; color: black;text-align: center" href="store.php">All</a>';
+            
+                        echo '</div>';
+                    for($i = 0; $i < count($store["categories"]); $i++){
+                        if($store["categories"][$i] == $_GET['category']){
+                            echo '<div class="w-75 d-flex flex-row align-items-center justify-content-center border shadow-sm m-3" style="border-radius: 2em; background: #d9d9d9">';
+                        }else{
+                            echo '<div class="w-75 d-flex flex-row align-items-center justify-content-center border shadow-sm m-3" style="border-radius: 2em;">';
+                        }
+                        
+                            echo '<a class="w-100 h4 p-3 m-0" style="text-decoration: none; color: black;text-align: center" href="store.php?category='.$store["categories"][$i].'">'.$store["categories"][$i].'</a>';
+                
                         echo '</div>';
                     }
-                    */
-                    $bgColor = ["#f3f5cb","#ecffad","#d1ffad","#dafad2"];
-                    
+                    echo '</div>';
 
-                    
-                    if(!isset($_GET['category'])){
-                        //Mostra categorie
-                        echo '<div class="container">This is where you can find different stories about your favourite animals. Feel free to share some too!</div>';
-                            echo '<div class="w-100 d-flex" id="forumContainer">';
-                                echo '<div class="w-100 d-flex flex-column align-items-center mt-5">';
-                                    for($i = 0; $i < count($posts); $i++){
-                                        echo '<div class="w-75 d-flex flex-row align-items-center justify-content-center border rounded shadow-sm m-1" style="background: '.$bgColor[$i].'">';
-
-                                            echo '<a class="w-100 h4 p-3" style="text-decoration: none; color: black;text-align: center" href="forum.php?category='.$posts[$i]['id'].'">'.$posts[$i]['category'].'</a>';
-                                    
-                                        echo '</div>';
-                                    }
-                                    echo '<div class="w-50 d-flex flex-row align-items-center justify-content-center border rounded shadow-sm m-3">';
-                                        echo '<a class="w-100 h4 p-3" style="text-decoration: none; color: black;text-align: center" href="forum.php?category=all">See all</a>';
-                                    echo '</div>';
-                                echo '</div>';
-                                echo '<div class=" d-flex flex-column  justify-content-center mt-5" id="shareStory">';
-                                    echo '<img src="parrot.jpg" class="rounded-circle" style="border-radius: 1em;">';
-                                    echo '<h4 class="mt-3">'."I'm sure you have some interesting stories...".'</h3>';
-                                    echo '<div class="w-100 d-flex justify-content-center">';
-                                    echo '<a class="btn shadow-sm border" style=" font-size: 30px; text-decoration: none; color: black;" href="#newPost">Share it now!</a>';
-                                    echo '</div>';
-                                echo '</div>';
-                            echo '</div>';
-                        echo '</div>';
-                    } else if($_GET['category'] == 'all'){
-                        //Mostra post di tutte le categorie
-                        echo '<h5>All Animals</h5>';
-                        echo '<div class="w-100 d-flex flex-column mt-4">';
-                        for($i = 0; $i < count($posts); $i++){
-                            for($j = 0; $j < count($posts[$i]['items']); $j++){
-                            $rand_background = $bgColor[array_rand($bgColor)];
-                            echo '<div class=" postCard shadow border" id="post'.$i."_".$j.'" style="background: '.$rand_background.'">';
-                                echo '<div class="m-4 mb-0">';
-                                    echo '<div class="d-flex flex-row align-items-center justify-content-between">';
-                                        echo '<h4>'.$posts[$i]['items'][$j]['title'].'</h4>';
-                                        echo '<h5>'.$posts[$i]['category'].'</h5>';
-                                    echo '</div>';
-    
-                                    echo '<div>';
-                                        echo '<p>'.$posts[$i]['items'][$j]['text'].'</p>';
-                                    echo '</div>';
-                                    echo '<div class="d-flex align-items-center justify-content-end w-100">';
-                                        echo '<p style="font-size: 12px">posted by '.$posts[$i]['items'][$j]['user']." on ".$posts[$i]['items'][$j]['date'].'</p>';
-                                    echo '</div>';
-                                echo '</div>';
-                            echo '</div>';
-                            }
-                        }
-                        echo '</div>';
-                        echo '<div class="w-100 d-flex align-items-center justify-content-end">';
-                            echo '<a class="btn btn-dark m-4" href="forum.php">Back</a>';
-                        echo '</div>';
+                    echo '<hr class="my-3">';
+                    if(isset($_GET['category'])){
+                        showProducts($_GET['category']);
                     } else {
-                        //Mostra post della categoria selezionata
-                        $category = $_GET['category'];
-                        echo '<h5>'.$posts[$category]['category'].'</h5>';
-                        if(count($posts[$category]['items']) > 0){
-                            echo '<div class="w-100 d-flex flex-column mt-4">';
-                            for($i = 0; $i < count($posts[$category]['items']); $i++){
-                                $rand_background = $bgColor[array_rand($bgColor)];
-                                echo '<div class=" postCard shadow border" id="post'.$i.'" style="background: '.$rand_background.'">';
-                                    echo '<div class="m-4 mb-0">';
-                                        echo '<div class="d-flex align-items-center justify-content-start">';
-                                            echo '<h4>'.$posts[$category]['items'][$i]['title'].'</h4>';
+                        echo '<p class="container m-3" style="font-size: 18px;">'.count($store['products']).' products available</p>';
+                        for($i = 0; $i < count($store['products']);$i++){
+                            echo '<div class="container d-flex productsContainer" style="max-width: 100%">';
+                                for($j = $i; $j < $i + 3; $j++){
+                                    if($store['products'][$j] != null){
+                                        echo '<div class=" m-3 d-flex flex-column justify-content-center rounded border shadow-sm productCard" id="product'.$j.'" onClick='."openProductDetails('".$store['products'][$j]['id']."')>";
+                                        echo '<div class="container w-100 d-flex justify-content-center">';
+                                            if($store['products'][$j]['img'] == ""){
+                                                echo '<img src="noimage.png" class="storeProductImg">';
+                                            }else{
+                                                echo '<img src="'.$store['products'][$j]['img'].'" class="storeProductImg">';
+                                            }
                                             
                                         echo '</div>';
-        
-                                        echo '<div>';
-                                            echo '<p>'.$posts[$category]['items'][$i]['text'].'</p>';
+                                        echo '<div class="m-4">';
+                                            echo '<h4>'.$store['products'][$j]['name'].'</h4>';
+                                            echo '<p style="margin: 0; font-size: 15px;">'.$store['products'][$j]['description'].'</p>';
+                                            echo '<div class="container w-100 d-flex align-items-center justify-content-end mt-3" style="font-weight:bold">';
+                                                echo '<p class="m-0">'.$store['products'][$j]['price'].' €</p>';
+                                            echo '</div>';
                                         echo '</div>';
-                                        echo '<div class="d-flex align-items-center justify-content-end w-100">';
-                                            echo '<p style="font-size: 12px">posted by '.$posts[$category]['items'][$i]['user']." on ".$posts[$category]['items'][$i]['date'].'</p>';
-                                        echo '</div>';
+                
+                                    echo '</div>';
+                                    }
+                                }
+                            $i = $i +2;
+                            echo '</div>';
+                            }
+                    }
+                    /*
+                    for($i = 0; $i < count($store['products']);$i++){
+                        echo '<div class="container w-100 d-flex flex-row justify-content-start" style="max-width: 100%">';
+                            for($j = $i; $j < $i + 3; $j++){
+                                if($store['products'][$j] != null){
+                                    echo '<div class="w-25 m-3 d-flex flex-column justify-content-center rounded border shadow-sm" id="product'.$j.'">';
+                                    echo '<div class="p-4">';
+                                        echo '<h4>'.$store['products'][$j]['name'].'</h4>';
+                                        echo '<p style="margin: 0; font-size: 18px;">'.$store['products'][$j]['description'].'</p>';
                                     echo '</div>';
                                 echo '</div>';
+                                }
+
                             }
-                            echo '</div>';
-                        } else {
-                            echo '<div class="w-100 d-flex flex-column mt-4">';
-                                echo '<h3 style="opacity: 0.4">Sorry! It looks like there are no posts under this category.</h3>';
-                            echo '</div>';
-                        }
- 
-                        echo '<div class="w-100 d-flex align-items-center justify-content-end">';
-                            echo '<a class="btn btn-dark m-4" href="forum.php">Back</a>';
+                        $i = $i +2;
                         echo '</div>';
-                    }
+                        }
+                    
+                    */
+                    
 
                 ?>
                
@@ -205,7 +216,11 @@ if(!isset($_SESSION['user'])){
         <!-- Copyright -->
       </footer>
 
-
+<script>
+    function openProductDetails(id){
+        location.href = "store.php?product=" + id;
+    }
+</script>
 </body>
 </html>
 
