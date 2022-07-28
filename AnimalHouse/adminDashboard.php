@@ -1,6 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['user'] || $_SESSION['user']['type'] != "admin")){
+if(!isset($_SESSION['user'])){
+    header('Location: index.php');
+}
+if($_SESSION['user']['type'] != "admin"){
     header('Location: index.php');
 }
 ?>
@@ -14,6 +17,6 @@ if(!isset($_SESSION['user'] || $_SESSION['user']['type'] != "admin")){
     <title>Back Office</title>
 </head>
 <body>
-    
+    <h1>BackOffice</h1>
 </body>
 </html>
