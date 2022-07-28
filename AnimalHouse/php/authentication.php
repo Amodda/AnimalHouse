@@ -109,7 +109,8 @@ if (isset($_GET['login'])) {
                         $_SESSION['user'] = [
                             "name" => $users[$i]['name'],
                             "lastname" => $users[$i]['lastname'],
-                            "username" => $users[$i]['username']
+                            "username" => $users[$i]['username'],
+                            "cartItems" => array()
                         ];
                         
                         header('Location: ../index.php');

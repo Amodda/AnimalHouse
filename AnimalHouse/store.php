@@ -80,8 +80,14 @@ function showProducts($category) {
                         echo '</li>';
                     }
                     if(isset($_SESSION['user'])){
+
                         echo '<li class="nav-item">';
                             echo '<a class="nav-link active" href="">Store</a>';
+                        echo '</li>';
+                        echo '<li class="nav-item">';
+                            echo '<a class="nav-link active" href="userCart.php"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bag" viewBox="0 0 18 18">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                          </svg><span style="font-size: 12px; margin: 0 0 1em 0">'.count($_SESSION['user']['cartItems']).'</span></a>';
                         echo '</li>';
                         echo '<li class="nav-item">';
                             echo '<a class="nav-link" href="forum.php">Forum</a>';
@@ -99,14 +105,15 @@ function showProducts($category) {
         </div>
     </nav>
 
+
     <div class="container d-flex flex-column align-items-center my-3" style="min-height: 100vh;">
         <div class="w-100" id="communityGames">
             <div class="w-100 d-flex align-items-center justify-content-start mt-5">
                 <h1>Store</h1>
             </div>
-            <div class="w-100 d-flex flex-column justify-content-start" id="postsList">
+            <div class="w-100 d-flex flex-column justify-content-start" >
                 <?php
-
+                //var_dump($_SESSION['user']['cartItems']);
                 $jsonData = file_get_contents("data/store.json");
                 $store = json_decode($jsonData, true);
                 $storeProducts = [];
@@ -143,7 +150,7 @@ function showProducts($category) {
                             echo '<div class="container d-flex productsContainer" style="max-width: 100%">';
                                 for($j = $i; $j < $i + 3; $j++){
                                     if($store['products'][$j] != null){
-                                        echo '<div class=" m-3 d-flex flex-column justify-content-center rounded border shadow-sm productCard" id="product'.$j.'" onClick='."openProductDetails('".$store['products'][$j]['id']."')>";
+                                        echo '<div class=" m-3 d-flex flex-column justify-content-center rounded border shadow-sm productCard" id="product'.$j.'" onClick='.'location.href="product.php?product='.$store['products'][$j]['id'].'">';
                                         echo '<div class="container w-100 d-flex justify-content-center">';
                                             if($store['products'][$j]['img'] == ""){
                                                 echo '<img src="noimage.png" class="storeProductImg">';
