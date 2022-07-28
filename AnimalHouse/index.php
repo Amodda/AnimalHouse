@@ -43,6 +43,9 @@ session_start();
                         echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome '.$_SESSION['user']['name'].'</a>';
                         echo '<ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">';
                         echo '<li><a class="dropdown-item" href="php/authentication.php?logout">Logout</a></li>';
+                        if($_SESSION['user']['type'] == "admin"){
+                            echo '<li><a class="dropdown-item" href="adminDashboard.php?logout">Admin Panel</a></li>';
+                        }
                         echo '</ul>';
                         echo '</li>';
                     }

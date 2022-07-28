@@ -110,6 +110,7 @@ if (isset($_GET['login'])) {
                             "name" => $users[$i]['name'],
                             "lastname" => $users[$i]['lastname'],
                             "username" => $users[$i]['username'],
+                            "type" => $users[$i]['type'],
                             "cartItems" => array()
                         ];
                         
@@ -129,29 +130,6 @@ if (isset($_GET['login'])) {
 
         }
 
-        /*$rowCount = $res->rowCount();
-
-        if($rowCount > 0){
-            $result = $res -> fetch();
-        } else {
-            $_SESSION['auth_error'] = 'Credenziali utente errate';
-            header('Location: ../index.php');
-        }
-        
-        
-        if ($result['Username'] == '' || password_verify($password, $result['Password']) === false) {
-            $msg = 'Credenziali utente errate';
-            header('Location: ../index.php');
-
-        } else {
-
-            $_SESSION['session_user'] = $result['Username'];
-            $_SESSION['session_userType'] = $result['Tipo'];
-
-            header('Location: ../index.php');
-            //exit;
-        }
-        */
     }
     
     //printf($msg, '<a href="../login.html">torna indietro</a>');
