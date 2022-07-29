@@ -10,6 +10,7 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/animalHouse.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/curiosity.js"></script>
     <title> </title>
 </head>
 <body>
@@ -58,8 +59,11 @@ session_start();
 
     <div class="d-flex flex-row align-items-center w-100" style="height: 100vh" id="backgroundImg">
         <div class="w-100 d-flex flex-row align-items-center" style="height: 100vh; background: rgb(0,0,0,0.5)">
-            <div class=" w-50 d-flex align-items-center justify-content-end mx-4">
+            <div class="w-50 d-flex flex-column align-items-center justify-content-end mx-4">
                 <h1 class="text-white">Welcome to Animal House</h1>
+                <!--<div class="d-flex flex-column justify-content-center align-items-center" id="animalInfo">
+        
+                </div>-->
             </div>
             <div class="w-50 d-flex align-items-center justify-content-center mx-4">
               <a href="#communityGames" class="btn shadow" id="btnStart">Start Now</a>
@@ -67,12 +71,46 @@ session_start();
         </div>
     </div>
 
+    <div class="d-flex flex-column align-items-center ">
+        <div id="curiosity" class="w-75 mt-5 ">
+        <h4>Did you know that...</h4>
+                <div class="w-100 d-flex justify-content-start " id="animalInfo">
+
+                    
+        
+                </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center" id="communityGames">
+         <hr class="w-75">
+    </div>
+
     <div class="container d-flex flex-column align-items-center my-5">
-        <div id="communityGames">
-            <div class="w-100 d-flex align-items-center justify-content-center mt-5">
+        <div >
+            <div class="w-100 d-flex align-items-center justify-content-center">
                 <h4 class="mt-3">Games</h4>
             </div>
-            <div class="d-flex align-items-center my-3" id="gamesList">
+            <div class="d-flex align-items-center mt-4" id="gamesList">
+                <div class="gameCard shadow border">
+                    <div class="m-4">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h4>AnimalQuiz</h4>
+                            
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="" alt="">
+                        </div>
+                        <div>
+                            <p>Test your knowledge about animals</p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center w-100">
+                            <a class="w-50 btn btn-success" href="animalQuiz.php">Start</a>
+                        </div>
+                    </div>
+
+                </div>
+                <!--
                 <div class="gameCard shadow border">
                     <div class="m-4">
                         <div class="d-flex align-items-center justify-content-center">
@@ -90,7 +128,7 @@ session_start();
                         </div>
                     </div>
 
-                </div>
+                </div>-->
                 <div class=" gameCard mx-3 shadow border">
                     <div class="m-4">
                         <div class="d-flex align-items-center justify-content-center">
@@ -236,11 +274,11 @@ session_start();
         echo '</div>';
     } else {
         //Locked view 
-        echo '<div class="container-fluid d-flex flex-column bg-dark">';
-        echo '<div class="w-100 d-flex align-items-center justify-content-center my-3">';
+        echo '<div class="container-fluid d-flex flex-column bg-dark ">';
+        echo '<div class="w-100 d-flex align-items-center justify-content-center mt-5">';
             echo '<h4 class="text-white">Community</h4>';
         echo '</div>';
-        echo '<div class="container d-flex w-100 flex-row align-items-center text-white my-3">';
+        echo '<div class="container d-flex w-100 flex-row align-items-center text-white mt-3">';
             echo '<div class="w-100 d-flex flex-column align-items-center justify-content-center" style=" opacity: 0.7">';
                 echo '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/></svg>';
                 echo '<p class="my-3" style="font-size: 25px;">Sign in to unlock content</p>';
@@ -268,7 +306,7 @@ session_start();
 
 
 
-    <footer class="bg-light text-center w-100 mt-4" >
+    <footer class="bg-light text-center w-100" >
 
 
         <!-- Copyright -->

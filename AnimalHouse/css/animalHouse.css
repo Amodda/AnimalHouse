@@ -42,6 +42,12 @@ td,th{
     flex-direction: row;
 }
 
+#animalImg{
+    width: 200px;
+    height: 200px;
+    border-radius: 1rem;
+}
+
 @media only screen and (max-device-width : 780px) {
     #gamesList{
         flex-direction: column;
