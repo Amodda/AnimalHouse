@@ -110,25 +110,7 @@ session_start();
                     </div>
 
                 </div>
-                <!--
-                <div class="gameCard shadow border">
-                    <div class="m-4">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <h4>AnimalCuriosity</h4>
-                            
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <img src="" alt="">
-                        </div>
-                        <div>
-                            <p>AnimalCuriosity is a funny game where you can learn a lot of things you didn't know about animals.</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center w-100">
-                            <a class="w-50 btn btn-success" href="animalCuriosity.html">Start</a>
-                        </div>
-                    </div>
 
-                </div>-->
                 <div class=" gameCard mx-3 shadow border">
                     <div class="m-4">
                         <div class="d-flex align-items-center justify-content-center">
@@ -160,7 +142,7 @@ session_start();
                             <p>AnimalCuriosity is a funny game where you can find out a lot of things you didn't know about animals.</p>
                         </div>
                         <div class="d-flex align-items-center justify-content-center w-100">
-                            <a class="w-50 btn btn-success" href="hangman.html">Start</a>
+                            <a class="w-50 btn btn-success" href="hangman.php">Start</a>
                         </div>
                     </div>
 

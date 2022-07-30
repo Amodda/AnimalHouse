@@ -3,14 +3,19 @@ var questionNumber;
 var animalAnswer = []; //Animal with correct answer
 var questType = '';
 var points = 0;
-var questCounter = 3;
+var questCounter = 9;
+var playAsGuest = false;
 
 function startGame(){
     document.getElementById('startView').style.display = "none";
     document.getElementById('quizView').style.display = "flex";
     requestData();
-    //setLives();
     
+}
+
+function startGameGuest(){
+    playAsGuest = true;
+    startGame();
 }
 
 function requestData(){
@@ -68,17 +73,21 @@ function presentData(jsonData){
     
 }
 
+//Answer button
 function answer(answ){
     ans = document.getElementById('ans'+answ).innerHTML;
 
     if(ans == animalAnswer[questType]){
         points++;
+        updatePoints();
         document.getElementById('ans'+answ).style.background = 'green';
         disableAnswerButtons();
+        
 
     } else {
         if(points > 0){
             points--;
+            updatePoints();
         }
         document.getElementById('ans'+answ).style.background = 'red';
         disableAnswerButtons();
@@ -88,6 +97,7 @@ function answer(answ){
     document.getElementById('nextQuestBtn').disabled = false; //Enable next question button
 }
 
+//Next question button
 function nextQuestion(){
     if(questCounter > 0){
         questCounter--;
@@ -116,10 +126,18 @@ function updatePoints(){
 }
 
 function endGame(){
-    document.getElementById('quizView').style.display = "none";
-    document.getElementById('quizEnd').style.display = "flex";
-    var data = "quiz&&points=" + points;
-    ajax(data, "php/gamesManagement.php", "quizEnd");
+    if(playAsGuest){
+        document.getElementById('quizView').style.display = "none";
+        document.getElementById('quizEnd').style.display = "flex";
+        document.getElementById('quizEnd').innerHTML = '<h1>You scored ' + points + ' pt</h1><br><button class="btn btn-dark" onClick="closeGame()">Go Back</button>';
+    }
+    else{
+        document.getElementById('quizView').style.display = "none";
+        document.getElementById('quizEnd').style.display = "flex";
+        var data = "quiz&&points=" + points;
+        ajax(data, "php/gamesManagement.php", "quizEnd");
+    }
+
 }
 
 function ajax(data, destination, response){

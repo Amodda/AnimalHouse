@@ -11,6 +11,11 @@ function startGame(){
     
 }
 
+function startGameGuest(){
+    playAsGuest = true;
+    startGame();
+}
+
 function requestData(){
     let request = new XMLHttpRequest();
     request.open("GET", "https://zoo-animal-api.herokuapp.com/animals/rand");
@@ -35,36 +40,43 @@ function presentData(jsonData){
     word = animal['name'];
     img = animal['image_link']
     word = word.toUpperCase();
-    //console.log(word);
+    console.log(word.length);
     
     for(i = 0; i<word.length; i++){
+        emptyWord.push('_',); 
         if(i == 0){
             emptyWord[i] = word.charAt(i);
             usedLetters.push(word.charAt(i));
             
-
-        }else if(i == word.length-1){
+        }
+        if(i == word.length-1){
             emptyWord[i] = word.charAt(i);
             usedLetters.push(word.charAt(i));
-        }else{
+        }
             //emptyWord.push(name.charAt(i));
-            if(word.charAt(i) == ' ' || word.charAt(i) == '-'){
-                emptyWord.push('-'); 
+            if(word.charAt(i) == ' '){
+                console.log("space");
+                emptyWord[i] = "-"; 
             }
-            if(word.charAt(i) == "'"){
-                emptyWord.push("'");
-            } else {
-                if(word.charAt(i) == word.charAt(0)){
-                    emptyWord.push(word.charAt(0)); 
-                } else if(word.charAt(i) == word.charAt(word.length-1)){
-                    emptyWord.push(word.charAt(word.length-1));
-                } else {
-                    emptyWord.push('_'); 
-                }
-                
+            if(word.charAt(i) == '-'){
+                console.log("-");
+                emptyWord[i] = "-"; 
             }
             
-        }
+            if(word.charAt(i) == "'"){
+                emptyWord[i] = "'"; 
+            }
+                if(word.charAt(i) == word.charAt(0)){
+                    emptyWord[i] = word.charAt(0); 
+                }
+                if(word.charAt(i) == word.charAt(word.length-1)){
+                    emptyWord[i] = word.charAt(word.length-1); 
+                }
+                
+                
+            
+            
+        
         
     }
     //emptyWord = emptyWord.join(' ');
@@ -89,30 +101,34 @@ function setLives(){
 function addLetter(){
     var letter= document.getElementById('letter').value.toUpperCase();
     console.log(letter);
-    if(letter != ''){
-    if(word.indexOf(letter) !== -1){
-        for(i = 0; i<word.length; i++){
-            if(word.charAt(i) == letter){
-                emptyWord[i] = letter;
-            }
-        }
-        console.log(emptyWord.join(' '));
-        
-        document.getElementById('word').innerHTML = emptyWord.join(' ');
-        console.log(emptyWord);
-    } else {
-        //console.log("no");
-        lives--;
-        setLives();
-    }
-    updateUsedLetters(letter);
-    document.getElementById('letter').value = "";
-    if(emptyWord.indexOf('_') !== -1){
+    if(letter != '' || letter != ' '){
 
-    } else {
-        document.getElementById('hangmanTools').style.display = "none";
-        document.getElementById('hangmanWinner').innerHTML += '<div><h1>You win!</h1></div>'
+    if(!usedLetters.includes(letter)){
+        if(word.indexOf(letter) !== -1){
+            for(i = 0; i<word.length; i++){
+                if(word.charAt(i) == letter){
+                    emptyWord[i] = letter;
+                }
+            }
+            console.log(emptyWord.join(' '));
+            
+            document.getElementById('word').innerHTML = emptyWord.join(' ');
+            console.log(emptyWord);
+        } else {
+            //console.log("no");
+            lives--;
+            setLives();
+        }
+        updateUsedLetters(letter);
+        document.getElementById('letter').value = "";
+        if(emptyWord.indexOf('_') !== -1){
+    
+        } else {
+            document.getElementById('hangmanTools').style.display = "none";
+            document.getElementById('hangmanWinner').innerHTML += '<div><h1>You win!</h1></div>'
+        }
     }
+    
     }
 
 }

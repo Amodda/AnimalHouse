@@ -17,7 +17,7 @@ session_start();
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-5 shadow">
-        <div class="container-fluid my-1">
+        <div class="container-fluid">
           <a class="navbar-brand " href="index.php">AnimalHouse <strong>Game</strong></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,17 +25,37 @@ session_start();
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="game.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Curiosity</a>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Games</a>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Quiz</a></li>
+                  <li><a class="dropdown-item" href="#">Memory</a></li>
+                  <li><a class="dropdown-item" href="hangman.php">Hangman</a></li>
+
+                </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Memory</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="hangman.html">Hangman</a>
-              </li>
+              <?php
+                    if(!isset($_SESSION['user'])){
+                        echo '<li class="nav-item ">';
+                            echo '<a class="nav-link" href="signin.php">Sign in</a>';
+                        echo '</li>';
+
+                    }
+                    if(isset($_SESSION['user'])){
+                        echo '<li class="nav-item dropdown">';
+                        echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome '.$_SESSION['user']['name'].'</a>';
+                        echo '<ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">';
+                        echo '<li><a class="dropdown-item" href="php/authentication.php?logout">Logout</a></li>';
+                        if($_SESSION['user']['type'] == "admin"){
+                            echo '<li><a class="dropdown-item" href="adminDashboard.php">Admin Panel</a></li>';
+                        }
+                        echo '</ul>';
+                        echo '</li>';
+                    }
+                ?>
             </ul>
           </div>
         </div>
@@ -53,7 +73,7 @@ session_start();
                   if(isset($_SESSION['user'])){
                     echo '<button class="btn btn-dark" onClick="startGame()" id="hangmanStartButton">Start Game</button>';
                   } else {
-                    echo '<button class="btn btn-dark" onClick="startGameNoLogin()" id="hangmanStartButton">Play without account</button>';
+                    echo '<button class="btn btn-dark" onClick="startGameGuest()" id="hangmanStartButton">Play as Guest</button>';
                   }
                 ?>
               </div>
