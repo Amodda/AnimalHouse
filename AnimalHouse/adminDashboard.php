@@ -18,5 +18,6 @@ if($_SESSION['user']['type'] != "admin"){
 </head>
 <body>
     <h1>BackOffice</h1>
+    <h2> Test di prova modifica </h2>
 </body>
 </html>
