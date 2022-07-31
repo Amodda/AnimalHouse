@@ -99,7 +99,7 @@ session_start();
 
                       </div>
                     </div>
-                    <div id="hangmanWinner">
+                    <div class="w-75 flex-column justify-content-center m-3" id="hangmanWinner" style="display: none;">
 
                     </div>
 
