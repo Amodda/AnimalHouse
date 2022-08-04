@@ -1,7 +1,28 @@
-
-.sezione{
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.users, .scheda  {
     background-color: whitesmoke;
     padding: 10px 10px 10px 10px;
     border-radius: 10px;
-    margin-right: 200px;
+ 
+}
+
+.scheda {
+    max-width: 60%;
+}
+#userTable {
+    max-height: 150px;
+    overflow-y:scroll;
+  }
+
+p{
+    font-size:small;
+}
+.show {
+    visibility: visible;
+}
+.hidden{
+    visibility: hidden;
 }

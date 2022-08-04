@@ -41,18 +41,31 @@ if($_SESSION['user']['type'] != "admin"){
     </nav>
 
     <div class="container" >
-        <div class="sezione">
-        <table>
-            <title> Elenco Utenti </title>
-            <tr>
-                <th> Nome </th>
-                <th> Cognome </th>
-                <th> Email </th>
-            </tr>
-            <tbody id="userTable"></tbody>
-        </table>
+        <div class="users">
+          <table>
+              <title> Elenco Utenti </title>
+              <tr>
+                  <th> Nome </th>
+                  <th> Cognome </th>
+                  <th> Email </th>
+              </tr>
+
+              <tbody id="userTable"></tbody>
+          </table>
         </div>
- 
+        <div class="scheda">
+          <div id="data">
+              
+          </div>
+          <div class='hidden' id="password"> 
+                  <div id="oldPwd"> </div>
+                  <form form action="adminDashboard.php" method="post">
+                    <label for="newPwd">Nuova Password: </label>
+                    <input type="text" id="newPwd" name="newPwd">
+                  </form>
+                  
+              </div>
+        </div>
     </div>
 </body>
 </html>
