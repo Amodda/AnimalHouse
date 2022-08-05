@@ -1,10 +1,25 @@
 <?php
 session_start();
+
 if(!isset($_SESSION['user'])){
     header('Location: index.php');
 }
 if($_SESSION['user']['type'] != "admin"){
     header('Location: index.php');
+}
+
+$jsonData = file_get_contents("users.json");
+$_SESSION["users"] = json_decode($jsonData, true);
+$_SESSION["currente"] = 0;
+function openUser($i){
+  echo "$i";
+}
+function console($message)
+{
+    $message = date("H:i:s") . " - $message - ".PHP_EOL;
+    print($message);
+    flush();
+    ob_flush();
 }
 ?>
 
@@ -19,10 +34,12 @@ if($_SESSION['user']['type'] != "admin"){
     <link rel="stylesheet" href="css/backoffice.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Back Office</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/usersManager.js"> 
     </script>
 </head>
-<body onload="getUsers();">
+<body>
+<div><?php $_SESSION["phpmess"] = "prova"; echo $_SESSION["phpmess"]; ?></div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-5 shadow">
         <div class="container-fluid my-1">
           <a class="navbar-brand " href="game.html">AnimalHouse <strong>BackOffice</strong></a>
@@ -43,27 +60,53 @@ if($_SESSION['user']['type'] != "admin"){
     <div class="container" >
         <div class="users">
           <table>
+            <thead>
               <title> Elenco Utenti </title>
               <tr>
                   <th> Nome </th>
                   <th> Cognome </th>
                   <th> Email </th>
               </tr>
+            </thead>
+              
+              <tbody id="userTable">
+                <?php 
+                if(isset($_SESSION["users"])){
+                  $tempUs = $_SESSION["users"];
+                  for($i=0; $i< count($_SESSION["users"]); $i++){
+                    echo "<tr>";
+                    echo "<td>".json_encode($tempUs[$i]['name'])."</td>";
+                    echo "<td>".json_encode($tempUs[$i]['lastname'])."</td>";
+                    echo "<td>".json_encode($tempUs[$i]['email'])."</td>";
+                    echo "<td><button type='button' onClick=manage(".$i.")> Apri scheda </button></td>";
 
-              <tbody id="userTable"></tbody>
+                    echo "</tr>";
+                  }
+                }
+
+                
+                ?>
+              </tbody>
           </table>
         </div>
-        <div class="scheda">
+        <div class="scheda" class= "hidden">
           <div id="data">
-              
+              <div id=>
+                
+              </div>
+              <div>
+                
+              </div>
           </div>
           <div class='hidden' id="password"> 
-                  <div id="oldPwd"> </div>
-                  <form form action="adminDashboard.php" method="post">
+                  <form action="adminDashboard.php" method="POST">
+                    <div id="oldPwd"> </div>
+
                     <label for="newPwd">Nuova Password: </label>
-                    <input type="text" id="newPwd" name="newPwd">
+                    <input type="text" id="newPwd" name="newPwd" required/>
+        
                   </form>
-                  
+
               </div>
         </div>
     </div>
