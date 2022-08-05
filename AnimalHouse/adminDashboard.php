@@ -10,17 +10,7 @@ if($_SESSION['user']['type'] != "admin"){
 
 $jsonData = file_get_contents("users.json");
 $_SESSION["users"] = json_decode($jsonData, true);
-$_SESSION["currente"] = 0;
-function openUser($i){
-  echo "$i";
-}
-function console($message)
-{
-    $message = date("H:i:s") . " - $message - ".PHP_EOL;
-    print($message);
-    flush();
-    ob_flush();
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +29,6 @@ function console($message)
     </script>
 </head>
 <body>
-<div><?php $_SESSION["phpmess"] = "prova"; echo $_SESSION["phpmess"]; ?></div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-5 shadow">
         <div class="container-fluid my-1">
           <a class="navbar-brand " href="game.html">AnimalHouse <strong>BackOffice</strong></a>
@@ -101,7 +90,6 @@ function console($message)
           <div class='hidden' id="password"> 
                   <form action="adminDashboard.php" method="POST">
                     <div id="oldPwd"> </div>
-
                     <label for="newPwd">Nuova Password: </label>
                     <input type="text" id="newPwd" name="newPwd" required/>
         

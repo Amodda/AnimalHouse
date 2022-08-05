@@ -17,7 +17,7 @@
     overflow-y:scroll;
   }
 
-p{
+ .scheda div{
     font-size:small;
 }
 .show {

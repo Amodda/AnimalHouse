@@ -4,7 +4,8 @@
     $pos = $_POST["num"];
     $newP = json_encode($_POST["npwd"]);
     // aggiungi codifica password
-    $users[$pos]['password'] = $newP;
+    $password_hash = password_hash($newP, PASSWORD_BCRYPT);
+    $users[$pos]['password'] = $password_hash;
      
     $newUsers = $users;
     $_SESSION["users"] = $newUsers;
