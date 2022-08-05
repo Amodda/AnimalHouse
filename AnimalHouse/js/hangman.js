@@ -2,6 +2,7 @@ var word;
 var emptyWord = [];
 var lives = 10;
 var usedLetters = [];
+var playAsGuest = false;
 
 function startGame(){
     document.getElementById('startGame').style.display = "none";
@@ -55,11 +56,9 @@ function presentData(jsonData){
         }
             //emptyWord.push(name.charAt(i));
             if(word.charAt(i) == ' '){
-                console.log("space");
                 emptyWord[i] = "-"; 
             }
             if(word.charAt(i) == '-'){
-                console.log("-");
                 emptyWord[i] = "-"; 
             }
             
@@ -72,12 +71,6 @@ function presentData(jsonData){
                 if(word.charAt(i) == word.charAt(word.length-1)){
                     emptyWord[i] = word.charAt(word.length-1); 
                 }
-                
-                
-            
-            
-        
-        
     }
     //emptyWord = emptyWord.join(' ');
     document.getElementById('hangmanImg').innerHTML = '<img src="'+ img+ '" id="hangmanImage">';
@@ -100,7 +93,7 @@ function setLives(){
 
 function addLetter(){
     var letter= document.getElementById('letter').value.toUpperCase();
-    console.log(letter);
+    //console.log(letter);
     if(letter != '' || letter != ' '){
 
     if(!usedLetters.includes(letter)){
@@ -110,10 +103,10 @@ function addLetter(){
                     emptyWord[i] = letter;
                 }
             }
-            console.log(emptyWord.join(' '));
+            //console.log(emptyWord.join(' '));
             
             document.getElementById('word').innerHTML = emptyWord.join(' ');
-            console.log(emptyWord);
+            //console.log(emptyWord);
         } else {
             //console.log("no");
             lives--;
@@ -124,8 +117,7 @@ function addLetter(){
         if(emptyWord.indexOf('_') !== -1){
     
         } else {
-            document.getElementById('hangmanTools').style.display = "none";
-            document.getElementById('hangmanWinner').innerHTML += '<div><h1>You win!</h1></div>'
+            endGame();
         }
     }
     
@@ -145,4 +137,39 @@ function setupUsedLetters(){
 
         document.getElementById('hangmanUsedLetters').innerHTML += '<span class="mx-3">' + usedLetters[i]+'</span>';
     }
+}
+
+function endGame(){
+    document.getElementById('hangmanTools').style.display = "none";
+    document.getElementById('hangmanWinner').style.display = "flex";
+
+    if(!playAsGuest){
+        var data = "hangman";
+        ajax(data, "php/gamesManagement.php", "hangmanWinner");
+    } else {
+        document.getElementById('hangmanWinner').innerHTML += '<div><h1>You won!</h1><button class="btn btn-dark" onClick="closeGame()">Go Back</button></div>';
+    }
+
+}
+
+function closeGame(){
+    location.href = "hangman.php";
+    
+}
+
+
+function ajax(data, destination, response){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+
+          document.getElementById(response).style.display = 'flex';
+          document.getElementById(response).innerHTML = this.responseText;
+          //console.log("ciao");
+      }
+    };
+
+    xmlhttp.open("POST", destination + "?" + data,true);
+    xmlhttp.send();
+  
 }
