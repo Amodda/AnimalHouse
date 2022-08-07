@@ -78,14 +78,13 @@ $_SESSION["users"] = json_decode($jsonData, true);
               </tbody>
           </table>
         </div>
+        <div class="editable">
+          <div>Edit me</div>
+        </div>
+
         <div class="scheda" class= "hidden">
           <div id="data">
-              <div id=>
-                
-              </div>
-              <div>
-                
-              </div>
+              
           </div>
           <div class='hidden' id="password"> 
                   <form action="adminDashboard.php" method="POST">
@@ -98,5 +97,6 @@ $_SESSION["users"] = json_decode($jsonData, true);
               </div>
         </div>
     </div>
+    <script type="text/javascript" src="js/edit.js"></script>
 </body>
 </html>

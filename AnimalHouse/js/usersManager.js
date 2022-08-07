@@ -7,12 +7,14 @@ fetch("users.json")
     })
 ;
 
+// Cambiare label quando ci clicco sopra
+
 // Creo la scheda in base all'indice
 function manage(index){
     var div = document.getElementById("data");
     
     var add = "<h1>" + JSON.stringify(utenti[index].name)+ " " + JSON.stringify(utenti[index].lastname) +"<h1>";
-    add += "<div> Username: " + JSON.stringify(utenti[index].username)+"</div>";
+    add += "<div> Username: <div>" + JSON.stringify(utenti[index].username.value)+"</div></div>";
     add += "<div> Password: " + JSON.stringify(utenti[index].password)+"</div> <button onclick='managePwd("+JSON.stringify(utenti[index].password) +","+index+")' style='font-size: small;'> modifica password</button>" ;
     add += "<div> Preferenze      vuoto </div>";
     add += "<div> Punteggio giochi: "+ 
@@ -20,7 +22,7 @@ function manage(index){
             "<div> Quiz: "+ JSON.stringify(utenti[index].gamesPoints.hangman) +" </div>" +
             "<div> Quiz: "+ JSON.stringify(utenti[index].gamesPoints.memory) +" </div>"+
         "</div>"+
-        "<button onclick='eliminaUtente()' style='font-size: small;'> Elimina Utente </button>";
+        "<button onclick='eliminaUtente("+index+")' style='font-size: small;'> Elimina Utente </button>";
     div.innerHTML = add;
     div.style.visibility = "visible";
 }
@@ -49,6 +51,9 @@ function updatePassword(index){
     
 }
 
-function eliminaUtente(){
-    // chiama script php che elimina qull'elemento dall'array e poi riscrive array su file
+function eliminaUtente(index){
+    utenti[index]=utenti.pop();
+    $.post('php/popUser.php', { num: index}, function(result) { 
+        alert(result); 
+     });
 }
