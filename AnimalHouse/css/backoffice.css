@@ -1,9 +1,28 @@
-.container{
+.body{
     display: flex;
     flex-direction: row;
-}
-.users, .scheda  {
+    margin: 2%;
     background-color: whitesmoke;
+}
+#headButtons{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    justify-content:space-around;
+
+}
+.btnHead{
+    color: black;
+    text-decoration:none;
+    font-size: 30px;
+    height: 100%;
+    border-radius: 10px;
+    text-align: center;
+    background-color: beige;
+    
+}
+#users, .scheda  {
+    
     padding: 10px 10px 10px 10px;
     border-radius: 10px;
  
@@ -25,4 +44,16 @@
 }
 .hidden{
     visibility: hidden;
+}
+
+h3{
+    font-size: 15px;
+}
+
+#titleS{
+    margin-top: -50px;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 50px;
 }

@@ -25,8 +25,9 @@ $_SESSION["users"] = json_decode($jsonData, true);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Back Office</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/usersManager.js"> 
-    </script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/usersManager.js">  </script>
+    
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-5 shadow">
@@ -46,8 +47,28 @@ $_SESSION["users"] = json_decode($jsonData, true);
         </div>
     </nav>
 
-    <div class="container" >
-        <div class="users">
+      <div class="w-100" style="height: 100vh; background: rgb(0,0,0,0.5)">
+          <div style="height:40% ;">
+            <h1 id="titleS"> Admin Dashboard </h1>
+          </div>
+          <div class="w-100 d-flex align-items-center" style="height: 60%;">
+            <div class="row" id="headButtons">
+              <div class="col-6 col-sm-3">
+                <a href="#users" class="btnHead"> Manage Users</a>
+              </div>
+              <div class="col-6 col-sm-3">
+                <a href="" class="btnHead">Other Option</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    
+
+    <hr class="w-100"> 
+
+    <div class="body">
+    
+        <div id="users">
           <table>
             <thead>
               <title> Elenco Utenti </title>
@@ -76,17 +97,36 @@ $_SESSION["users"] = json_decode($jsonData, true);
                 
                 ?>
               </tbody>
+
           </table>
         </div>
-        <div class="editable">
-          <div>Edit me</div>
-        </div>
+        
+        <div class="scheda">
+        <div class="container">
+        <div class="row">
+        <div class="editable col-4 col-sm-2"> Nome:
+              <h3 id="name"></h3></div>
+        <div class="editable col-4 col-sm-2"> Cognome:
+              <h3 id="lastname"></h3></div>
+        <div class="editable col-4 col-sm-2"> Email:
+              <h3 id="email"></h3></div>
 
-        <div class="scheda" class= "hidden">
-          <div id="data">
-              
+        
+        </div>
+        <div class="row">
+            <div class="editable col-6 col-sm-3"> Username:
+              <h3 id="username"></h3></div>
+           
+            <div class="col-6 col-sm-3" id="salva"></div>
           </div>
-          <div class='hidden' id="password"> 
+          </div>
+        <div class="row">
+        <div class="col-6 col-sm-3" id="data">
+              
+        </div>
+        </div>
+        <div class="row">
+          <div class='hidden col' id="password"> 
                   <form action="adminDashboard.php" method="POST">
                     <div id="oldPwd"> </div>
                     <label for="newPwd">Nuova Password: </label>
@@ -94,9 +134,11 @@ $_SESSION["users"] = json_decode($jsonData, true);
         
                   </form>
 
-              </div>
+            </div>
+          </div>
         </div>
+        <script type="text/javascript" src="js/edit.js">  </script>
     </div>
-    <script type="text/javascript" src="js/edit.js"></script>
+   
 </body>
 </html>

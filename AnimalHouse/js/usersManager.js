@@ -11,11 +11,24 @@ fetch("users.json")
 
 // Creo la scheda in base all'indice
 function manage(index){
+    // dati modificabili al click
+    var name = document.getElementById("name");
+    var lastname = document.getElementById("lastname");
+    var email = document.getElementById("email");
+    var username = document.getElementById("username");
+    var divSave = document.getElementById("salva");
+    console.log(divSave);
+    name.innerHTML = JSON.stringify(utenti[index].name);
+    lastname.innerHTML = JSON.stringify(utenti[index].lastname);
+    email.innerHTML = JSON.stringify(utenti[index].email);
+    username.innerHTML = JSON.stringify(utenti[index].username);
+    // da attivare e disattivare
+
+    divSave.innerHTML = "<button onclick='saveData("+index+")'> Salva Modifiche </button>";
+    console.log(divSave.innerHTML);
+    // data
     var div = document.getElementById("data");
-    
-    var add = "<h1>" + JSON.stringify(utenti[index].name)+ " " + JSON.stringify(utenti[index].lastname) +"<h1>";
-    add += "<div> Username: <div>" + JSON.stringify(utenti[index].username.value)+"</div></div>";
-    add += "<div> Password: " + JSON.stringify(utenti[index].password)+"</div> <button onclick='managePwd("+JSON.stringify(utenti[index].password) +","+index+")' style='font-size: small;'> modifica password</button>" ;
+    var add = "<div> Password: " + JSON.stringify(utenti[index].password)+"</div> <button onclick='managePwd("+JSON.stringify(utenti[index].password) +","+index+")' style='font-size: small;'> modifica password</button>" ;
     add += "<div> Preferenze      vuoto </div>";
     add += "<div> Punteggio giochi: "+ 
             "<div> Quiz: "+ JSON.stringify(utenti[index].gamesPoints.quiz) +" </div>" +
@@ -56,4 +69,16 @@ function eliminaUtente(index){
     $.post('php/popUser.php', { num: index}, function(result) { 
         alert(result); 
      });
+}
+// salva modifica dati anagrafici
+function saveData(index){
+    var n = document.getElementById("name").textContent;
+    var l = document.getElementById("lastname").textContent;
+    var e = document.getElementById("email").textContent;
+    var u = document.getElementById("username").textContent;
+
+    $.post('php/modificaAnagrafe.php', { name: n, lname: l, email: e, username: u, i: index}, function(result) { 
+        alert(result); 
+     });
+     
 }
