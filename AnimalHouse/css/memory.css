@@ -1,0 +1,10 @@
+.quizImage{
+    width: 20vh;
+    height: 20vh;
+    border-radius: 1rem;
+    background-color: green;
+}
+
+.disable { 
+    pointer-events: none; 
+  }

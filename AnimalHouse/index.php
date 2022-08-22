@@ -124,7 +124,7 @@ session_start();
                             <p>Play memory with random animals! You might love it!</p>
                         </div>
                         <div class="d-flex align-items-center justify-content-center w-100">
-                            <a class="w-50 btn btn-success" href="">Start</a>
+                            <a class="w-50 btn btn-success" href="memory.php">Start</a>
                         </div>
                     </div>
 
