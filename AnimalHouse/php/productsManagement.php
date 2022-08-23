@@ -46,4 +46,27 @@ if(isset($_GET['removeProduct'])){
 
     header('Location: ../userCart.php');
 }
+
+if(isset($_GET['updateCart'])){
+    $productsN = $_GET['productsNumber'];
+    $products = [];
+    for($i = 0; $i < $productsN; $i++){
+        $product = [
+            "id" => $_GET['product'.$i],
+            "qty" => $_GET['qty'.$i]
+        ];
+        array_push($products, $product);
+    }
+    if(count($_SESSION['user']['cartItems']) == $productsN){
+        //var_dump($products);
+        for($i = 0; $i < $productsN; $i++){
+            $_SESSION['user']['cartItems'][$i] = $products[$i];
+        }
+        
+    }
+
+    //var_dump($_SESSION['user']['cartItems']);
+    echo '<h4 style="color: green">Cart successfully updated</h4>';
+    
+}
 ?>

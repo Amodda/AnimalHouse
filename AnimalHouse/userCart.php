@@ -14,6 +14,7 @@ if(!isset($_SESSION['user'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/store.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/userCart.js"></script>
     <title>MyCart</title>
 </head>
 <body>
@@ -66,6 +67,7 @@ if(!isset($_SESSION['user'])){
             <div class="w-100 d-flex justify-content-start mt-5">
                 <h1>Your Cart</h1>
             </div>
+            <div id="updateResponse" class="d-flex w-100 align-items-center justify-content-center my-4"></div>
             <div class="container w-75 d-flex flex-column justify-content-start mt-4" id="itemsList">
                 <?php
 
@@ -85,7 +87,7 @@ if(!isset($_SESSION['user'])){
 
                 
                 for($i = 0; $i < count($cart); $i++){
-                    echo '<div class="w-100 d-flex flex-row my-3">';
+                    echo '<div class="w-100 d-flex flex-row my-3" id="'.$cart[$i]['id'].'">';
                         echo '<div class="w-50">';
                         if($cart[$i]['img'] != ""){
                             echo '<img src="'.$cart[$i]['img'].'" style="width: 10vh; height: 10vh;">';
@@ -109,8 +111,15 @@ if(!isset($_SESSION['user'])){
                         echo '</div>';
                         
                     echo '</div>';
-                    echo '<hr class="my-3">';
+                    
                 }
+
+                echo '</div>';
+                echo '<hr class="my-3">';
+                if(count($cart) > 0){
+                        echo '<button type="" class="btn btn-dark" onClick="updateCart()">Update Cart</button>';
+                }
+
                 
 
                 
@@ -139,8 +148,8 @@ if(!isset($_SESSION['user'])){
                 ?>
                
         
+           
             
-            </div>
             <!--<hr class="my-5" style="opacity: 0.1">-->
 
         </div>
@@ -165,18 +174,7 @@ if(!isset($_SESSION['user'])){
       </footer>
 
 <script>
-    function addQty(id){
-        var qty = parseInt(document.getElementById(id).innerHTML);
-        qty += 1;
-        document.getElementById(id).innerHTML = qty;
-    }
-    function removeQty(id){
-        var qty = parseInt(document.getElementById(id).innerHTML);
-        if(qty > 1){
-            qty -= 1;
-        }
-        document.getElementById(id).innerHTML = qty;
-    }
+
     
 
 </script>
