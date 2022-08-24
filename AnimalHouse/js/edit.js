@@ -39,3 +39,14 @@ $('.editable').on('click', function() {
     }
 });
 
+// apertura e chiusura scheda, aggiungere animazione
+$(document).ready(function(){
+    $("#close").click(function(){
+      $("#scheda").hide(1000);
+    });
+    $(".open").click(function(){
+      $("#scheda").show(1000);
+      console.log("Entrato in funzione");
+    });
+  });
+
