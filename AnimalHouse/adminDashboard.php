@@ -37,8 +37,11 @@ $_SESSION["users"] = json_decode($jsonData, true);
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="adminEcommerce.php">E-Commerce</a>
               </li>
     
             </ul>
