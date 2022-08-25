@@ -25,7 +25,6 @@ function manage(index){
     // da attivare e disattivare
 
     divSave.innerHTML = "<button onclick='saveData("+index+")'> Salva Modifiche </button><hr>";
-    console.log(divSave.innerHTML);
     
     // data
     var div = document.getElementById("data");

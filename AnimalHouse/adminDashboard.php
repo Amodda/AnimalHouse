@@ -45,8 +45,8 @@ $_SESSION["users"] = json_decode($jsonData, true);
           </div>
         </div>
     </nav>
-
-      <div class="w-100" style="height: 100vh; background: rgb(0,0,0,0.5)">
+      <div id="backgroundImg">
+          <div class="w-100" style="height: 100vh;background: rgb(0,0,0,0.5);">
           <div style="height:60% ;">
             <h1 id="titleS"> Admin Dashboard </h1>
           </div>
@@ -61,6 +61,8 @@ $_SESSION["users"] = json_decode($jsonData, true);
             </div>
           </div>
       </div>
+      </div>
+    
     
 
     <hr class="w-100"> 
@@ -73,43 +75,45 @@ $_SESSION["users"] = json_decode($jsonData, true);
               <input id="search" type="text" 
                     placeholder="Search">
             </b>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="max-height: 100%;">
-        <table class="table table-bordered table-striped mb-0" id="userTable" style="max-height: 100%;">
-            <thead>
-              <tr>
-                  <th> Nome </th>
-                  <th> Cognome </th>
-                  <th> Email </th>
-              </tr>
-            </thead>
-              
-              <tbody id="tableBody" >
-                <?php 
-                if(isset($_SESSION["users"])){
-                  $tempUs = $_SESSION["users"];
-                  for($i=0; $i< count($_SESSION["users"]); $i++){
-                    echo "<tr>";
-                    echo "<td>".$tempUs[$i]['name']."</td>";
-                    echo "<td>".$tempUs[$i]['lastname']."</td>";
-                    echo "<td>".$tempUs[$i]['email']."</td>";
-                    echo "<td><button type='button' onClick=manage(".$i.") class='open'> Apri scheda </button></td>";
-
-                    echo "</tr>";
-                  }
-                }
-
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-bordered table-striped mb-0" id="userTable">
+              <thead>
+                <tr>
+                    <th> Nome </th>
+                    <th> Cognome </th>
+                    <th> Email </th>
+                </tr>
+              </thead>
                 
-                ?>
-              </tbody>
+                <tbody id="tableBody" >
+                  <?php 
+                  if(isset($_SESSION["users"])){
+                    $tempUs = $_SESSION["users"];
+                    for($i=0; $i< count($_SESSION["users"]); $i++){
+                      echo "<tr>";
+                      echo "<td>".$tempUs[$i]['name']."</td>";
+                      echo "<td>".$tempUs[$i]['lastname']."</td>";
+                      echo "<td>".$tempUs[$i]['email']."</td>";
+                      echo "<td><button type='button' onClick=manage(".$i.") class='open'> Apri scheda </button></td>";
 
-          </table>
+                      echo "</tr>";
+                    }
+                  }
+
+                  
+                  ?>
+                </tbody>
+
+            </table>
         </div>    
      
         </div>
         
         <div id="scheda" style="display:none;">
-        <h1 style="display: center;"> Scheda Utente </h1>
-        <aside id="close"> Chiudi Scheda </aside>
+        <div class="row">
+         <h2 class="col-9 col-sm-4"> Scheda Utente </h2>    
+         <a href="#boxUtenti" id="close" class="col-3 col-sm-2 offset-md-6">X</a>      
+        </div>
         <div class="row">
         <div class="editable col-4 col-sm-2"> Modifica nome:
               <h3 id="name"></h3></div>

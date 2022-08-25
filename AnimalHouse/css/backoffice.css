@@ -2,9 +2,13 @@
     display: flex;
     flex-direction: row;
     justify-content:space-between;
-    margin: 2%;
-   
+    margin: 2%;   
     border-radius: 10px;
+}
+#backgroundImg{
+    background-image: url("../animalBG.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #headButtons{
     width: 100%;
@@ -24,7 +28,6 @@
 }
 #scheda  {
     position:fixed;
-
     padding: 10px 10px 10px 10px;
     border-radius: 10px;
     border-style:solid;
@@ -37,14 +40,17 @@
 }
 
 #boxUtenti{
-    max-height: 80vh;
+    height: 80vh;
     border-radius: 10px;
+    border-style: groove;
     width: 100%;
     background-color: whitesmoke;
     padding: 10px 10px 10px 10px;
     
 }
-
+#userTable{
+    height: 50vh;
+}
 #scheda div{
     font-size:small;
 }
@@ -63,11 +69,19 @@ h3{
 }
 
 .my-custom-scrollbar {
+    margin-top: 5vh;
     position:relative;
-    height: 200px;
+    height: 50vh;
     overflow: auto;
 
     }
 .table-wrapper-scroll-y {
     display: block;
     }
+#close{
+    content: "\00d7";
+    text-align: right;
+    size: 16px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
