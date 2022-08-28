@@ -5,7 +5,6 @@
     $newP = $_POST["npwd"];
     $oldP = $_POST["olpwd"];
     
-    // aggiungi codifica password
     if(password_verify($oldP, $users[$pos]["password"]) === true){
         $password_hash = password_hash($newP, PASSWORD_BCRYPT);
         $users[$pos]['password'] = $password_hash;
@@ -20,5 +19,6 @@
         }
     }else{
         echo "Vecchia password non corretta";
+        echo $pos;
     }
 ?>

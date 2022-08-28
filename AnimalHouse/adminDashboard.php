@@ -112,45 +112,79 @@ $_SESSION["users"] = json_decode($jsonData, true);
      
         </div>
         
-        <div id="scheda" style="display:none;">
-        <div class="row">
-         <h2 class="col-9 col-sm-4"> Scheda Utente </h2>    
-         <a href="#boxUtenti" id="close" class="col-3 col-sm-2 offset-md-6">X</a>      
-        </div>
-        <div class="row">
-        <div class="editable col-4 col-sm-2"> Modifica nome:
-              <h3 id="name"></h3></div>
-        <div class="editable col-4 col-sm-2"> Modifica cognome:
-              <h3 id="lastname"></h3></div>
-        <div class="editable col-4 col-sm-2"> Modifica email:
-              <h3 id="email"></h3></div>
-
-        
-        </div>
-        <div class="row">
-            <div class="editable col-6 col-sm-3"> Username:
-              <h3 id="username"></h3></div>
-            
-            <div class="col-6 col-sm-3" id="salva"></div>
+        <div id="scheda" style="display:none;" class="container">
+          <div class="row ">
+            <div class="col-md-2 col-sm-1"></div>
+            <h2 class="col-md-8 col-sm-4" style="text-align: center;"> Scheda Utente </h2>
+            <div class="col-2 col-sm-1">
+              <img src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
+            </div>  
           </div>
-        
-        <div class="row">
-        <div class="col-6 col-sm-3" id="data">
-              
-        </div>
-        </div>
-        <div class="row">
-          <div class='col' id="password" style="visibility: hidden;"> 
-                  <form action="adminDashboard.php" method="POST">
-                    <label for="oldPwd">Inserire vecchia password: </label>
-                    <input type="text" id="oldPwd" name="oldPwd" required/>
-                    <label for="newPwd">Nuova Password: </label>
-                    <input type="text" id="newPwd" name="newPwd" required/>
-                    
-                  </form>
+          <div class="row">
+            <div id="anagrafe" class="col-lg-6 col-sm-3" style="border-right: 2px solid black;">
+              <div class="row">
+                <div class="editable col-md-6 col-sm-3"> Modifica nome:
+                      <h3 id="name"></h3></div>
+                <div class="editable col-md-6 col-sm-3"> Modifica cognome:
+                      <h3 id="lastname"></h3></div>
+                
+              </div>
+              <div class="row">
+                <div class="editable col-md-6 col-sm-3"> Modifica Username:
+                  <h3 id="username"></h3></div>
+                <div class="editable col-md-6 col-sm-3"> Modifica email:
+                      <h3 id="email"></h3></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6 col-sm-3" id="pass"></div>
+                  <div class="col-md-6 col-sm-3" id="salva"></div>
+              </div>
+              <div class="row">
+              <div class='col-md-12' id="password" style="visibility: hidden;"> 
+                      <form action="adminDashboard.php" method="POST">
+                        <label for="oldPwd">Inserire vecchia password: </label>
+                        <input type="text" id="oldPwd" name="oldPwd" required/>
+                        <div class="row">
+                        <div class='col-md-12'>
+                        <label for="newPwd">Inserire Nuova Password: </label>
+                        <input type="text" id="newPwd" name="newPwd" required/>
+                        <div id="invia"></div>
+                        </div>
+                        </div>
+                        
+                        
+                      </form>
 
+                </div>
+              </div>
             </div>
+
+            <div id="giochi" class="col-lg-6 col-sm-3" style="border-left: 2px solid black;">
+              <div class="row">
+                <div class="col-md-6 col-sm-3"> Preferenze:
+                  <div id="preferenze"> Esempio Preferenza </div>
+                  <div> Esempio Preferenza 2 </div>
+                  <div> Esempio Preferenza 3</div>
+                </div>
+                <div class="col-md-6 col-sm-3"> Punteggio Giochi:
+                  <div class="row">
+                    <div class="col-md-4 col-sm-2"> Quiz:
+                      <h3 class="editable" id="quiz"></h3>
+                    </div>
+                    <div class="col-md-4 col-sm-2"> Hangman:
+                      <h3 class="editable" id="hang"></h3>
+                    </div>
+                    <div class="col-md-4 col-sm-2"> Memory:
+                      <h3 class="editable" id="memo"></h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="cancelUser" style="text-align: right;"></div>
           </div>
+          
+          
         </div>
         <script type="text/javascript" src="js/edit.js">  </script>
     </div>

@@ -25,6 +25,7 @@
     text-align: center;
     background-color: beige;
     padding: 5vh 5vh 5vh 5vh;
+    
 }
 #scheda  {
     position:fixed;
@@ -36,9 +37,11 @@
     left: 10vh;
     right: 10vh;
     z-index: 1;
-    
+    height: 60vh;
 }
-
+.row{
+    padding: 5px 0px 5px 0;
+}
 #boxUtenti{
     height: 80vh;
     border-radius: 10px;
@@ -51,9 +54,7 @@
 #userTable{
     height: 50vh;
 }
-#scheda div{
-    font-size:small;
-}
+
 
 
 h3{
@@ -78,10 +79,11 @@ h3{
 .table-wrapper-scroll-y {
     display: block;
     }
+
+
 #close{
-    content: "\00d7";
+    margin-left: 20vh;
     text-align: right;
-    size: 16px;
-    font-family:Arial, Helvetica, sans-serif;
-    text-decoration: none;
+    max-width: 7vh;
+    max-height: 7vh;
 }

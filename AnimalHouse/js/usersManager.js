@@ -1,6 +1,6 @@
 var utenti;
 // ottengo array degli utenti anche in JS
-fetch("users.json")
+fetch("usersTest.json")
     .then( response => response.json())
     .then(data => {  
         utenti=data;
@@ -17,34 +17,37 @@ function manage(index){
     var email = document.getElementById("email");
     var username = document.getElementById("username");
     var divSave = document.getElementById("salva");
+    var divPass = document.getElementById("pass");
+    var divQuiz = document.getElementById("quiz");
+    var divHang = document.getElementById("hang");
+    var divMemo = document.getElementById("memo");
+    var divElimina = document.getElementById("cancelUser");
     console.log(divSave);
     name.innerHTML = utenti[index].name;
     lastname.innerHTML = utenti[index].lastname;
     email.innerHTML = utenti[index].email;
     username.innerHTML = utenti[index].username;
-    // da attivare e disattivare
+    divQuiz.innerHTML = JSON.stringify(utenti[index].gamesPoints.quiz);
+    divHang.innerHTML = JSON.stringify(utenti[index].gamesPoints.hangman);
+    divMemo.innerHTML = JSON.stringify(utenti[index].gamesPoints.memory);
 
-    divSave.innerHTML = "<button onclick='saveData("+index+")'> Salva Modifiche </button><hr>";
-    
-    // data
-    var div = document.getElementById("data");
-    var add = "<button onclick='managePwd("+index+")' style='font-size: small;'> modifica password</button>" ;
-    add += "<div> Preferenze      vuoto </div>";
-    add += "<div> Punteggio giochi: "+ 
-            "<div> Quiz: "+ JSON.stringify(utenti[index].gamesPoints.quiz) +" </div>" +
-            "<div> Quiz: "+ JSON.stringify(utenti[index].gamesPoints.hangman) +" </div>" +
-            "<div> Quiz: "+ JSON.stringify(utenti[index].gamesPoints.memory) +" </div>"+
-        "</div>"+
-        "<button onclick='eliminaUtente("+index+")' style='font-size: small;'> Elimina Utente </button>";
-    div.innerHTML = add;
-    
+    divSave.innerHTML = "<button onclick='saveData("+index+")'> Salva Modifiche </button>";
+    divPass.innerHTML = "<button onclick='managePwd("+index+")' style='font-size: small;'> modifica password</button>" ;
+    divElimina.innerHTML = "<button onclick='eliminaUtente("+index+")' style='font-size: small;'> Elimina Utente </button>";
+ 
 }
 // creo sezione modifica password
 function managePwd(index){
-    var message = document.getElementById("password");
-    message.innerHTML += "<button onclick='updatePassword("+index+")' type='submit' name='submit'> Invia </button>"; 
-    document.getElementById("password").style.visibility = "visible";
-      
+    var form = document.getElementById("password");
+    var submit = document.getElementById("invia");
+    submit.innerHTML = "<button onclick='updatePassword("+index+")' type='submit' name='submit'> Invia </button>"; 
+    if(form.visibility != "visible"){
+        form.style.visibility = "visible";
+    }else{
+        form.style.visibility = "hidden";
+    }
+
+
 }
 // modifico la password tramite jQuery 
 function updatePassword(index){
@@ -59,7 +62,7 @@ function updatePassword(index){
         $.post('php/backPost.php', { num: index, npwd: input_pwd, olpwd: old_pwd }, function(result) { 
             alert(result); 
          });
-         
+        location.reload();
     }else{
         // visualizza messaggio errore
     }
@@ -71,6 +74,7 @@ function eliminaUtente(index){
     $.post('php/popUser.php', { num: index}, function(result) { 
         alert(result); 
      });
+    location.reload();
 }
 // salva modifica dati anagrafici
 function saveData(index){
