@@ -48,28 +48,6 @@ $_SESSION["users"] = json_decode($jsonData, true);
           </div>
         </div>
     </nav>
-      <div id="backgroundImg">
-          <div class="w-100" style="height: 100vh;background: rgb(0,0,0,0.5);">
-          <div style="height:60% ;">
-            <h1 id="titleS"> Admin Dashboard </h1>
-          </div>
-          <div class="w-100 d-flex align-items-center" style="height: 40%;">
-            <div class="row" id="headButtons" style="height: 100%;">
-              <div class="col-6 col-sm-3">
-                <a href="#boxUtenti" class="btnHead"> Manage Users</a>
-              </div>
-              <div class="col-6 col-sm-3">
-                <a href="" class="btnHead">Other Option</a>
-              </div>
-            </div>
-          </div>
-      </div>
-      </div>
-    
-    
-
-    <hr class="w-100"> 
-
     <div class="body">
     
       <div id="boxUtenti">
@@ -162,20 +140,18 @@ $_SESSION["users"] = json_decode($jsonData, true);
             <div id="giochi" class="col-lg-6 col-sm-3" style="border-left: 2px solid black;">
               <div class="row">
                 <div class="col-md-6 col-sm-3"> Preferenze:
-                  <div id="preferenze"> Esempio Preferenza </div>
-                  <div> Esempio Preferenza 2 </div>
-                  <div> Esempio Preferenza 3</div>
+                  <div id="preferenze"></div>
                 </div>
                 <div class="col-md-6 col-sm-3"> Punteggio Giochi:
                   <div class="row">
-                    <div class="col-md-4 col-sm-2"> Quiz:
-                      <h3 class="editable" id="quiz"></h3>
+                    <div class="editable col-md-4 col-sm-2"> Quiz:
+                      <h3 id="quiz"></h3>
                     </div>
-                    <div class="col-md-4 col-sm-2"> Hangman:
-                      <h3 class="editable" id="hang"></h3>
+                    <div class="editable col-md-4 col-sm-2"> Hangman:
+                      <h3 id="hang"></h3>
                     </div>
-                    <div class="col-md-4 col-sm-2"> Memory:
-                      <h3 class="editable" id="memo"></h3>
+                    <div class="editable col-md-4 col-sm-2"> Memory:
+                      <h3 id="memo"></h3>
                     </div>
                   </div>
                 </div>

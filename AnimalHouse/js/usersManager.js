@@ -22,7 +22,7 @@ function manage(index){
     var divHang = document.getElementById("hang");
     var divMemo = document.getElementById("memo");
     var divElimina = document.getElementById("cancelUser");
-    console.log(divSave);
+  
     name.innerHTML = utenti[index].name;
     lastname.innerHTML = utenti[index].lastname;
     email.innerHTML = utenti[index].email;
@@ -34,7 +34,17 @@ function manage(index){
     divSave.innerHTML = "<button onclick='saveData("+index+")'> Salva Modifiche </button>";
     divPass.innerHTML = "<button onclick='managePwd("+index+")' style='font-size: small;'> modifica password</button>" ;
     divElimina.innerHTML = "<button onclick='eliminaUtente("+index+")' style='font-size: small;'> Elimina Utente </button>";
- 
+    
+    // preferences:
+    var divPref = document.getElementById("preferenze");
+    var add="";
+    var arrayP = utenti[index].preferences;
+    console.log(arrayP);
+    for(let i=0; i<arrayP.length; i++){
+        add += '<div class="editable"><h3>'+arrayP[i]+'</h3></div>';
+    }
+    
+    divPref.innerHTML = add;
 }
 // creo sezione modifica password
 function managePwd(index){

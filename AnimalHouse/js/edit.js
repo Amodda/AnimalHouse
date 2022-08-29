@@ -7,9 +7,9 @@ $('.editable').on('click', function() {
 
   $editable.data("editing", true);
   var h3 = $("h3", this);
-  console.log(parseInt(h3.text()));
   var input = $('<input />').val(h3.text())
- 
+
+
   h3.after(input);
   h3.hide();
 
