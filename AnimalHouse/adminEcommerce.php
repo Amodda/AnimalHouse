@@ -48,9 +48,18 @@ if($_SESSION['user']['type'] != "admin"){
         </div>
     </nav>
 
+    <?php
+      if(isset($_SESSION['success_msg'])){
+        echo '<div class="container w-100 d-flex flex-column align-items-center justify-content-center border rounded shadow my-3" id="message">'; 
+          echo '<p class="m-1" style="color: green">'.$_SESSION['success_msg'].'</p>';
+        echo '</div>';
+      }
+    ?>
+
     <div class="container w-100">
             <h2 class="my-2">E-Commerce</h2>
     </div>
+
 
     <div class="container w-100  flex-column align-items-center justify-content-center border rounded shadow mt-3" style="display: <?php if(isset($_GET['product'])){ echo 'none';} else { echo 'flex';}?>;" id="productsList">
       <div class="w-100 d-flex flex-column align-items-center justify-content-center p-3">
@@ -103,7 +112,7 @@ if($_SESSION['user']['type'] != "admin"){
 
                       <div class="w-75 input-group mb-4">
                         
-                        <input type="number" class="form-control" min="0" name="newProductPrice" aria-label="Price">
+                        <input type="number" class="form-control" min="0" name="newProductPrice" placeholder="Price" aria-label="Price">
                         <span class="input-group-text">€</span>
                       </div>
 
@@ -215,3 +224,6 @@ if($_SESSION['user']['type'] != "admin"){
    </script>
 </body>
 </html>
+<?php
+unset($_SESSION['success_msg']);
+?>
