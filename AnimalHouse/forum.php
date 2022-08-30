@@ -43,6 +43,9 @@ if(!isset($_SESSION['user'])){
                         echo '<li class="nav-item">';
                             echo '<a class="nav-link active" href="">Forum</a>';
                         echo '</li>';
+                        echo '<li class="nav-item">';
+                            echo '<a class="nav-link" href="profile.php">Profile</a>';
+                        echo '</li>';
                         echo '<li class="nav-item dropdown">';
                         echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome '.$_SESSION['user']['name'].'</a>';
                         echo '<ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">';

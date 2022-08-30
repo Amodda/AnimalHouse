@@ -2,9 +2,13 @@
     display: flex;
     flex-direction: row;
     justify-content:space-between;
-    margin: 2%;
-   
+    margin: 2%;   
     border-radius: 10px;
+}
+#backgroundImg{
+    background-image: url("../animalBG.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #headButtons{
     width: 100%;
@@ -21,10 +25,10 @@
     text-align: center;
     background-color: beige;
     padding: 5vh 5vh 5vh 5vh;
+    
 }
 #scheda  {
     position:fixed;
-
     padding: 10px 10px 10px 10px;
     border-radius: 10px;
     border-style:solid;
@@ -33,21 +37,24 @@
     left: 10vh;
     right: 10vh;
     z-index: 1;
-    
+    height: 60vh;
 }
-
+.row{
+    padding: 5px 0px 5px 0;
+}
 #boxUtenti{
-    max-height: 80vh;
+    height: 80vh;
     border-radius: 10px;
+    border-style: groove;
     width: 100%;
     background-color: whitesmoke;
     padding: 10px 10px 10px 10px;
-    
+    margin-top: -5vh;
+}
+#userTable{
+    height: 50vh;
 }
 
-#scheda div{
-    font-size:small;
-}
 
 
 h3{
@@ -63,11 +70,20 @@ h3{
 }
 
 .my-custom-scrollbar {
+    margin-top: 5vh;
     position:relative;
-    height: 200px;
+    height: 50vh;
     overflow: auto;
 
     }
 .table-wrapper-scroll-y {
     display: block;
     }
+
+
+#close{
+    margin-left: 20vh;
+    text-align: right;
+    max-width: 7vh;
+    max-height: 7vh;
+}

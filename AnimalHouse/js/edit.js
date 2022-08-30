@@ -1,13 +1,14 @@
 $('.editable').on('click', function() {
     var $editable = $(this);
-    console.log("entrato nella funzione");
+    console.log($editable);
     if($editable.data("editing")) {
        return;
     }
 
-    $editable.data("editing", true);
+  $editable.data("editing", true);
   var h3 = $("h3", this);
   var input = $('<input />').val(h3.text())
+
 
   h3.after(input);
   h3.hide();
@@ -46,7 +47,6 @@ $(document).ready(function(){
     });
     $(".open").click(function(){
       $("#scheda").show(1000);
-      console.log("Entrato in funzione");
     });
   });
 

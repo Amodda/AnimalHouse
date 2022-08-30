@@ -48,26 +48,6 @@ $_SESSION["users"] = json_decode($jsonData, true);
           </div>
         </div>
     </nav>
-
-      <div class="w-100" style="height: 100vh; background: rgb(0,0,0,0.5)">
-          <div style="height:60% ;">
-            <h1 id="titleS"> Admin Dashboard </h1>
-          </div>
-          <div class="w-100 d-flex align-items-center" style="height: 40%;">
-            <div class="row" id="headButtons" style="height: 100%;">
-              <div class="col-6 col-sm-3">
-                <a href="#boxUtenti" class="btnHead"> Manage Users</a>
-              </div>
-              <div class="col-6 col-sm-3">
-                <a href="" class="btnHead">Other Option</a>
-              </div>
-            </div>
-          </div>
-      </div>
-    
-
-    <hr class="w-100"> 
-
     <div class="body">
     
       <div id="boxUtenti">
@@ -76,77 +56,111 @@ $_SESSION["users"] = json_decode($jsonData, true);
               <input id="search" type="text" 
                     placeholder="Search">
             </b>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="max-height: 100%;">
-        <table class="table table-bordered table-striped mb-0" id="userTable" style="max-height: 100%;">
-            <thead>
-              <tr>
-                  <th> Nome </th>
-                  <th> Cognome </th>
-                  <th> Email </th>
-              </tr>
-            </thead>
-              
-              <tbody id="tableBody" >
-                <?php 
-                if(isset($_SESSION["users"])){
-                  $tempUs = $_SESSION["users"];
-                  for($i=0; $i< count($_SESSION["users"]); $i++){
-                    echo "<tr>";
-                    echo "<td>".$tempUs[$i]['name']."</td>";
-                    echo "<td>".$tempUs[$i]['lastname']."</td>";
-                    echo "<td>".$tempUs[$i]['email']."</td>";
-                    echo "<td><button type='button' onClick=manage(".$i.") class='open'> Apri scheda </button></td>";
-
-                    echo "</tr>";
-                  }
-                }
-
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-bordered table-striped mb-0" id="userTable">
+              <thead>
+                <tr>
+                    <th> Nome </th>
+                    <th> Cognome </th>
+                    <th> Email </th>
+                </tr>
+              </thead>
                 
-                ?>
-              </tbody>
+                <tbody id="tableBody" >
+                  <?php 
+                  if(isset($_SESSION["users"])){
+                    $tempUs = $_SESSION["users"];
+                    for($i=0; $i< count($_SESSION["users"]); $i++){
+                      echo "<tr>";
+                      echo "<td>".$tempUs[$i]['name']."</td>";
+                      echo "<td>".$tempUs[$i]['lastname']."</td>";
+                      echo "<td>".$tempUs[$i]['email']."</td>";
+                      echo "<td><button type='button' onClick=manage(".$i.") class='open'> Apri scheda </button></td>";
 
-          </table>
+                      echo "</tr>";
+                    }
+                  }
+
+                  
+                  ?>
+                </tbody>
+
+            </table>
         </div>    
      
         </div>
         
-        <div id="scheda" style="display:none;">
-        <h1 style="display: center;"> Scheda Utente </h1>
-        <aside id="close"> Chiudi Scheda </aside>
-        <div class="row">
-        <div class="editable col-4 col-sm-2"> Modifica nome:
-              <h3 id="name"></h3></div>
-        <div class="editable col-4 col-sm-2"> Modifica cognome:
-              <h3 id="lastname"></h3></div>
-        <div class="editable col-4 col-sm-2"> Modifica email:
-              <h3 id="email"></h3></div>
-
-        
-        </div>
-        <div class="row">
-            <div class="editable col-6 col-sm-3"> Username:
-              <h3 id="username"></h3></div>
-            
-            <div class="col-6 col-sm-3" id="salva"></div>
+        <div id="scheda" style="display:none;" class="container">
+          <div class="row ">
+            <div class="col-md-2 col-sm-1"></div>
+            <h2 class="col-md-8 col-sm-4" style="text-align: center;"> Scheda Utente </h2>
+            <div class="col-2 col-sm-1">
+              <img src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
+            </div>  
           </div>
-        
-        <div class="row">
-        <div class="col-6 col-sm-3" id="data">
-              
-        </div>
-        </div>
-        <div class="row">
-          <div class='col' id="password" style="visibility: hidden;"> 
-                  <form action="adminDashboard.php" method="POST">
-                    <label for="oldPwd">Inserire vecchia password: </label>
-                    <input type="text" id="oldPwd" name="oldPwd" required/>
-                    <label for="newPwd">Nuova Password: </label>
-                    <input type="text" id="newPwd" name="newPwd" required/>
-                    
-                  </form>
+          <div class="row">
+            <div id="anagrafe" class="col-lg-6 col-sm-3" style="border-right: 2px solid black;">
+              <div class="row">
+                <div class="editable col-md-6 col-sm-3"> Modifica nome:
+                      <h3 id="name"></h3></div>
+                <div class="editable col-md-6 col-sm-3"> Modifica cognome:
+                      <h3 id="lastname"></h3></div>
+                
+              </div>
+              <div class="row">
+                <div class="editable col-md-6 col-sm-3"> Modifica Username:
+                  <h3 id="username"></h3></div>
+                <div class="editable col-md-6 col-sm-3"> Modifica email:
+                      <h3 id="email"></h3></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6 col-sm-3" id="pass"></div>
+                  <div class="col-md-6 col-sm-3" id="salva"></div>
+              </div>
+              <div class="row">
+              <div class='col-md-12' id="password" style="visibility: hidden;"> 
+                      <form action="adminDashboard.php" method="POST">
+                        <label for="oldPwd">Inserire vecchia password: </label>
+                        <input type="text" id="oldPwd" name="oldPwd" required/>
+                        <div class="row">
+                        <div class='col-md-12'>
+                        <label for="newPwd">Inserire Nuova Password: </label>
+                        <input type="text" id="newPwd" name="newPwd" required/>
+                        <div id="invia"></div>
+                        </div>
+                        </div>
+                        
+                        
+                      </form>
 
+                </div>
+              </div>
             </div>
+
+            <div id="giochi" class="col-lg-6 col-sm-3" style="border-left: 2px solid black;">
+              <div class="row">
+                <div class="col-md-6 col-sm-3"> Preferenze:
+                  <div id="preferenze"></div>
+                </div>
+                <div class="col-md-6 col-sm-3"> Punteggio Giochi:
+                  <div class="row">
+                    <div class="editable col-md-4 col-sm-2"> Quiz:
+                      <h3 id="quiz"></h3>
+                    </div>
+                    <div class="editable col-md-4 col-sm-2"> Hangman:
+                      <h3 id="hang"></h3>
+                    </div>
+                    <div class="editable col-md-4 col-sm-2"> Memory:
+                      <h3 id="memo"></h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="cancelUser" style="text-align: right;"></div>
           </div>
+          
+          
         </div>
         <script type="text/javascript" src="js/edit.js">  </script>
     </div>
