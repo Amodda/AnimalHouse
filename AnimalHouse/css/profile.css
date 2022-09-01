@@ -44,8 +44,12 @@
 }
 
 .card{
+    
+    
+}
+.card-on{
     background-color: aqua;
-    text-align: center;
-    text-decoration: solid;
-    size: 18px;
+}
+.card-off{
+    background-color: gray;
 }

@@ -16,12 +16,8 @@ for($i = 0; $i <= count($users)-1; $i++){
 }
 
 $readfile = file_get_contents("favourites.json");
-$favList =json_decode($readfile, true);
-for($i = 0; $i <= count($favList)-1; $i++){
-    if($_SESSION["user"]["username"] == $favList[$i]["username"]){
-        $_SESSION["favList"] = $favList[$i]["preferences"];
-    }
-}
+$_SESSION["favList"] =json_decode($readfile, true);
+
 
 // creare sezione di aggiunta animali preferiti
 ?>
@@ -115,12 +111,15 @@ for($i = 0; $i <= count($favList)-1; $i++){
                         </thead>
                         <tbody id="tableBody" >
                         <?php 
-                            if(isset($_SESSION['favList'])){
-                                $temp = $_SESSION['favList'];
-                                for($i=0; $i< count($_SESSION['favList']); $i++){
-                                echo "<tr>";
-                                echo '<td class="rowanimal">'.$temp[$i].'</td>';
-                                echo '<td><a href="#" class="remove" onClick="deletePref()"> [-] </td>';
+                        if(isset($_SESSION['favList'])){
+                            for($i = 0; $i <= count($_SESSION['favList'])-1; $i++){
+                                if($_SESSION["user"]["username"] ==  $_SESSION["favList"][$i]["username"]){
+                                    $temp = $_SESSION['favList'][$i]["preferences"];
+                                }
+                            }
+                                for($i=0; $i< count($temp); $i++){
+                                echo '<tr>';
+                                echo '<td class="colanimal">'.$temp[$i].'</td>';
 
                                 echo "</tr>";
                                 }
@@ -131,7 +130,7 @@ for($i = 0; $i <= count($favList)-1; $i++){
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td><a href="#" id="add">Add animals: </a></td>
+                                <td><a href="#" id="add">Modify list: </a></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -162,7 +161,7 @@ for($i = 0; $i <= count($favList)-1; $i++){
     <hr>
     <div id="sezP" style="display: none;">
         <h2> Scegli i tuoi animali preferiti: </h2>
-        <section class="grid" id="animals"></section>
+        <section class="grid" id="animalsGrid"></section>
         <button id="salva_pref" onclick="save()"> Salva Preferiti</button>         
     </div>
     
