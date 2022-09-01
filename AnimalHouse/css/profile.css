@@ -24,16 +24,21 @@
     margin: 5px 5px 5px 5px;
 }
 
+
+#favTable{
+        height: 30vh;
+    }
+
 .my-custom-scrollbar {
     margin-top: 5vh;
     position:relative;
-    height: 50vh;
+    height: 30vh;
     overflow: auto;
 
     }
 .table-wrapper-scroll-y {
     display: block;
-    }
+}
 
 .grid{
     display: grid;
@@ -45,7 +50,8 @@
 
 .card{
     
-    
+    text-align: center;
+    size: 18px;
 }
 .card-on{
     background-color: aqua;

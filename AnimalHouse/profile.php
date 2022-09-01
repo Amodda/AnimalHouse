@@ -128,13 +128,12 @@ $_SESSION["favList"] =json_decode($readfile, true);
                             
                         ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td><a href="#" id="add">Modify list: </a></td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
+                <div style="text-align: center;">
+                <a href="#" id="add">Modify list: </a>
+                </div>
+                
             </div>
             <div class="col-md-3 col-sm-2 box">
                 <h3>Games</h3>
