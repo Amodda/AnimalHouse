@@ -9,6 +9,10 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/animalHouse.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/curiosity.js"></script>
     <title> </title>
@@ -63,18 +67,18 @@ session_start();
     <div class="d-flex flex-row align-items-center w-100" style="height: 100vh" id="backgroundImg">
         <div class="w-100 d-flex flex-row align-items-center" style="height: 100vh; background: rgb(0,0,0,0.5)">
             <div class="w-50 d-flex flex-column align-items-center justify-content-end mx-4">
-                <h1 class="text-white">Welcome to Animal House</h1>
+                <h1 class="text-white animate__animated animate__fadeInDown">Welcome to Animal House</h1>
                 <!--<div class="d-flex flex-column justify-content-center align-items-center" id="animalInfo">
         
                 </div>-->
             </div>
-            <div class="w-50 d-flex align-items-center justify-content-center mx-4">
+            <div class="w-50 d-flex align-items-center justify-content-center mx-4 animate__animated animate__fadeInDown">
               <a href="#communityGames" class="btn shadow" id="btnStart">Start Now</a>
             </div>
         </div>
     </div>
 
-    <div class="d-flex flex-column align-items-center ">
+    <div class="d-flex flex-column align-items-center">
         <div id="curiosity" class="w-75 mt-5 ">
         <h4>Did you know that...</h4>
                 <div class="w-100 d-flex justify-content-start " id="animalInfo">
