@@ -43,6 +43,9 @@ $_SESSION["users"] = json_decode($jsonData, true);
               <li class="nav-item">
                 <a class="nav-link" href="adminEcommerce.php">E-Commerce</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="adminForum.php">Forum</a>
+              </li>
     
             </ul>
           </div>

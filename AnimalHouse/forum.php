@@ -260,4 +260,5 @@ if(!isset($_SESSION['user'])){
 
 <?php
     unset($_SESSION['error_msg']);
+    unset($_SESSION['success_msg']);
 ?>

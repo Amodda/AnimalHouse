@@ -21,7 +21,7 @@ if($_SESSION['user']['type'] != "admin"){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/backoffice.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <title>Back Office</title>
+    <title>Back Office Ecommerce</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     
@@ -41,6 +41,9 @@ if($_SESSION['user']['type'] != "admin"){
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="adminEcommerce.php">E-Commerce</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="adminForum.php">Forum</a>
               </li>
     
             </ul>
@@ -80,6 +83,7 @@ if($_SESSION['user']['type'] != "admin"){
               for($i = 0; $i < count($storeProd); $i++){
                 echo '<tr><td>'.$storeProd[$i]['id'].'</td><td>'.$storeProd[$i]['name'].'</td><td>'.$storeProd[$i]['description'].'</td><td>'.$storeProd[$i]['price'].' €</td><td>'.$storeProd[$i]['category'].'</td><td><button class="btn btn-dark" onClick='.'openProductInfo("'.$storeProd[$i]["id"].'")>Info</button></td></tr>';
               }
+
               //var_dump($store);
               ?>
           </table>
@@ -187,6 +191,7 @@ if($_SESSION['user']['type'] != "admin"){
               }
 
               var_dump($productInfo);
+            
             ?>
           </div>
       </div>
