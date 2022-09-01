@@ -210,24 +210,76 @@ function showProducts($category) {
 
         </div>
     </div>
-    <div class=" w-100 d-flex flex-column align-items-center justify-content-start bg-dark" id="newPost">
 
-            </div>
     
 
 
+<hr class="m-0 mt-5">
+<footer class="text-center text-lg-start bg-light text-muted">
+
+<!-- Section: Social media -->
+
+<!-- Section: Links  -->
+<section class="">
+  <div class="container text-center text-md-start pt-4">
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+        <!-- Content -->
+        <h6 class="text-uppercase fw-bold mb-4">
+          <i class="fas fa-gem me-3"></i>AnimalHouse
+        </h6>
+        <p>
+          We are a leader company in the pet products and services field. Feel free to take a look around!
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+        <!-- Links -->
+        <h6 class="text-uppercase fw-bold mb-4">
+          Services
+        </h6>
+        <p>
+          <a href="#gamesList" class="text-reset">Games</a>
+        </p>
+        <p>
+          <a href="#ecommerce" class="text-reset">E-Commerce</a>
+        </p>
+        <p>
+          <a href="#forum" class="text-reset">Forum</a>
+        </p>
+      </div>
 
 
-    <footer class="bg-light text-center w-100" >
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <!-- Links -->
+        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+        <p><i class="fas fa-home me-3"></i> Bologna, IT</p>
+        <p>
+          <i class="fas fa-envelope me-3"></i>
+          email
+        </p>
+        <p><i class="fas fa-phone me-3"></i> Mobile</p>
+       
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+  </div>
+</section>
+<!-- Section: Links  -->
 
-
-        <!-- Copyright -->
-        <div class="text-center p-3 ">
-          © 2022 Copyright:
-          <a class="text-dark" href="">Alessandro Modelli</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
+<!-- Copyright -->
+<div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+  © 2021 Copyright:
+  
+</div>
+<!-- Copyright -->
+</footer>
 
 <script>
     function openProductDetails(id){

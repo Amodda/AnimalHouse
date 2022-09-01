@@ -165,22 +165,7 @@ if(!isset($_SESSION['user'])){
 
 
 
-    <footer class="bg-light text-center w-100" >
 
-
-        <!-- Copyright -->
-        <div class="text-center p-3 ">
-          © 2022 Copyright:
-          <a class="text-dark" href="">Alessandro Modelli</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
-
-<script>
-
-    
-
-</script>
 </body>
 </html>
 
