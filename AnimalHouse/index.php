@@ -9,6 +9,10 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/animalHouse.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/curiosity.js"></script>
     <title> </title>
@@ -63,18 +67,18 @@ session_start();
     <div class="d-flex flex-row align-items-center w-100" style="height: 100vh" id="backgroundImg">
         <div class="w-100 d-flex flex-row align-items-center" style="height: 100vh; background: rgb(0,0,0,0.5)">
             <div class="w-50 d-flex flex-column align-items-center justify-content-end mx-4">
-                <h1 class="text-white">Welcome to Animal House</h1>
+                <h1 class="text-white animate__animated animate__fadeInDown">Welcome to Animal House</h1>
                 <!--<div class="d-flex flex-column justify-content-center align-items-center" id="animalInfo">
         
                 </div>-->
             </div>
-            <div class="w-50 d-flex align-items-center justify-content-center mx-4">
+            <div class="w-50 d-flex align-items-center justify-content-center mx-4 animate__animated animate__fadeInDown">
               <a href="#communityGames" class="btn shadow" id="btnStart">Start Now</a>
             </div>
         </div>
     </div>
 
-    <div class="d-flex flex-column align-items-center ">
+    <div class="d-flex flex-column align-items-center">
         <div id="curiosity" class="w-75 mt-5 ">
         <h4>Did you know that...</h4>
                 <div class="w-100 d-flex justify-content-start " id="animalInfo">
@@ -217,7 +221,7 @@ session_start();
         echo '</div>';
         
         //E-Commerce
-        echo '<div class="container-fluid d-flex flex-column">';
+        echo '<div class="container-fluid d-flex flex-column" id="ecommerce">';
 
             echo '<div class="container d-flex w-100 align-items-center justify-content-around flex-row ">';
                 echo '<div class="w-100 d-flex flex-column justify-content-start my-5">';
@@ -231,18 +235,18 @@ session_start();
                 echo '</div>';
                 echo '<div class="w-100 d-flex flex-column align-items-center justify-content-center my-5">';
                     //echo '<a class="btn" style="font-size: 30px; padding: 1em; background: lightgreen; opacity: 0.7; border-radius: 1em;" href="">OPEN FORUM</a>';
-                    echo '<img src="animalBG.jpeg" style="width: 100%;">';
+                    echo '<img src="ecommerce.jpg" style="width: 100%;">';
                 echo '</div>';
             echo '</div>';
         echo '</div>';
 
         //Forum
-        echo '<div class="container-fluid d-flex flex-column bg-dark text-white">';
+        echo '<div class="container-fluid d-flex flex-column bg-dark text-white" id="forum">';
 
             echo '<div class="container d-flex w-100 align-items-center justify-content-around flex-row ">';
                 echo '<div class="w-100 d-flex flex-column align-items-center justify-content-center m-5">';
                 //echo '<a class="btn" style="font-size: 30px; padding: 1em; background: lightgreen; opacity: 0.7; border-radius: 1em;" href="">OPEN FORUM</a>';
-                    echo '<img src="animalBG.jpeg" style="width: 100%;">';
+                    echo '<img src="forum.jpg" style="width: 100%;">';
                 echo '</div>';
                 echo '<div class="w-100 d-flex flex-column justify-content-start my-5">';
                     echo '<h1>Forum</h1>';
@@ -291,16 +295,73 @@ session_start();
 
 
 
-    <footer class="bg-light text-center w-100" >
+      <!-- Footer -->
+<footer class="text-center text-lg-start text-muted">
 
+  <!-- Section: Social media -->
 
-        <!-- Copyright -->
-        <div class="text-center p-3 ">
-          © 2022 Copyright:
-          <a class="text-dark" href="">Alessandro Modelli</a>
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start pt-4">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>AnimalHouse
+          </h6>
+          <p>
+            We are a leader company in the pet products and services field. Feel free to take a look around!
+          </p>
         </div>
-        <!-- Copyright -->
-      </footer>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Services
+          </h6>
+          <p>
+            <a href="#gamesList" class="text-reset">Games</a>
+          </p>
+          <p>
+            <a href="#ecommerce" class="text-reset">E-Commerce</a>
+          </p>
+          <p>
+            <a href="#forum" class="text-reset">Forum</a>
+          </p>
+        </div>
+
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> Bologna, IT</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            email
+          </p>
+          <p><i class="fas fa-phone me-3"></i> Mobile</p>
+         
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 
 
 </body>

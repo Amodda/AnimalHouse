@@ -14,8 +14,8 @@ if(isset($_GET['createPost'])){
         $jsonData = file_get_contents("../posts.json");
         $posts = json_decode($jsonData, true);
     
-        $newPostID = count($posts[$category]['items']);
-
+        $newPostID = uniqid();//count($posts[$category]['items']);
+        
         //IMG CHECKS
         if(is_uploaded_file($_FILES['postImg']['tmp_name'])){
             $target_dir = '../posts/'.$category.'_'.$newPostID.'/';
@@ -39,13 +39,14 @@ if(isset($_GET['createPost'])){
                 rmrf($target_dir);
             }
         
-            
+            /*
             // Check file size
             if ($_FILES["postImg"]["size"] > 500000) {
                 $msg = "Sorry, your file is too large.";
                 $uploadOk = 0;
-            }
+            }*/
             
+
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
                 $msg = "Sorry, only JPG, JPEG, PNG files are allowed.";
@@ -54,19 +55,22 @@ if(isset($_GET['createPost'])){
         }
 
 
-    
+        
         $post = [
             "id" => $newPostID,
             "date" => $date,
             "user" => $_SESSION['user']['username'],
             "title" => $title,
             "text" => $text,
-            "img" => $target_file ?? ""
+            "img" => $_FILES["postImg"]["name"] ?? ""
         ];
     
+        
+
         array_push($posts[$category]['items'], $post);
         $json = json_encode($posts);
         //write json to file
+
         if (file_put_contents("../posts.json", $json)){
             if($uploadOk == 1){
                 mkdir($target_dir);
@@ -92,6 +96,41 @@ if(isset($_GET['createPost'])){
 
 }
 
+if(isset($_GET['deletePost'])){
+    $postId = $_GET['post'];
+    $postCategory = $_GET['category'];
+
+    
+    $jsonData = file_get_contents("../posts.json");
+    $posts = json_decode($jsonData, true);
+
+    //$posts = $posts[$postCategory];
+
+    //var_dump($posts);
+    
+    for($i = 0; $i < count($posts[$postCategory]['items']); $i++){
+        if($posts[$postCategory]['items'][$i]['id'] == $postId){
+            array_splice($posts[$postCategory]['items'], $i, 1);
+
+            $json = json_encode($posts);
+            //write json to file
+            if (file_put_contents("../posts.json", $json)){
+                $postImg = "../posts/".$postCategory."_".$postId."/";
+                rmrf($postImg);
+                
+                $_SESSION['success_msg'] = "Post successfully deleted";
+                break;
+            }
+
+
+
+        }
+    }
+    //echo '<br><br>';
+    //var_dump($posts);
+    header('Location: ../adminForum.php');
+}
+
 function rmrf($dir) {
     foreach (glob($dir) as $file) {
         if (is_dir($file)) { 
@@ -102,4 +141,6 @@ function rmrf($dir) {
         }
     }
 }
+
+
 ?>
