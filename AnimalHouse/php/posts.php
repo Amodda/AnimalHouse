@@ -106,7 +106,7 @@ if(isset($_GET['deletePost'])){
 
     //$posts = $posts[$postCategory];
 
-    var_dump($posts);
+    //var_dump($posts);
     
     for($i = 0; $i < count($posts[$postCategory]['items']); $i++){
         if($posts[$postCategory]['items'][$i]['id'] == $postId){
@@ -117,6 +117,8 @@ if(isset($_GET['deletePost'])){
             if (file_put_contents("../posts.json", $json)){
                 $postImg = "../posts/".$postCategory."_".$postId."/";
                 rmrf($postImg);
+                
+                $_SESSION['success_msg'] = "Post successfully deleted";
                 break;
             }
 
@@ -124,9 +126,9 @@ if(isset($_GET['deletePost'])){
 
         }
     }
-    echo '<br><br>';
-    var_dump($posts);
-    
+    //echo '<br><br>';
+    //var_dump($posts);
+    header('Location: ../adminForum.php');
 }
 
 function rmrf($dir) {
