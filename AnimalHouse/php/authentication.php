@@ -110,6 +110,7 @@ if (isset($_GET['login'])) {
                             "name" => $users[$i]['name'],
                             "lastname" => $users[$i]['lastname'],
                             "username" => $users[$i]['username'],
+                            "email" => $users[$i]['email'],
                             "type" => $users[$i]['type'],
                             "cartItems" => array()
                         ];
