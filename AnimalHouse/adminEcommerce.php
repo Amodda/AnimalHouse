@@ -92,7 +92,7 @@ if($_SESSION['user']['type'] != "admin"){
       </div>
     </div>
 
-    <div class="container w-100 d-flex flex-column align-items-center justify-content-center border rounded shadow my-3"  id="productsList">
+    <div class="container w-100 flex-column align-items-center justify-content-center border rounded shadow my-3" style="display: <?php if(isset($_GET['product'])){ echo 'none';} else { echo 'flex';}?>;" id="newProduct">
       <div class="w-100 d-flex flex-column align-items-center justify-content-center p-3">
           <div class="w-100 d-flex flex-column my-2">
             <h4>New Product</h4>
@@ -183,14 +183,49 @@ if($_SESSION['user']['type'] != "admin"){
             <h4>Product Info</h4>
             <?php
               $productID = $_GET['product'];
-              for($i = 0; $i < count($store); $i++){
-                if($store[$i]['id'] == $productID){
-                  $productInfo = $store[$i];
+              for($i = 0; $i < count($store['products']); $i++){
+                if($store['products'][$i]['id'] == $productID){
+                  $productInfo = $store['products'][$i];
                   break;
                 }
               }
 
-              var_dump($productInfo);
+
+              //var_dump($postInfo);
+              echo '<div class="w-100 d-flex  justify-content-between mt-3" style="flex-direction: row;" id="postInfoCard">';
+
+                echo '<div class="w-100 d-flex flex-column">';
+                  echo '<div class="w-100 d-flex flex-row align-items-center justify-content-start">';
+                    echo '<p><strong>Name:</strong></p> <p style="margin-left: 1em">'.$productInfo['name'].'</p>';
+                  echo '</div>';
+                  echo '<div class="w-100 d-flex flex-row align-items-center justify-content-start">';
+                    echo '<p><strong>Description:</strong></p> <p style="margin-left: 1em">'.$productInfo['description'].'</p>';
+                  echo '</div>';  
+                  echo '<div class="w-100 d-flex flex-row align-items-center justify-content-start">';
+                    echo '<p><strong>Price:</strong></p> <p style="margin-left: 1em">'.$productInfo['price'].'</p>';
+                  echo '</div>';  
+                  echo '<div class="w-100 d-flex flex-row align-items-center justify-content-start">';
+                    echo '<p><strong>Category:</strong></p> <p style="margin-left: 1em">'.$productInfo['category'].'</p>';
+                  echo '</div>';  
+                  echo '<div class="w-100 d-flex flex-row align-items-center justify-content-start">';
+                    echo '<p><strong>Tags:</strong></p>';
+                    for($i = 0; $i < count($productInfo['tags']); $i++){
+                      echo '<p style="margin-left: 1em">'.$productInfo['tags'][$i].'</p>';
+                    }
+                  echo '</div>';  
+                echo '</div>';
+                
+                echo '<div class="w-100 d-flex flex-column  justify-content-center">';
+                  echo '<img src="data/productImg/'.$productInfo['id'].'/'.$productInfo['img'].'" style="width: 200px; height: 200px;">';
+                echo '</div>';
+              echo '</div>';
+
+              echo '<form action="php/backofficeEcommerce.php?deleteProduct&&product='.$productInfo['id'].'" method="post">';
+                echo '<div class="w-100 d-flex justify-content-end align-items-center">';
+                  echo '<button type="submit" class="btn btn-danger">Delete</button>';
+                echo '</div>';
+              echo '</form>';
+              //var_dump($productInfo);
             
             ?>
           </div>

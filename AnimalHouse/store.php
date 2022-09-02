@@ -16,15 +16,15 @@ function showProducts($category) {
 
         echo '<p class="container m-3" style="font-size: 18px;">'.count($storeProducts).' products available</p>';
         for($i = 0; $i < count($storeProducts);$i++){
-            echo '<div class="container w-100 d-flex justify-content-start productsContainer" style="max-width: 100%">';
+            echo '<div class="container d-flex productsContainer" style="max-width: 100%">';
                 for($j = $i; $j < $i + 3; $j++){
                     if($storeProducts[$j] != null){
-                        echo '<div class="w-25 m-3 d-flex flex-column justify-content-center rounded border shadow-sm" id="product'.$j.'">';
+                        echo '<div class=" m-3 d-flex flex-column justify-content-center rounded border shadow-sm productCard" id="product'.$j.'" onClick='.'location.href="product.php?product='.$storeProducts[$j]['id'].'">';
                         echo '<div class="container w-100 d-flex justify-content-center">';
                             if($storeProducts[$j]['img'] == ""){
                                 echo '<img src="noimage.png" class="storeProductImg">';
                             }else{
-                                echo '<img src="'.$storeProducts[$j]['img'].'" class="storeProductImg">';
+                                echo '<img src="data/productImg/'.$storeProducts[$j]['id'].'/'.$storeProducts[$j]['img'].'" class="storeProductImg">';
                             }
                             
                         echo '</div>';
@@ -161,7 +161,7 @@ function showProducts($category) {
                                             if($store['products'][$j]['img'] == ""){
                                                 echo '<img src="noimage.png" class="storeProductImg">';
                                             }else{
-                                                echo '<img src="'.$store['products'][$j]['img'].'" class="storeProductImg">';
+                                                echo '<img src="data/productImg/'.$store['products'][$j]['id'].'/'.$store['products'][$j]['img'].'" class="storeProductImg">';
                                             }
                                             
                                         echo '</div>';

@@ -85,7 +85,7 @@ if(!isset($_SESSION['user'])){
 
                 echo '<div class="w-100 d-flex mt-5" id="productDetailsContainer">';
                     echo '<div class="d-flex flex-column" id="productDetailsImg">';
-                        echo '<img src="'.$product['img'].'" style="width: 50vh;" class="rounded shadow-sm">';
+                        echo '<img src="data/productImg/'.$productId.'/'.$product['img'].'" style="width: 50vh;" class="rounded shadow-sm">';
                     echo '</div>';
 
                     echo '<div class="w-100 d-flex flex-column justify-content-start border shadow-sm rounded" id="productDetails">';

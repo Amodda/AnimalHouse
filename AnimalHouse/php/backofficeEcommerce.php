@@ -63,11 +63,12 @@ if(isset($_GET['newProduct'])){
             $uploadOk = 0;
           }
           
+          /*
           // Check file size
           if ($_FILES["newProductImg"]["size"] > 500000) {
               $msg = "Sorry, your file is too large.";
             $uploadOk = 0;
-          }
+          }*/
           
           // Allow certain file formats
           if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
@@ -119,6 +120,39 @@ if(isset($_GET['newProduct'])){
   
       }
     }
+}
+
+if(isset($_GET['deleteProduct'])){
+  $productId = $_GET['product'];
+
+  $jsonData = file_get_contents("../data/store.json");
+  $products = json_decode($jsonData, true);
+
+  //$posts = $posts[$postCategory];
+
+  //var_dump($posts);
+  
+  for($i = 0; $i < count($products['products']); $i++){
+      if($products['products'][$i]['id'] == $productId){
+          array_splice($products['products'], $i, 1);
+
+          $json = json_encode($products);
+          //write json to file
+          if (file_put_contents("../data/store.json", $json)){
+              $productImg = "../data/productImg/".$productId."/";
+              rmrf($productImg);
+              
+              $_SESSION['success_msg'] = "Product successfully deleted";
+              break;
+          }
+
+
+
+      }
+  }
+  //echo '<br><br>';
+  //var_dump($posts);
+  header('Location: ../adminEcommerce.php');
 }
 
 function rmrf($dir) {
