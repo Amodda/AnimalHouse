@@ -78,7 +78,7 @@ function updatePassword(index){
     }
     
 }
-
+// Sbagliato.
 function eliminaUtente(index){
     utenti[index]=utenti.pop();
     $.post('php/popUser.php', { num: index}, function(result) { 
