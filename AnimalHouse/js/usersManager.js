@@ -60,44 +60,71 @@ function manage(index){
     prefBody.innerHTML = fillPreferences(currentUser);
 
     divSave.innerHTML = "<button onclick='saveData("+index+")'> Salva Modifiche </button>";
-    divPass.innerHTML = "<button onclick='managePwd("+index+")' style='font-size: small;'> modifica password</button>" ;
-    divElimina.innerHTML = "<button onclick='eliminaUtente("+index+")' style='font-size: small;'> Elimina Utente </button>";
+    divPass.innerHTML = "<button onclick='managePwd("+index+")' style='font-size: small;'> Change password </button>" ;
+    divElimina.innerHTML = "<button onclick='deleteUser("+index+")' style='font-size: small;'> Delete User </button>";
     
 }
 // creo sezione modifica password
 function managePwd(index){
-    var form = document.getElementById("password");
-    var submit = document.getElementById("invia");
-    submit.innerHTML = "<button onclick='updatePassword("+index+")' type='submit' name='submit'> Invia </button>"; 
-    if(form.visibility != "visible"){
-        form.style.visibility = "visible";
+    
+    if($('#password').is(":visible")){
+        console.log("password is invisible now")
+        $('#password').hide(500);
     }else{
-        form.style.visibility = "hidden";
+        console.log("password is VISIBLE now")
+        $('#password').show(500);
     }
+    var submit = document.getElementById("invia");
+    submit.innerHTML = "<button onclick='updatePassword("+index+")' > Send Password </button>"; 
+    
 
 
 }
-// modifico la password tramite jQuery 
+// modifico la password
 function updatePassword(index){
+  
     var old_pwd = document.getElementById("oldPwd").value;
-    var input_pwd = document.getElementById("newPwd").value;
+    var new_pwd = document.getElementById("newPwd").value;
+    var conf_pwd = document.getElementById("confnewPwd").value;
+
     // Aggiungere controlli password: Lunghezza minima password 8 caratteri.
      //           Lunghezza massima 20 caratteri'
-    if(input_pwd != "" && old_pwd != ""){
-        document.getElementById("password").style.visibility= "hidden";
-        // aggiorna array utenti:
-        utenti[index].password = input_pwd;
-        $.post('php/backPost.php', { num: index, npwd: input_pwd, olpwd: old_pwd }, function(result) { 
-            alert(result); 
-         });
-        location.reload();
+    if(new_pwd != "" && old_pwd != "" && conf_pwd != ""){
+        if(new_pwd == conf_pwd){
+            if((new_pwd.length > 7) && (new_pwd.length <= 20)){
+
+            // $('#password').hide(500);
+                // aggiorna array utenti:
+                utenti[index].password = new_pwd;
+                $.post('php/backPost.php', { num: index, npwd: new_pwd, olpwd: old_pwd }, function(result) { 
+                    if(result=="Old"){
+                        $('#msgErr').show();
+                         $('#msgErr').text("Old Password uncorrect.");
+                    }else if(result=="Yes"){
+                        aggiornaUtenti();
+                        alert("Password modificata con successo");
+                        location.reload();
+                    }
+                });
+                
+            }else{
+                $('#msgErr').show();
+                $('#msgErr').text("Password length has to be between 8 and 20 characters.");
+            }
+       
+        }else{
+            $('#msgErr').show();
+            $('#msgErr').text("Confirm password field uncorrect.");
+        }
+     
     }else{
-        // visualizza messaggio errore
+        $('#msgErr').show();
+        $('#msgErr').text("Plese fill all the fields.");
     }
     
 }
 // Sbagliato.
-function eliminaUtente(index){
+function deleteUser(index){
     utenti.splice(index, 1);
     $.post('php/popUser.php', { num: index}, function(result) { 
         alert(result); 
@@ -112,19 +139,30 @@ function saveData(index){
     var newu = document.getElementById("username").textContent;
     var preference = savePref();
     var msg = "";
-    $.post('php/modificaAnagrafe.php', { name: n, lname: l, email: e, username: newu, i: index}, function(result) {
-        message=result;
-     });
-     $.post('php/preferencePost.php', {newArr : preference, username: currentUser, newuser: newu}, function(result) {
-        message=result;
-    });
-     aggiornaUtenti();
-     aggiornaPreferiti();
-     alert(msg);
-     console.log("utente: "+utenti[index].username);
-    location.reload();
+    if(checkUser(newu) == false){
+        $.post('php/modificaAnagrafe.php', { name: n, lname: l, email: e, username: newu, i: index}, function(result) {
+            message=result;
+         });
+         $.post('php/preferencePost.php', {newArr : preference, username: currentUser, newuser: newu}, function(result) {
+            message=result;
+        });
+         aggiornaUtenti();
+         aggiornaPreferiti();
+         alert(msg);
+         console.log("utente: "+utenti[index].username);
+        location.reload();
+    }else{
+        alert("Username already in use, change it!");
+    }
 }
-
+function checkUser(user){
+    for(var i=0; i<utenti.length; i++){
+        if(user == utenti[i].username){
+            return true;
+        }
+    }
+    return false;
+}
 // search tabella utenti
 $(document).ready(function() {
     $("#search").on("keyup", function() {
@@ -159,13 +197,23 @@ function fillPreferences(user){
 }
 // da mettere già selezionate quelle presenti nella tabella.
 function changePref(){
-    $('.my-custom-scrollbar-scheda').hide(500);
-    $('#choiceFav').show(500);
-    var add='';
-    for(var i=0; i<animals.length; i++){
-      add += '<br><input class="animal" type="checkbox" name="'+animals[i]+'" value="'+animals[i]+'"/> '+animals[i]+'<br/>'
+    if($('.my-custom-scrollbar-scheda').is(":visible")){
+        $('.my-custom-scrollbar-scheda').hide(500);
+        $('#modificaPref').text("Annulla Modifica"); 
+        $('#choiceFav').show(500);
+        var add='';
+        for(var i=0; i<animals.length; i++){
+          add += '<br><input class="animal" type="checkbox" name="'+animals[i]+'" value="'+animals[i]+'"/> '+animals[i]+'<br/>'
+        }
+          $('#fieldsetPref').append(add);
+          $('#modificaPref').text("Cancel Modify"); 
+    }else{
+        $('#choiceFav').hide(500);
+        $('#modificaPref').text("Change Prefernces"); 
+        $('.my-custom-scrollbar-scheda').show(500);
+        
     }
-      $('#fieldsetPref').append(add);
+   
     
 }
 

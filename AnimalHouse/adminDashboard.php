@@ -99,24 +99,24 @@ $_SESSION["favList"] =json_decode($readfile, true);
         <div id="scheda" style="display:none;" class="container">
           <div class="row ">
             <div class="col-md-2 col-sm-1"></div>
-            <h2 class="col-md-8 col-sm-4" style="text-align: center;"> Scheda Utente </h2>
+            <h2 class="col-md-8 col-sm-4" style="text-align: center;"> User Card </h2>
             <div class="col-2 col-sm-1">
               <img src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
             </div>  
           </div>
           <div class="row">
-            <div id="anagrafe" class="col-lg-6 col-sm-3" style="border-right: 2px solid black;">
+            <div id="anagrafe" class="col-lg-6 col-sm-3">
               <div class="row">
-                <div class="editable col-md-6 col-sm-3"> Modifica nome:
+                <div class="editable col-md-6 col-sm-3"> Change name:
                       <h3 id="name"></h3></div>
-                <div class="editable col-md-6 col-sm-3"> Modifica cognome:
+                <div class="editable col-md-6 col-sm-3"> Change lastname:
                       <h3 id="lastname"></h3></div>
                 
               </div>
               <div class="row">
-                <div class="editable col-md-6 col-sm-3"> Modifica Username:
+                <div class="editable col-md-6 col-sm-3"> Change Username:
                   <h3 id="username"></h3></div>
-                <div class="editable col-md-6 col-sm-3"> Modifica email:
+                <div class="editable col-md-6 col-sm-3"> Change email:
                       <h3 id="email"></h3></div>
               </div>
               <div class="row">
@@ -124,28 +124,35 @@ $_SESSION["favList"] =json_decode($readfile, true);
                   <div class="col-md-6 col-sm-3" id="salva"></div>
               </div>
               <div class="row">
-              <div class='col-md-12' id="password" style="visibility: hidden;"> 
-                      <form action="adminDashboard.php" method="POST">
-                        <label for="oldPwd">Inserire vecchia password: </label>
-                        <input type="text" id="oldPwd" name="oldPwd" required/>
+              <div class='col-md-12' id="password" style="display: none;"> 
+                    
+                  <div>Old password: </div>
+                  <input type="text" id="oldPwd" name="oldPwd" required/>
+                    <div class="row">
+                    <div class='col-md-12'>
+                      <div>New Password: </div>
+                      <input type="text" id="newPwd" name="newPwd" required/>
                         <div class="row">
-                        <div class='col-md-12'>
-                        <label for="newPwd">Inserire Nuova Password: </label>
-                        <input type="text" id="newPwd" name="newPwd" required/>
-                        <div id="invia"></div>
+                          <div class='col-md-12'>
+                          <div>Confirm New Password: </div>
+                          <input type="text" id="confnewPwd" name="congnewPwd" required/>
+                          <div id="invia"></div>
+                          <div class="col" id="msgErr" style="display: none;"></div>
                         </div>
                         </div>
+                    </div>
+                    </div>
                         
                         
-                      </form>
-
+                      
+                  
                 </div>
               </div>
             </div>
 
-            <div id="giochi" class="col-lg-6 col-sm-3" style="border-left: 2px solid black;">
+            <div id="giochi" class="col-lg-6 col-sm-3">
               <div class="row">
-                <div class="col-md-6 col-sm-3"> Preferenze:
+                <div class="col-md-6 col-sm-3"> Preferences:
                 <div class="table-wrapper-scroll-y my-custom-scrollbar-scheda">
                     <table class="table table-bordered table-striped mb-0" id="favTable">
                         <thead></thead>
@@ -161,7 +168,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
                   </form>
                 </div>
                   <div id="modPref">
-                    <button id="modificaPref" onclick="changePref()"> Modfica Preferenze </button>
+                    <button id="modificaPref" onclick="changePref()"> Change Preferences </button>
                   </div>
                 </div>
             
