@@ -8,5 +8,15 @@
         "horse",
         "reptile",
         "amphibian"
+    ],
+    "pictures":[
+        "animalBG.jpeg",
+        "animalBG.jpeg",
+        "animalBG.jpeg",
+        "animalBG.jpeg",
+        "animalBG.jpeg",
+        "animalBG.jpeg",
+        "animalBG.jpeg",
+        "animalBG.jpeg"
     ]
 }

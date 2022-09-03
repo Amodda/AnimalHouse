@@ -84,7 +84,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
         <div class="row" id="name">
             <div class="col-lg-12 col-sm-6"></div>
             <h1><?php echo $_SESSION['user']['name']." ". $_SESSION['user']['lastname']?></h1>
-            <h3 id="user"><?php echo $_SESSION['user']['username']?></h3>
+            <h3><?php echo $_SESSION['user']['username']?></h3>
         </div>
         <div class="row gap-1">
             <div class="col-md-3 col-sm-2 box">
@@ -96,7 +96,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
                     <div class="col"> Lastname: <b><?php echo $_SESSION['user']['lastname']; ?> </b></div>
                 </div>
                 <div class="row">
-                    <div class="col"> Username: <b><?php echo $_SESSION['user']['username']; ?> </b></div>
+                    <div class="col"> Username: <b id="user"><?php echo $_SESSION['user']['username']; ?> </b></div>
                 </div>
                 <div class="row">
                     <div class="col"> E-mail: <b><?php echo $_SESSION['user']['email']; ?> </b></div>
@@ -112,6 +112,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
                         <tbody id="tableBody" >
                         <?php 
                         if(isset($_SESSION['favList'])){
+                            $temp;
                             for($i = 0; $i <= count($_SESSION['favList'])-1; $i++){
                                 if($_SESSION["user"]["username"] ==  $_SESSION["favList"][$i]["username"]){
                                     $temp = $_SESSION['favList'][$i]["preferences"];

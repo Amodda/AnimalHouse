@@ -1,7 +1,7 @@
 var array=[];
 var favTemp;
 
-
+// crea oggetto cateogoria con immagine e nome per visualizzare sfondi
 fetch('animalList.json') 
     .then( response => response.json())
     .then(data => {
@@ -9,7 +9,9 @@ fetch('animalList.json')
             array.push(data["categories"][i]);
         };
     });
-function save(){
+
+
+    function save(){
     var newFav= Array.from(document.getElementsByClassName('card-on'));
     var newFavtext = [];
     for(var i=0; i<newFav.length; i++){
@@ -17,11 +19,12 @@ function save(){
     }
     console.log(newFavtext);
     
-    
-    $.post('php/profilePost.php', { newArr : newFavtext}, function(result) { 
-        alert(result); 
+    var newUser = document.getElementById("user").textContent;
+    console.log(newUser);
+    $.post('php/preferencePost.php', { newArr : newFavtext, username : "flag", newuser : newUser}, function(result) { 
+        //alert(result); 
     });
-    
+    location.reload();
 /*
     $.ajax({ 
         type: "POST", 
@@ -31,25 +34,10 @@ function save(){
                alert("Success"); 
          } 
     }); */
-    //location.reload();
+    
 }
-function deletePref(index) {
-        fillArray();
-            for(var i=0; i<favTemp.length; i++){
-                console.log("FavTemp in lettura, i:"+i+" index:"+index);
-            if(i == index){
-                favTemp.splice(i,1);
-                document.getElementsByClassName("rowanimal")[index].remove();
-                console.log(favTemp[0]);
-                fillArray();
-                break;
-            }else{
-                console.log("non uguale");
-            }
-        }
-        
 
-}
+
 function favAdd() {
     $(".card").on("click", function(){
         console.log("Entrato in modifica classe");
@@ -70,28 +58,33 @@ function favAdd() {
 }
 function fillArray(){
     favTemp = Array.from(document.getElementsByClassName('colanimal'));
+    console.log(favTemp[0].innerHTML);
 }
-$(document).ready(function() {
+
+function openSection () {
     $("#add").on("click", function() {
         //riempio array temp
         fillArray();
         // mostro sezione scelta
         $("#sezP").show(1000);
-        var add;
+        var add='';
         // capire perchè primo è undefined
         for(var i=0; i<array.length; i++){
             console.log(array[i]);
             flag=0;
             for(var j=0; j<favTemp.length; j++){
-                if(array[i] == favTemp[j].innerHTML){
+                if(" "+array[i]+" " == favTemp[j].innerHTML){
+                    console.log("trovata corripsondenza: " + array[i]);
                     flag=1;
                     break; 
                 }
             }
-                 
+     
             if(flag == 0){
+                
                 add += '<div class="card card-off"> '+array[i]+' </div>'; 
-            }else{
+            }else if(flag==1){
+                console.log("acceso: "+array[i]);
                 add += '<div class="card card-on"> '+array[i]+' </div>'; 
             }
         }
@@ -99,4 +92,7 @@ $(document).ready(function() {
         grid.innerHTML += add;
         favAdd();
     });
+}
+$(document).ready(function() {
+    openSection();
 });

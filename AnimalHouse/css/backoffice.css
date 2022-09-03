@@ -55,7 +55,9 @@
     height: 50vh;
 }
 
-
+#favTable{
+    height: 20vh;
+}
 
 h3{
     font-size: 15px;
@@ -74,8 +76,12 @@ h3{
     position:relative;
     height: 50vh;
     overflow: auto;
-
     }
+.my-custom-scrollbar-scheda {
+    position:relative;
+    height: 20vh;
+    overflow: auto;
+}
 .table-wrapper-scroll-y {
     display: block;
     }
@@ -86,4 +92,7 @@ h3{
     text-align: right;
     max-width: 7vh;
     max-height: 7vh;
+}
+#choiceFav{
+    height: 30vh;
 }

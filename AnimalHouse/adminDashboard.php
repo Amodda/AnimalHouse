@@ -11,6 +11,9 @@ if($_SESSION['user']['type'] != "admin"){
 $jsonData = file_get_contents("usersTest.json");
 $_SESSION["users"] = json_decode($jsonData, true);
 
+$readfile = file_get_contents("favourites.json");
+$_SESSION["favList"] =json_decode($readfile, true);
+
 ?>
 
 <!DOCTYPE html>
@@ -143,8 +146,25 @@ $_SESSION["users"] = json_decode($jsonData, true);
             <div id="giochi" class="col-lg-6 col-sm-3" style="border-left: 2px solid black;">
               <div class="row">
                 <div class="col-md-6 col-sm-3"> Preferenze:
-                  <div id="preferenze"></div>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar-scheda">
+                    <table class="table table-bordered table-striped mb-0" id="favTable">
+                        <thead></thead>
+                        <tbody id="favBody" >
+                    
+                        </tbody>
+                    </table>
                 </div>
+                <div id="choiceFav" style="display: none;">
+                  <form action="form">
+                    <fieldset id="fieldsetPref">
+                    </fieldset>
+                  </form>
+                </div>
+                  <div id="modPref">
+                    <button id="modificaPref" onclick="changePref()"> Modfica Preferenze </button>
+                  </div>
+                </div>
+            
                 <div class="col-md-6 col-sm-3"> Punteggio Giochi:
                   <div class="row">
                     <div class="editable col-md-4 col-sm-2"> Quiz:
