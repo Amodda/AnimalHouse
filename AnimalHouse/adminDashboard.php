@@ -54,7 +54,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
           </div>
         </div>
     </nav>
-    <div class="body">
+    <div class="container">
     
       <div id="boxUtenti">
           <h1 style="text-align: center;"> Users List: </h1>
@@ -81,7 +81,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
                       echo "<td>".$tempUs[$i]['name']."</td>";
                       echo "<td>".$tempUs[$i]['lastname']."</td>";
                       echo "<td>".$tempUs[$i]['email']."</td>";
-                      echo "<td><button type='button' onClick=manage(".$i.") class='open'> Apri scheda </button></td>";
+                      echo "<td><a onClick=manage(".$i.") class='open bg-dark text-white px-1 py-1 rounded-2' href='#scheda' > Open card </button></td>";
 
                       echo "</tr>";
                     }
@@ -95,65 +95,48 @@ $_SESSION["favList"] =json_decode($readfile, true);
         </div>    
      
         </div>
-        
-        <div id="scheda" style="display:none;" class="container">
-          <div class="row ">
-            <div class="col-md-2 col-sm-1"></div>
-            <h2 class="col-md-8 col-sm-4" style="text-align: center;"> User Card </h2>
-            <div class="col-2 col-sm-1">
-              <img src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
-            </div>  
+        <hr></hr>
+        <div id="scheda" class="w-80 d-flex d-none flex-column">
+          <div class="w-100 d-flex flex-row align-items-center justify-content-center fill-auto mb-3">
+            <h2 class="w-100 d-flex flex-column align-items-left " >User Card </h2>
+            <img class="w-100 d-flex flex-column align-items-right" src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
           </div>
-          <div class="row">
-            <div id="anagrafe" class="col-lg-6 col-sm-3">
-              <div class="row">
-                <div class="editable col-md-6 col-sm-3"> Change name:
-                      <h3 id="name"></h3></div>
-                <div class="editable col-md-6 col-sm-3"> Change lastname:
-                      <h3 id="lastname"></h3></div>
-                
-              </div>
-              <div class="row">
-                <div class="editable col-md-6 col-sm-3"> Change Username:
+          <div id="anagrafe" class="w-100 h-80 d-flex flex-row">
+            <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
+              <div class="editable w-100 "> Change Username:
                   <h3 id="username"></h3></div>
-                <div class="editable col-md-6 col-sm-3"> Change email:
-                      <h3 id="email"></h3></div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6 col-sm-3" id="pass"></div>
-                  <div class="col-md-6 col-sm-3" id="salva"></div>
-              </div>
-              <div class="row">
-              <div class='col-md-12' id="password" style="display: none;"> 
-                    
-                  <div>Old password: </div>
-                  <input type="text" id="oldPwd" name="oldPwd" required/>
-                    <div class="row">
-                    <div class='col-md-12'>
-                      <div>New Password: </div>
-                      <input type="text" id="newPwd" name="newPwd" required/>
-                        <div class="row">
-                          <div class='col-md-12'>
-                          <div>Confirm New Password: </div>
-                          <input type="text" id="confnewPwd" name="congnewPwd" required/>
-                          <div id="invia"></div>
-                          <div class="col" id="msgErr" style="display: none;"></div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                        
-                        
-                      
-                  
-                </div>
-              </div>
+                  <div class="w-50 d-flex flex-column mt-3" style="font-size: 15px;" id="pass"></div>
+                  <div class='w-100 ' id="password" style="display: none;">
+                  <div class="mt-3">Old password: </div>
+                    <input type="text" id="oldPwd" name="oldPwd" required/>
+                      <div class="row">
+                      <div class='col-md-12'>
+                        <div>New Password: </div>
+                        <input type="text" id="newPwd" name="newPwd" required/>
+                          <div class="row">
+                            <div class='col-md-12'>
+                            <div>Confirm New Password: </div>
+                            <input type="text" id="confnewPwd" name="congnewPwd" required/>
+                            <div id="invia"></div>
+                            <div class="col" id="msgErr" style="display: none;"></div>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
+                  </div> 
             </div>
-
-            <div id="giochi" class="col-lg-6 col-sm-3">
-              <div class="row">
-                <div class="col-md-6 col-sm-3"> Preferences:
-                <div class="table-wrapper-scroll-y my-custom-scrollbar-scheda">
+            <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
+            <div class="editable w-100"> Change name:
+                      <h3 class="text-truncate" id="name"></h3></div>
+                <div class="editable w-100 mt-3"> Change lastname:
+                      <h3 class="text-truncate" id="lastname"></h3></div>
+                <div class="editable w-100 mt-3"> Change email:
+                      <h3 class="text-truncate" id="email"></h3></div>
+                <div id="cancelUser" class="editable w-70">></div>
+            </div>
+            <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
+            <div class="w-100"> Preferences:
+                <div class="table-wrapper-scroll-y my-custom-scrollbar-scheda mt-3">
                     <table class="table table-bordered table-striped mb-0" id="favTable">
                         <thead></thead>
                         <tbody id="favBody" >
@@ -161,39 +144,39 @@ $_SESSION["favList"] =json_decode($readfile, true);
                         </tbody>
                     </table>
                 </div>
-                <div id="choiceFav" style="display: none;">
+                <div class="w-100 mt-3" id="choiceFav" style="display: none;">
                   <form action="form">
                     <fieldset id="fieldsetPref">
                     </fieldset>
                   </form>
                 </div>
-                  <div id="modPref">
+                  <div id="modPref" class="w-100 mt-3">
                     <button id="modificaPref" onclick="changePref()"> Change Preferences </button>
                   </div>
                 </div>
-            
-                <div class="col-md-6 col-sm-3"> Punteggio Giochi:
-                  <div class="row">
-                    <div class="editable col-md-4 col-sm-2"> Quiz:
+                
+            </div>
+            <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3"> Game points:
+            <div class="editable mt-3"> Quiz:
                       <h3 id="quiz"></h3>
                     </div>
-                    <div class="editable col-md-4 col-sm-2"> Hangman:
+                    <div class="editable mt-3"> Hangman:
                       <h3 id="hang"></h3>
                     </div>
-                    <div class="editable col-md-4 col-sm-2"> Memory:
+                    <div class="editable mt-3"> Memory:
                       <h3 id="memo"></h3>
                     </div>
-                  </div>
-                </div>
-              </div>
             </div>
-            <div id="cancelUser" style="text-align: right;"></div>
           </div>
-          
-          
+          <div class="w-100 d-flex flex-row flex-column align-items-center justify-content-center mt-5">
+              <div class="w-80 d-flex ">
+                <div id="salva"></div>
+              </div>
+          </div> 
+         
         </div>
         <script type="text/javascript" src="js/edit.js">  </script>
     </div>
    
 </body>
-</html>
+</html>-

@@ -35,7 +35,9 @@ var currentUser;
 
 // Creo la scheda in base all'indice
 function manage(index){
-    
+    if($('#scheda').is(':visible')){
+        // pulisci gli input di password e di preferences.
+    }
     // dati modificabili al click
     currentUser = utenti[index].username;
     var name = document.getElementById("name");
@@ -59,9 +61,9 @@ function manage(index){
     divMemo.innerHTML = JSON.stringify(utenti[index].gamesPoints.memory);
     prefBody.innerHTML = fillPreferences(currentUser);
 
-    divSave.innerHTML = "<button onclick='saveData("+index+")'> Salva Modifiche </button>";
-    divPass.innerHTML = "<button onclick='managePwd("+index+")' style='font-size: small;'> Change password </button>" ;
-    divElimina.innerHTML = "<button onclick='deleteUser("+index+")' style='font-size: small;'> Delete User </button>";
+    divSave.innerHTML = "<button class='btn-dark btn-block rounded-2 px-3 py-3' onclick='saveData("+index+")'> Salva Modifiche </button>";
+    divPass.innerHTML = "<button class='rounded-2' onclick='managePwd("+index+")' > Change password </button>" ;
+    divElimina.innerHTML = "<button class='rounded-2' onclick='deleteUser("+index+")'> Delete User </button>";
     
 }
 // creo sezione modifica password
@@ -75,7 +77,7 @@ function managePwd(index){
         $('#password').show(500);
     }
     var submit = document.getElementById("invia");
-    submit.innerHTML = "<button onclick='updatePassword("+index+")' > Send Password </button>"; 
+    submit.innerHTML = "<button class='w-50 mt-3 rounded-2' onclick='updatePassword("+index+")' > Send Password </button>"; 
     
 
 
@@ -195,18 +197,24 @@ function fillPreferences(user){
     }
     
 }
-// da mettere già selezionate quelle presenti nella tabella.
+// riempio il form delle categorie da selezionare
+var access=0;
 function changePref(){
     if($('.my-custom-scrollbar-scheda').is(":visible")){
         $('.my-custom-scrollbar-scheda').hide(500);
         $('#modificaPref').text("Annulla Modifica"); 
         $('#choiceFav').show(500);
-        var add='';
-        for(var i=0; i<animals.length; i++){
-          add += '<br><input class="animal" type="checkbox" name="'+animals[i]+'" value="'+animals[i]+'"/> '+animals[i]+'<br/>'
+        if(access == 0){
+            var add='';
+            for(var i=0; i<animals.length; i++){
+            add += '<div><input class="animal" type="checkbox" name="'+animals[i]+'" value="'+animals[i]+'"/> '+animals[i]+'<div/>'
+            }
+           
+            access=1;
         }
-          $('#fieldsetPref').append(add);
+            $('#fieldsetPref').append(add);
           $('#modificaPref').text("Cancel Modify"); 
+        
     }else{
         $('#choiceFav').hide(500);
         $('#modificaPref').text("Change Prefernces"); 
@@ -216,7 +224,7 @@ function changePref(){
    
     
 }
-
+// controllo le categorie selezionate
 function savePref(){
     var animalSelected=[];
     if($('#choiceFav').is(":visible")){

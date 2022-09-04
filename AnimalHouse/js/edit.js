@@ -43,10 +43,10 @@ $('.editable').on('click', function() {
 // apertura e chiusura scheda, aggiungere animazione
 $(document).ready(function(){
     $("#close").click(function(){
-      $("#scheda").hide(1000);
+      $("#scheda").addClass("d-none");
     });
     $(".open").click(function(){
-      $("#scheda").show(1000);
+      $("#scheda").removeClass("d-none");
     });
   });
 
