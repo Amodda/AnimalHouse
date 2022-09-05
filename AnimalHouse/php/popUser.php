@@ -8,7 +8,7 @@
     $msg;
     $_SESSION["users"] = $users;
     $jsonUs = json_encode($users);
-    if(file_put_contents("../usersTest.json", $jsonUs)){
+    if(file_put_contents("../users.json", $jsonUs)){
         $msg = "Eliminato da utenti!";
         
     }else{
@@ -17,15 +17,15 @@
 
     #elimino le preferenze relative all'utente:
     $favUsers = $_SESSION["favList"];
-    $user = trim($_SESSION["users"][$pos]["username"]);
+    $user = trim($_SESSION["favList"][$pos]["username"]);
     for($i = 0; $i <= count($favUsers)-1; $i++){
         if($user ==  $favUsers[$i]["username"]){
             array_splice($favUsers, $i, 1);
             break;
         }
     }
-    $_SESSION["favList"] = $favusers;
-    $jsonfav = json_encode($users);
+    $_SESSION["favList"] = $favUsers;
+    $jsonfav = json_encode($favUsers);
     if(file_put_contents("../favourites.json", $jsonfav)){
         $msg = "Eliminato da favoriti!";
         

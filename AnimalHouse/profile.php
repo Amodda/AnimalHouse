@@ -5,7 +5,7 @@ if(!isset($_SESSION['user'])){
     header('Location: index.php');
 }
 
-$jsonData = file_get_contents("usersTest.json");
+$jsonData = file_get_contents("users.json");
 $users = json_decode($jsonData, true);
 for($i = 0; $i <= count($users)-1; $i++){
     if($users[$i]["username"] == $_SESSION["user"]["username"]){

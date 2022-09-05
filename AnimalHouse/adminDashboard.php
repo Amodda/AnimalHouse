@@ -8,7 +8,7 @@ if($_SESSION['user']['type'] != "admin"){
     header('Location: index.php');
 }
 
-$jsonData = file_get_contents("usersTest.json");
+$jsonData = file_get_contents("users.json");
 $_SESSION["users"] = json_decode($jsonData, true);
 
 $readfile = file_get_contents("favourites.json");
@@ -105,19 +105,19 @@ $_SESSION["favList"] =json_decode($readfile, true);
             <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
               <div class="editable w-100 "> Change Username:
                   <h3 id="username"></h3></div>
-                  <div class="w-50 d-flex flex-column mt-3" style="font-size: 15px;" id="pass"></div>
+                  <div class="w-100 mt-3" style="font-size: 15px;" id="pass"></div>
                   <div class='w-100 ' id="password" style="display: none;">
                   <div class="mt-3">Old password: </div>
-                    <input type="text" id="oldPwd" name="oldPwd" required/>
+                    <input type="password" id="oldPwd" name="oldPwd" class="inp_pwd w-100" required/>
                       <div class="row">
                       <div class='col-md-12'>
                         <div>New Password: </div>
-                        <input type="text" id="newPwd" name="newPwd" required/>
+                        <input type="password" id="newPwd" name="newPwd" class="inp_pwd w-100 " required/>
                           <div class="row">
                             <div class='col-md-12'>
                             <div>Confirm New Password: </div>
-                            <input type="text" id="confnewPwd" name="congnewPwd" required/>
-                            <div id="invia"></div>
+                            <input type="password" id="confnewPwd" name="congnewPwd" class="inp_pwd w-100" required/>
+                            <div class="w-100" id="invia"></div>
                             <div class="col" id="msgErr" style="display: none;"></div>
                           </div>
                           </div>
@@ -146,24 +146,24 @@ $_SESSION["favList"] =json_decode($readfile, true);
                 </div>
                 <div class="w-100 mt-3" id="choiceFav" style="display: none;">
                   <form action="form">
-                    <fieldset id="fieldsetPref">
+                    <fieldset id="fieldsetPref" >
                     </fieldset>
                   </form>
                 </div>
-                  <div id="modPref" class="w-100 mt-3">
+                  
+                </div>
+                <div id="modPref" class="w-100 mt-3">
                     <button id="modificaPref" onclick="changePref()"> Change Preferences </button>
                   </div>
-                </div>
-                
             </div>
             <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3"> Game points:
-            <div class="editable mt-3"> Quiz:
+            <div class="editable mt-3 w-100"> Quiz:
                       <h3 id="quiz"></h3>
                     </div>
-                    <div class="editable mt-3"> Hangman:
+                    <div class="editable w-100 mt-3"> Hangman:
                       <h3 id="hang"></h3>
                     </div>
-                    <div class="editable mt-3"> Memory:
+                    <div class="editable w-100 mt-3"> Memory:
                       <h3 id="memo"></h3>
                     </div>
             </div>

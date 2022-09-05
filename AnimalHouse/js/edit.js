@@ -27,6 +27,7 @@ $('.editable').on('click', function() {
   })
 
   function save() {
+      console.log(input.val());
       h3.text(input.val());
       input.remove();
       h3.show();
@@ -40,13 +41,4 @@ $('.editable').on('click', function() {
     }
 });
 
-// apertura e chiusura scheda, aggiungere animazione
-$(document).ready(function(){
-    $("#close").click(function(){
-      $("#scheda").addClass("d-none");
-    });
-    $(".open").click(function(){
-      $("#scheda").removeClass("d-none");
-    });
-  });
 

@@ -2,7 +2,7 @@ var utenti;
 aggiornaUtenti();
 // ottengo array degli utenti anche in JS
 function aggiornaUtenti(){
-    fetch("usersTest.json")
+    fetch("users.json")
     .then( response => response.json())
     .then(data => {  
         utenti=data;
@@ -77,7 +77,7 @@ function managePwd(index){
         $('#password').show(500);
     }
     var submit = document.getElementById("invia");
-    submit.innerHTML = "<button class='w-50 mt-3 rounded-2' onclick='updatePassword("+index+")' > Send Password </button>"; 
+    submit.innerHTML = "<button class='mt-3 rounded-2' onclick='updatePassword("+index+")' > Send Password </button>"; 
     
 
 
@@ -125,7 +125,7 @@ function updatePassword(index){
     }
     
 }
-// Sbagliato.
+// 
 function deleteUser(index){
     utenti.splice(index, 1);
     $.post('php/popUser.php', { num: index}, function(result) { 
@@ -139,10 +139,19 @@ function saveData(index){
     var l = document.getElementById("lastname").textContent;
     var e = document.getElementById("email").textContent;
     var newu = document.getElementById("username").textContent;
+    var newquiz = document.getElementById("quiz").textContent;
+    var newhang =document.getElementById("hang").textContent;
+    var newmemo =document.getElementById("memo").textContent;
+    
     var preference = savePref();
     var msg = "";
-    if(checkUser(newu) == false){
-        $.post('php/modificaAnagrafe.php', { name: n, lname: l, email: e, username: newu, i: index}, function(result) {
+    var semaphore=false;
+    if(newu != currentUser){
+        semaphore=checkUser(newu);  
+    }
+    if(semaphore == false){
+        $.post('php/modificaAnagrafe.php', { name: n, lname: l, email: e, username: newu, i: index,
+                                            quiz: newquiz, hang: newhang, memo: newmemo}, function(result) {
             message=result;
          });
          $.post('php/preferencePost.php', {newArr : preference, username: currentUser, newuser: newu}, function(result) {
@@ -216,10 +225,7 @@ function changePref(){
           $('#modificaPref').text("Cancel Modify"); 
         
     }else{
-        $('#choiceFav').hide(500);
-        $('#modificaPref').text("Change Prefernces"); 
-        $('.my-custom-scrollbar-scheda').show(500);
-        
+        showFavTable();
     }
    
     
@@ -249,3 +255,25 @@ function savePref(){
 
     return animalSelected;
 }
+
+function showFavTable(){
+    $('#choiceFav').hide(500);
+    $('#modificaPref').text("Change Prefernces"); 
+    $('.my-custom-scrollbar-scheda').show(500);
+}
+// apertura e chiusura scheda, aggiungere animazione
+$(document).ready(function(){
+    $("#close").click(function(){
+      $("#scheda").addClass("d-none");
+      $(".inp_pwd").val("");
+      $("#password").hide();
+      
+      
+    });
+    $(".open").click(function(){
+      $("#scheda").removeClass("d-none");
+      if($('#choiceFav').is(":visible")){
+        showFavTable();
+      }
+    });
+  });

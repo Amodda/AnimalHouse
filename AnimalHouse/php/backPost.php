@@ -13,7 +13,7 @@
         $newUsers = $users;
         $_SESSION["users"] = $newUsers;
         $jsonUs = json_encode($newUsers);
-        if(file_put_contents("../usersTest.json", $jsonUs)){
+        if(file_put_contents("../users.json", $jsonUs)){
             echo "Yes";
         }else{
             echo "No";
