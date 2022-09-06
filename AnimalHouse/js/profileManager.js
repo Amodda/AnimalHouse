@@ -1,28 +1,30 @@
-var array=[];
+// array per cateogorie di animali, la lista temporanea (selezione utente) e le immagini
+var categories=[];
 var favTemp;
-
-// crea oggetto cateogoria con immagine e nome per visualizzare sfondi
+var arr_img=[];
+// leggo il file animalList che contiene username e relativi animali preferiti
 fetch('animalList.json') 
     .then( response => response.json())
     .then(data => {
         for(var i=0; i<data["categories"].length; i++){
-            array.push(data["categories"][i]);
+            categories.push(data["categories"][i]);
+            arr_img.push(data["pictures"][i]);
         };
     });
 
-
+// funzione che manda al gestore delle prefernze i nuovi dati, dove verranno scritti su file
     function save(){
     var newFav= Array.from(document.getElementsByClassName('card-on'));
     var newFavtext = [];
     for(var i=0; i<newFav.length; i++){
         newFavtext.push(newFav[i].innerHTML);
     }
-    console.log(newFavtext);
+
     
     var newUser = document.getElementById("user").textContent;
-    console.log(newUser);
+
     $.post('php/preferencePost.php', { newArr : newFavtext, username : "flag", newuser : newUser}, function(result) { 
-        //alert(result); 
+        alert("Lista modificata correttamente"); 
     });
     location.reload();
 /*
@@ -33,16 +35,15 @@ fetch('animalList.json')
         success: function() { 
                alert("Success"); 
          } 
+         var newFav = Array.from($('.card-on').find("div"));
     }); */
     
 }
 
-
+// all click sull'immagine cambia da card on a card off e viceversa
 function favAdd() {
     $(".card").on("click", function(){
-        console.log("Entrato in modifica classe");
         if($(this).hasClass("card-off")){
-            console.log("da cardoff a cardon")
             $(this).removeClass("card-off");
             $(this).addClass("card-on");
             // aggiungi ad array
@@ -56,40 +57,39 @@ function favAdd() {
             
     });
 }
+// salvo in array favtemp gli aniamali già presenti 
 function fillArray(){
     favTemp = Array.from(document.getElementsByClassName('colanimal'));
-    console.log(favTemp[0].innerHTML);
 }
 
+// apro la sezione di scelta animali
 function openSection () {
     $("#add").on("click", function() {
-        //riempio array temp
+        //riempio array con gli animali della tabella
         fillArray();
         // mostro sezione scelta
         $("#sezP").show(1000);
         var add='';
-        // capire perchè primo è undefined
-        for(var i=0; i<array.length; i++){
-            console.log(array[i]);
+
+        // se gli animali sono già nella tabella li illumino (card-on)        
+        for(var i=0; i<categories.length; i++){
             flag=0;
             for(var j=0; j<favTemp.length; j++){
-                if(" "+array[i]+" " == favTemp[j].innerHTML){
-                    console.log("trovata corripsondenza: " + array[i]);
+                if(categories[i] == favTemp[j].innerHTML){
+                    
                     flag=1;
                     break; 
                 }
             }
-     
             if(flag == 0){
-                
-                add += '<div class="card card-off"> '+array[i]+' </div>'; 
+                add += '<div class="card card-off" style="background-image: url(./img/'+arr_img[i]+');">'+categories[i]+'</div>'; 
             }else if(flag==1){
-                console.log("acceso: "+array[i]);
-                add += '<div class="card card-on"> '+array[i]+' </div>'; 
+                add += '<div class="card card-on" style="background-image: url(./img/'+arr_img[i]+');">'+categories[i]+'</div>'; 
             }
         }
         var grid = document.getElementById("animalsGrid");
         grid.innerHTML += add;
+        
         favAdd();
     });
 }

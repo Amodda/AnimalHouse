@@ -82,23 +82,22 @@ $_SESSION["favList"] =json_decode($readfile, true);
     </nav>
     <div class="container">
         <div class="row" id="name">
-            <div class="col-lg-12 col-sm-6"></div>
             <h1><?php echo $_SESSION['user']['name']." ". $_SESSION['user']['lastname']?></h1>
             <h3><?php echo $_SESSION['user']['username']?></h3>
         </div>
-        <div class="row gap-1">
+        <div class="row gap-3">
             <div class="col-md-3 col-sm-2 box">
                 <h3>Information: </h3>
-                <div class="row">
+                <div class="w-100 d-flex flex-row mt-4">
                     <div class="col"> Name: <b><?php echo $_SESSION['user']['name']; ?> </b></div>
                 </div>
-                <div class="row">
+                <div class="w-100 d-flex flex-row  mt-1">
                     <div class="col"> Lastname: <b><?php echo $_SESSION['user']['lastname']; ?> </b></div>
                 </div>
-                <div class="row">
+                <div class="w-100 d-flex flex-row  mt-1">
                     <div class="col"> Username: <b id="user"><?php echo $_SESSION['user']['username']; ?> </b></div>
                 </div>
-                <div class="row">
+                <div class="w-100 d-flex flex-row  mt-1">
                     <div class="col"> E-mail: <b><?php echo $_SESSION['user']['email']; ?> </b></div>
                 </div>
             </div>
@@ -137,17 +136,17 @@ $_SESSION["favList"] =json_decode($readfile, true);
                 
             </div>
             <div class="col-md-3 col-sm-2 box">
-                <h3>Games</h3>
-                <div class="row text-align-center">
+                <h3>Games:</h3>
+                <div class="w-100 d-flex flex-row mt-4">
                     <div class="col">Quiz score: <b><?php echo $gamePoint["quiz"]?></b></div>
                 </div> 
-                <div class="row">
+                <div class="w-100 d-flex flex-row mt-1">
                     <div class="col">Hangman score: <b><?php echo $gamePoint["hangman"]?></b></div>
                 </div> 
-                <div class="row">
+                <div class="w-100 d-flex flex-row mt-1">
                     <div class="col">Memory score: <b><?php echo $gamePoint["memory"]?></b></div>
                 </div>
-                <div class="row">
+                <div class="w-100 d-flex flex-row mt-1">
                     <div class="col">Total score: <b>
                         <?php 
                             echo $gamePoint["quiz"]+$gamePoint["hangman"]+$gamePoint["memory"]?></b></div>
@@ -160,9 +159,12 @@ $_SESSION["favList"] =json_decode($readfile, true);
     </div>
     <hr>
     <div id="sezP" style="display: none;">
-        <h2> Scegli i tuoi animali preferiti: </h2>
+        <h2 class="d-flex align-items-center justify-content-center "> Scegli i tuoi animali preferiti: </h2>
         <section class="grid" id="animalsGrid"></section>
-        <button id="salva_pref" onclick="save()"> Salva Preferiti</button>         
+        <div class="d-flex d-row align-items-center justify-content-center mt-3 mb-3">
+            <button id="salva_pref" class="btn-dark btn-block rounded-2 px-3 py-3" onclick="save()"> Salva Preferiti</button>      
+        </div>
+           
     </div>
     
     
