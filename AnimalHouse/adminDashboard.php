@@ -101,10 +101,10 @@ $_SESSION["favList"] =json_decode($readfile, true);
             <h2 class="w-100 d-flex flex-column align-items-left " >User Card </h2>
             <img class="w-100 d-flex flex-column align-items-right" src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
           </div>
-          <div id="anagrafe" class="w-100 h-80 d-flex flex-row">
+          <div id="anagrafe" class="w-100 d-flex flex-row">
             <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
               <div class="editable w-100 "> Change Username:
-                  <h3 id="username"></h3></div>
+                  <h5 id="username"></h5></div>
                   <div class="w-100 mt-3" style="font-size: 15px;" id="pass"></div>
                   <div class='w-100 ' id="password" style="display: none;">
                   <div class="mt-3">Old password: </div>
@@ -115,7 +115,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
                         <input type="password" id="newPwd" name="newPwd" class="inp_pwd w-100 " required/>
                           <div class="row">
                             <div class='col-md-12'>
-                            <div>Confirm New Password: </div>
+                            <div>Confirm Password: </div>
                             <input type="password" id="confnewPwd" name="congnewPwd" class="inp_pwd w-100" required/>
                             <div class="w-100" id="invia"></div>
                             <div class="col" id="msgErr" style="display: none;"></div>
@@ -127,11 +127,11 @@ $_SESSION["favList"] =json_decode($readfile, true);
             </div>
             <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
             <div class="editable w-100"> Change name:
-                      <h3 class="text-truncate" id="name"></h3></div>
+                      <h5 class="text-truncate" id="name"></h5></div>
                 <div class="editable w-100 mt-3"> Change lastname:
-                      <h3 class="text-truncate" id="lastname"></h3></div>
+                      <h5 class="text-truncate" id="lastname"></h5></div>
                 <div class="editable w-100 mt-3"> Change email:
-                      <h3 class="text-truncate" id="email"></h3></div>
+                      <h5 class="text-truncate" id="email"></h5></div>
                 <div id="cancelUser" class="editable w-70">></div>
             </div>
             <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
@@ -144,7 +144,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
                         </tbody>
                     </table>
                 </div>
-                <div class="w-100 mt-3" id="choiceFav" style="display: none;">
+                <div class="w-100 mt-3 mb-3" id="choiceFav" style="display: none;">
                   <form action="form">
                     <fieldset id="fieldsetPref" >
                     </fieldset>
@@ -158,18 +158,18 @@ $_SESSION["favList"] =json_decode($readfile, true);
             </div>
             <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3"> Game points:
             <div class="editable mt-3 w-100"> Quiz:
-                      <h3 id="quiz"></h3>
+                      <h5 id="quiz"></h5>
                     </div>
                     <div class="editable w-100 mt-3"> Hangman:
-                      <h3 id="hang"></h3>
+                      <h5 id="hang"></h5>
                     </div>
                     <div class="editable w-100 mt-3"> Memory:
-                      <h3 id="memo"></h3>
+                      <h5 id="memo"></h5>
                     </div>
             </div>
           </div>
-          <div class="w-100 d-flex flex-row flex-column align-items-center justify-content-center mt-5">
-              <div class="w-80 d-flex ">
+          <div class="w-100 d-flex flex-row align-items-center justify-content-center mt-5" id="finalrow">
+              <div class="w-80 d-flex">
                 <div id="salva"></div>
               </div>
           </div> 

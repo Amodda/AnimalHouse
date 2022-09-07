@@ -8,7 +8,7 @@ function aggiornaUtenti(){
         utenti=data;
     });
 }
-
+// array delle preferenze
 var animals=[];
 function aggiornaPreferiti(){
     fetch('animalList.json') 
@@ -21,6 +21,7 @@ function aggiornaPreferiti(){
 }
 aggiornaPreferiti();
 
+// array delle categorie di animali
 var preferences;
 fetch('favourites.json') 
     .then( response => response.json())
@@ -30,8 +31,6 @@ fetch('favourites.json')
 
 // user attualmente nella scheda:
 var currentUser;
-// Cambiare label quando ci clicco sopra
-//chiusura scheda:
 
 // Creo la scheda in base all'indice
 function manage(index){
@@ -82,7 +81,7 @@ function managePwd(index){
 
 
 }
-// modifico la password
+// sezione modifica password
 function updatePassword(index){
   
     var old_pwd = document.getElementById("oldPwd").value;
@@ -125,7 +124,7 @@ function updatePassword(index){
     }
     
 }
-// 
+// elimina utente dal file
 function deleteUser(index){
     utenti.splice(index, 1);
     $.post('php/popUser.php', { num: index}, function(result) { 
@@ -230,7 +229,7 @@ function changePref(){
    
     
 }
-// controllo le categorie selezionate
+// controllo e restituisco le categorie selezionate
 function savePref(){
     var animalSelected=[];
     if($('#choiceFav').is(":visible")){
@@ -255,7 +254,7 @@ function savePref(){
 
     return animalSelected;
 }
-
+//mostra tabella preferiti
 function showFavTable(){
     $('#choiceFav').hide(500);
     $('#modificaPref').text("Change Prefernces"); 
@@ -275,5 +274,9 @@ $(document).ready(function(){
       if($('#choiceFav').is(":visible")){
         showFavTable();
       }
+    });
+
+    $("#close").mouseover(function(){
+        $("#close").css('cursor','pointer');
     });
   });

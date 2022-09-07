@@ -31,14 +31,9 @@
     top: 20vh;
     left: 10vh;
     right: 10vh;
-    z-index: 1;
    
 }
 
-
-.row{
-    padding: 5px 0px 5px 0;
-}
 #boxUtenti{
     height: 80vh;
     border-radius: 10px;
@@ -52,12 +47,11 @@
     height: 50vh;
 }
 
-#favTable{
-    height: 20vh;
+#favBody tr {
+    text-align: center;
 }
-
-h3{
-    font-size: 15px;
+h5{
+    font-size: 18px;
 }
 
 #titleS{
@@ -96,6 +90,13 @@ h3{
 #choiceFav{
     height: 30vh;
 }
-@media screen and (max-width: 400px) {
-    
+#password{
+    height: 50px;
+    z-index: 2;
+}
+@media screen and (max-width: 800px) {
+    #password{
+        height: auto;    
+        z-index: 0;
+    }
   }
