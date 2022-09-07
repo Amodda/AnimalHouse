@@ -68,7 +68,7 @@ session_start();
           </div>
           <?php 
           if(isset($_SESSION['auth_error'])){
-            echo $_SESSION['auth_error'];
+            echo '<p style="margin: 0; color: red;">'.$_SESSION['auth_error'].'</p>';
           }
           if(isset($_SESSION['auth_success'])){
             echo '<p style="margin: 0; color: green;">'.$_SESSION['auth_success'].'</p>';

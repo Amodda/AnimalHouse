@@ -116,7 +116,7 @@ if($_SESSION['user']['type'] != "admin"){
 
                       <div class="w-75 input-group mb-4">
                         
-                        <input type="number" class="form-control" min="0" name="newProductPrice" placeholder="Price" aria-label="Price">
+                        <input type="number" class="form-control" min="0" name="newProductPrice" placeholder="Price" aria-label="Price" step=".01">
                         <span class="input-group-text">€</span>
                       </div>
 
@@ -202,7 +202,7 @@ if($_SESSION['user']['type'] != "admin"){
                     echo '<p><strong>Description:</strong></p> <p style="margin-left: 1em">'.$productInfo['description'].'</p>';
                   echo '</div>';  
                   echo '<div class="w-100 d-flex flex-row align-items-center justify-content-start">';
-                    echo '<p><strong>Price:</strong></p> <p style="margin-left: 1em">'.$productInfo['price'].'</p>';
+                    echo '<p><strong>Price:</strong></p> <p style="margin-left: 1em">'.$productInfo['price'].' €</p>';
                   echo '</div>';  
                   echo '<div class="w-100 d-flex flex-row align-items-center justify-content-start">';
                     echo '<p><strong>Category:</strong></p> <p style="margin-left: 1em">'.$productInfo['category'].'</p>';

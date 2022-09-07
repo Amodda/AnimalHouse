@@ -109,7 +109,7 @@ session_start();
               </div>
         <?php
         if(isset($_SESSION['auth_error'])){
-            echo $_SESSION['auth_error'];
+            echo '<p style="color: red;">'.$_SESSION['auth_error'].'</p>';
         }
         ?>
 
@@ -128,3 +128,6 @@ session_start();
 
 </body>
 </html>
+<?php
+unset($_SESSION['auth_error']);
+?>
