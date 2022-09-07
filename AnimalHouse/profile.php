@@ -117,12 +117,17 @@ $_SESSION["favList"] =json_decode($readfile, true);
                                     $temp = $_SESSION['favList'][$i]["preferences"];
                                 }
                             }
-                                for($i=0; $i< count($temp); $i++){
+                            if(is_null($temp)){
+                                echo '<tr><td> Click "Modify List" to add animals! </td></tr>';
+                            }else{
+                                  for($i=0; $i< count($temp); $i++){
                                 echo '<tr>';
                                 echo '<td class="colanimal">'.$temp[$i].'</td>';
 
                                 echo "</tr>";
                                 }
+                            }                            
+                              
                             }
 
                             
@@ -130,9 +135,9 @@ $_SESSION["favList"] =json_decode($readfile, true);
                         </tbody>
                     </table>
                 </div>
-                <div style="text-align: center;">
-                <a href="#" id="add">Modify list: </a>
-                </div>
+                <div style="text-align: center;" class="d-flex align-items-center justify-content-center mt-1 mb-1">
+                <a href='#grid' id="add" class="btn-dark btn-block rounded-2 px-1 py-1 text-decoration-none">Modify list </a>
+                </div> 
                 
             </div>
             <div class="col-md-3 col-sm-2 box">

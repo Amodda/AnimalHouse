@@ -14,20 +14,20 @@ fetch('animalList.json')
 
 // funzione che manda al gestore delle prefernze i nuovi dati, dove verranno scritti su file
     function save(){
-    var newFav= Array.from(document.getElementsByClassName('card-on'));
+        var newFav= Array.from(document.querySelectorAll('.card-on div'));
+        
     var newFavtext = [];
     for(var i=0; i<newFav.length; i++){
         newFavtext.push(newFav[i].innerHTML);
     }
-
-    
+  
     var newUser = document.getElementById("user").textContent;
-
+ 
     $.post('php/preferencePost.php', { newArr : newFavtext, username : "flag", newuser : newUser}, function(result) { 
         alert("Lista modificata correttamente"); 
     });
     location.reload();
-/*
+/* 
     $.ajax({ 
         type: "POST", 
         url: "php/profilePost.php", 
@@ -82,9 +82,9 @@ function openSection () {
                 }
             }
             if(flag == 0){
-                add += '<div class="card card-off" style="background-image: url(./img/'+arr_img[i]+');">'+categories[i]+'</div>'; 
+                add += '<div class="card card-off" style="background-image: url(./img/'+arr_img[i]+');"><div>'+categories[i]+'</div></div>'; 
             }else if(flag==1){
-                add += '<div class="card card-on" style="background-image: url(./img/'+arr_img[i]+');">'+categories[i]+'</div>'; 
+                add += '<div class="card card-on" style="background-image: url(./img/'+arr_img[i]+');"><div>'+categories[i]+'</div></div>'; 
             }
         }
         var grid = document.getElementById("animalsGrid");

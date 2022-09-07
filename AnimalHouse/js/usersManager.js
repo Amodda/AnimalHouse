@@ -128,7 +128,11 @@ function updatePassword(index){
 function deleteUser(index){
     utenti.splice(index, 1);
     $.post('php/popUser.php', { num: index}, function(result) { 
-        alert(result); 
+        if(result == 2){
+            alert("Utente eliminato con successo");
+        }else{
+            alert("errore");
+        }
      });
     location.reload();
 }
@@ -141,30 +145,34 @@ function saveData(index){
     var newquiz = document.getElementById("quiz").textContent;
     var newhang =document.getElementById("hang").textContent;
     var newmemo =document.getElementById("memo").textContent;
-    
     var preference = savePref();
     var msg = "";
+
+    // semaforo per controllare se il nuovo username è valido
     var semaphore=false;
     if(newu != currentUser){
         semaphore=checkUser(newu);  
     }
+    // mando nuovi dati a file anagrafe e preferenze
     if(semaphore == false){
         $.post('php/modificaAnagrafe.php', { name: n, lname: l, email: e, username: newu, i: index,
                                             quiz: newquiz, hang: newhang, memo: newmemo}, function(result) {
-            message=result;
+            msg=result;
          });
          $.post('php/preferencePost.php', {newArr : preference, username: currentUser, newuser: newu}, function(result) {
-            message=result;
+            msg=result;
         });
+        // aggiorno gli array di sessione
          aggiornaUtenti();
          aggiornaPreferiti();
-         alert(msg);
-         console.log("utente: "+utenti[index].username);
+         console.log(msg);
+         alert("Nuovi dati utente salvati");
         location.reload();
     }else{
         alert("Username already in use, change it!");
     }
 }
+// controllo validità del nuovo username (se è già esistente)
 function checkUser(user){
     for(var i=0; i<utenti.length; i++){
         if(user == utenti[i].username){
@@ -197,7 +205,7 @@ function fillPreferences(user){
         }else{
         }
     }
-
+    // se non ho preferti:
     if(add != ""){
        return add; 
     }else{

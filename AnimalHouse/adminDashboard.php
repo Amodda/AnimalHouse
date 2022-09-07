@@ -24,12 +24,13 @@ $_SESSION["favList"] =json_decode($readfile, true);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/backoffice.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <title>Back Office</title>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <script type="text/javascript" src="js/usersManager.js">  </script>
-    
+    <title>Back Office</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-5 shadow">
@@ -96,7 +97,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
      
         </div>
         <hr></hr>
-        <div id="scheda" class="w-80 d-flex d-none flex-column">
+        <div id="scheda" class="w-80 d-flex d-none flex-column fadeIn">
           <div class="w-100 d-flex flex-row align-items-center justify-content-center fill-auto mb-3">
             <h2 class="w-100 d-flex flex-column align-items-left " >User Card </h2>
             <img class="w-100 d-flex flex-column align-items-right" src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
@@ -106,6 +107,7 @@ $_SESSION["favList"] =json_decode($readfile, true);
               <div class="editable w-100 "> Change Username:
                   <h5 id="username"></h5></div>
                   <div class="w-100 mt-3" style="font-size: 15px;" id="pass"></div>
+                  <div class="w-100 d-flex "id="msgErr" style="color: red; font-size: 12px; z-index: 3;"></div>
                   <div class='w-100 ' id="password" style="display: none;">
                   <div class="mt-3">Old password: </div>
                     <input type="password" id="oldPwd" name="oldPwd" class="inp_pwd w-100" required/>
@@ -118,7 +120,6 @@ $_SESSION["favList"] =json_decode($readfile, true);
                             <div>Confirm Password: </div>
                             <input type="password" id="confnewPwd" name="congnewPwd" class="inp_pwd w-100" required/>
                             <div class="w-100" id="invia"></div>
-                            <div class="col" id="msgErr" style="display: none;"></div>
                           </div>
                           </div>
                       </div>

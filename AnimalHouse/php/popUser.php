@@ -5,14 +5,13 @@
 
    # elimino utente dal file users
     array_splice($users, $pos, 1);
-    $msg;
     $_SESSION["users"] = $users;
     $jsonUs = json_encode($users);
     if(file_put_contents("../users.json", $jsonUs)){
-        $msg = "Eliminato da utenti!";
+        $msg = 1;
         
     }else{
-        $msg = "Elimina da utenti fallito";
+        $msg = 0;
     }
 
     #elimino le preferenze relative all'utente:
@@ -27,10 +26,10 @@
     $_SESSION["favList"] = $favUsers;
     $jsonfav = json_encode($favUsers);
     if(file_put_contents("../favourites.json", $jsonfav)){
-        $msg = "Eliminato da favoriti!";
+        $msg += 1;
         
     }else{
-        $msg = "Operazione su favoriti fallita";
+        $msg += 0 ;
     }
 
     echo $msg;
