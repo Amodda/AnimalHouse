@@ -24,10 +24,7 @@ session_start();
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="authentication.html">Sign in</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
     
             </ul>
@@ -68,7 +65,7 @@ session_start();
           </div>
           <?php 
           if(isset($_SESSION['auth_error'])){
-            echo $_SESSION['auth_error'];
+            echo '<p style="margin: 0; color: red;">'.$_SESSION['auth_error'].'</p>';
           }
           if(isset($_SESSION['auth_success'])){
             echo '<p style="margin: 0; color: green;">'.$_SESSION['auth_success'].'</p>';

@@ -78,6 +78,16 @@ session_start();
         </div>
     </div>
 
+    <div class="d-flex flex-row align-items-center justify-content-center  bg-dark">
+            <span class="carousel-control-prev-icon" style="color: black;" aria-hidden="true"></span>
+        
+        <div class="d-flex container flex-row align-items-center my-3" style=" max-width: 90%; overflow-y: auto; overflow-x: auto;" id="carousel">
+
+        </div>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </div>
+
+
     <div class="d-flex flex-column align-items-center">
         <div id="curiosity" class="w-75 mt-5 ">
         <h4>Did you know that...</h4>
@@ -363,6 +373,16 @@ session_start();
 </footer>
 <!-- Footer -->
 
+<script>
+    imgs=['img1.jpg','img2.jpg','img3.jpg','img4.jpg','img5.jpg', 'img6.jpg','img7.jpg','img8.jpg','img9.jpg','img10.jpg'];
+    function showCarousel(){
+        for(i = 0; i < imgs.length; i++){
+            document.getElementById('carousel').innerHTML += '<img src="carousel/' + imgs[i] + '" class="mx-2 rounded  border" style="width: 200px; height: 200px; ">';
+        }
 
+        
+    }
+    showCarousel();
+</script>
 </body>
 </html>

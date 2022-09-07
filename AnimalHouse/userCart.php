@@ -90,24 +90,24 @@ if(!isset($_SESSION['user'])){
 
                 
                 for($i = 0; $i < count($cart); $i++){
-                    echo '<div class="w-100 d-flex flex-row my-3" id="'.$cart[$i]['id'].'">';
-                        echo '<div class="w-50">';
+                    echo '<div class="w-100 d-flex my-3 userCartItem " id="'.$cart[$i]['id'].'" >';
+                        echo '<div class="w-100 d-flex userCartItemMargin">';
                         if($cart[$i]['img'] != ""){
-                            echo '<img src="'.$cart[$i]['img'].'" style="width: 10vh; height: 10vh;">';
+                            echo '<img src="data/productImg/'.$cart[$i]['id']."/".$cart[$i]['img'].'" style="width: 10vh; height: 10vh;">';
                         } else {
                             echo '<img src="noimage.png" style="width: 10vh; height: 10vh;">';
                         }
                             
                         echo '</div>';
-                        echo '<div class="w-100 d-flex flex-column align-items-center justify-content-center">';
+                        echo '<div class="w-100 d-flex flex-column align-items-center justify-content-center userCartItemMargin">';
                             echo '<h5>'.$cart[$i]['name'].'</h5>';
                         echo '</div>';
-                        echo '<div class="w-100 d-flex flex-row align-items-center">';
+                        echo '<div class="w-100 d-flex flex-row align-items-center userCartItemMargin">';
                             echo '<div class="btn border shadow-sm" style="border-radius: 5em;" onClick='.'removeQty("product'.$i.'")><p class="p-3 my-0">-</p></div>';
                             echo '<p class="mx-3 my-0" id="product'.$i.'">'.$cartValue[$i]['qty'].'</p>';
                             echo '<div class="btn border shadow-sm" style="border-radius: 5em;" onClick='.'addQty("product'.$i.'")><p class="p-3 my-0">+</p></div>';
                         echo '</div>';
-                        echo '<div class="w-100 d-flex flex-row align-items-center">';
+                        echo '<div class="w-100 d-flex flex-row align-items-center userCartItemMargin">';
                             echo '<form action="php/productsManagement.php?removeProduct='.$cartValue[$i]['id'].'" method="post">';
                                 echo '<button type="submit" class="btn btn-danger">Remove</button>';
                             echo '</form>';

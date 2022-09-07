@@ -23,11 +23,9 @@ session_start();
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="authentication.html">Sign in</a>
-              </li>
+
     
             </ul>
           </div>
@@ -109,7 +107,7 @@ session_start();
               </div>
         <?php
         if(isset($_SESSION['auth_error'])){
-            echo $_SESSION['auth_error'];
+            echo '<p style="color: red;">'.$_SESSION['auth_error'].'</p>';
         }
         ?>
 
@@ -128,3 +126,6 @@ session_start();
 
 </body>
 </html>
+<?php
+unset($_SESSION['auth_error']);
+?>
