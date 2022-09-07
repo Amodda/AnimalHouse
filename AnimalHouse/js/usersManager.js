@@ -69,10 +69,10 @@ function manage(index){
 function managePwd(index){
     
     if($('#password').is(":visible")){
-        console.log("password is invisible now")
+        $('#msgErr').hide(500);
         $('#password').hide(500);
+        
     }else{
-        console.log("password is VISIBLE now")
         $('#password').show(500);
     }
     var submit = document.getElementById("invia");
@@ -165,7 +165,6 @@ function saveData(index){
         // aggiorno gli array di sessione
          aggiornaUtenti();
          aggiornaPreferiti();
-         console.log(msg);
          alert("Nuovi dati utente salvati");
         location.reload();
     }else{
@@ -197,7 +196,9 @@ $(document).ready(function() {
 function fillPreferences(user){
     var add="";
     for(var i=0; i<preferences.length; i++){
-        if(preferences[i].username == user && preferences[i].preferences != null){
+
+        if(preferences[i].username == user && preferences[i].preferences != ''){
+            console.log(preferences[i].preferences);
             var pref = preferences[i].preferences;
             for(var j=0; j<pref.length; j++){
                 add += '<tr><td class="colanimal">'+ pref[j] +'</td></tr>'
@@ -209,7 +210,7 @@ function fillPreferences(user){
     if(add != ""){
        return add; 
     }else{
-        return '<tr><td>Nessun preferito</td></tr>';
+        return '<tr><td>Empty</td></tr>';
     }
     
 }
@@ -244,7 +245,6 @@ function savePref(){
         var animalElem=Array.from(document.getElementsByClassName('animal'));     
         for(var i=0; i<animalElem.length; i++){
         if(animalElem[i].checked == true){
-            console.log("Questo è selezionato: " + animalElem[i].value ); 
             animalSelected.push(animalElem[i].value);
         }
     }
@@ -274,7 +274,7 @@ $(document).ready(function(){
       $("#scheda").addClass("d-none");
       $(".inp_pwd").val("");
       $("#password").hide();
-      
+      $('#msgErr').hide();
       
     });
     $(".open").click(function(){

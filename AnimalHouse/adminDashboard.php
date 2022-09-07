@@ -107,9 +107,9 @@ $_SESSION["favList"] =json_decode($readfile, true);
               <div class="editable w-100 "> Change Username:
                   <h5 id="username"></h5></div>
                   <div class="w-100 mt-3" style="font-size: 15px;" id="pass"></div>
-                  <div class="w-100 d-flex "id="msgErr" style="color: red; font-size: 12px; z-index: 3;"></div>
-                  <div class='w-100 ' id="password" style="display: none;">
-                  <div class="mt-3">Old password: </div>
+                  <div class='w-100' id="password" style="display: none;">
+                  <div class="w-100"id="msgErr" style="color: red; font-size: 12px;"></div>
+                  <div class="mt-1">Old password: </div>
                     <input type="password" id="oldPwd" name="oldPwd" class="inp_pwd w-100" required/>
                       <div class="row">
                       <div class='col-md-12'>
