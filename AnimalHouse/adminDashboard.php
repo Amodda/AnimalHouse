@@ -8,8 +8,11 @@ if($_SESSION['user']['type'] != "admin"){
     header('Location: index.php');
 }
 
-$jsonData = file_get_contents("usersTest.json");
+$jsonData = file_get_contents("users.json");
 $_SESSION["users"] = json_decode($jsonData, true);
+
+$readfile = file_get_contents("favourites.json");
+$_SESSION["favList"] =json_decode($readfile, true);
 
 ?>
 
@@ -51,7 +54,7 @@ $_SESSION["users"] = json_decode($jsonData, true);
           </div>
         </div>
     </nav>
-    <div class="body">
+    <div class="container">
     
       <div id="boxUtenti">
           <h1 style="text-align: center;"> Users List: </h1>
@@ -78,7 +81,7 @@ $_SESSION["users"] = json_decode($jsonData, true);
                       echo "<td>".$tempUs[$i]['name']."</td>";
                       echo "<td>".$tempUs[$i]['lastname']."</td>";
                       echo "<td>".$tempUs[$i]['email']."</td>";
-                      echo "<td><button type='button' onClick=manage(".$i.") class='open'> Apri scheda </button></td>";
+                      echo "<td><a onClick=manage(".$i.") class='open bg-dark text-white px-1 py-1 rounded-2' href='#scheda' > Open card </button></td>";
 
                       echo "</tr>";
                     }
@@ -92,81 +95,88 @@ $_SESSION["users"] = json_decode($jsonData, true);
         </div>    
      
         </div>
-        
-        <div id="scheda" style="display:none;" class="container">
-          <div class="row ">
-            <div class="col-md-2 col-sm-1"></div>
-            <h2 class="col-md-8 col-sm-4" style="text-align: center;"> Scheda Utente </h2>
-            <div class="col-2 col-sm-1">
-              <img src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
-            </div>  
+        <hr></hr>
+        <div id="scheda" class="w-80 d-flex d-none flex-column">
+          <div class="w-100 d-flex flex-row align-items-center justify-content-center fill-auto mb-3">
+            <h2 class="w-100 d-flex flex-column align-items-left " >User Card </h2>
+            <img class="w-100 d-flex flex-column align-items-right" src="X_cross.PNG" href="#boxUtenti" id="close" ></img> 
           </div>
-          <div class="row">
-            <div id="anagrafe" class="col-lg-6 col-sm-3" style="border-right: 2px solid black;">
-              <div class="row">
-                <div class="editable col-md-6 col-sm-3"> Modifica nome:
-                      <h3 id="name"></h3></div>
-                <div class="editable col-md-6 col-sm-3"> Modifica cognome:
-                      <h3 id="lastname"></h3></div>
-                
-              </div>
-              <div class="row">
-                <div class="editable col-md-6 col-sm-3"> Modifica Username:
-                  <h3 id="username"></h3></div>
-                <div class="editable col-md-6 col-sm-3"> Modifica email:
-                      <h3 id="email"></h3></div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6 col-sm-3" id="pass"></div>
-                  <div class="col-md-6 col-sm-3" id="salva"></div>
-              </div>
-              <div class="row">
-              <div class='col-md-12' id="password" style="visibility: hidden;"> 
-                      <form action="adminDashboard.php" method="POST">
-                        <label for="oldPwd">Inserire vecchia password: </label>
-                        <input type="text" id="oldPwd" name="oldPwd" required/>
-                        <div class="row">
-                        <div class='col-md-12'>
-                        <label for="newPwd">Inserire Nuova Password: </label>
-                        <input type="text" id="newPwd" name="newPwd" required/>
-                        <div id="invia"></div>
-                        </div>
-                        </div>
-                        
-                        
-                      </form>
-
-                </div>
-              </div>
+          <div id="anagrafe" class="w-100 d-flex flex-row">
+            <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
+              <div class="editable w-100 "> Change Username:
+                  <h5 id="username"></h5></div>
+                  <div class="w-100 mt-3" style="font-size: 15px;" id="pass"></div>
+                  <div class='w-100 ' id="password" style="display: none;">
+                  <div class="mt-3">Old password: </div>
+                    <input type="password" id="oldPwd" name="oldPwd" class="inp_pwd w-100" required/>
+                      <div class="row">
+                      <div class='col-md-12'>
+                        <div>New Password: </div>
+                        <input type="password" id="newPwd" name="newPwd" class="inp_pwd w-100 " required/>
+                          <div class="row">
+                            <div class='col-md-12'>
+                            <div>Confirm Password: </div>
+                            <input type="password" id="confnewPwd" name="congnewPwd" class="inp_pwd w-100" required/>
+                            <div class="w-100" id="invia"></div>
+                            <div class="col" id="msgErr" style="display: none;"></div>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
+                  </div> 
             </div>
-
-            <div id="giochi" class="col-lg-6 col-sm-3" style="border-left: 2px solid black;">
-              <div class="row">
-                <div class="col-md-6 col-sm-3"> Preferenze:
-                  <div id="preferenze"></div>
+            <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
+            <div class="editable w-100"> Change name:
+                      <h5 class="text-truncate" id="name"></h5></div>
+                <div class="editable w-100 mt-3"> Change lastname:
+                      <h5 class="text-truncate" id="lastname"></h5></div>
+                <div class="editable w-100 mt-3"> Change email:
+                      <h5 class="text-truncate" id="email"></h5></div>
+                <div id="cancelUser" class="editable w-70">></div>
+            </div>
+            <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3">
+            <div class="w-100"> Preferences:
+                <div class="table-wrapper-scroll-y my-custom-scrollbar-scheda mt-3">
+                    <table class="table table-bordered table-striped mb-0" id="favTable">
+                        <thead></thead>
+                        <tbody id="favBody" >
+                    
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-md-6 col-sm-3"> Punteggio Giochi:
-                  <div class="row">
-                    <div class="editable col-md-4 col-sm-2"> Quiz:
-                      <h3 id="quiz"></h3>
-                    </div>
-                    <div class="editable col-md-4 col-sm-2"> Hangman:
-                      <h3 id="hang"></h3>
-                    </div>
-                    <div class="editable col-md-4 col-sm-2"> Memory:
-                      <h3 id="memo"></h3>
-                    </div>
+                <div class="w-100 mt-3 mb-3" id="choiceFav" style="display: none;">
+                  <form action="form">
+                    <fieldset id="fieldsetPref" >
+                    </fieldset>
+                  </form>
+                </div>
+                  
+                </div>
+                <div id="modPref" class="w-100 mt-3">
+                    <button id="modificaPref" onclick="changePref()"> Change Preferences </button>
                   </div>
-                </div>
-              </div>
             </div>
-            <div id="cancelUser" style="text-align: right;"></div>
+            <div class="w-25 d-flex flex-column align-items-left justify-content-left mt-3 ms-3"> Game points:
+            <div class="editable mt-3 w-100"> Quiz:
+                      <h5 id="quiz"></h5>
+                    </div>
+                    <div class="editable w-100 mt-3"> Hangman:
+                      <h5 id="hang"></h5>
+                    </div>
+                    <div class="editable w-100 mt-3"> Memory:
+                      <h5 id="memo"></h5>
+                    </div>
+            </div>
           </div>
-          
-          
+          <div class="w-100 d-flex flex-row align-items-center justify-content-center mt-5" id="finalrow">
+              <div class="w-80 d-flex">
+                <div id="salva"></div>
+              </div>
+          </div> 
+         
         </div>
         <script type="text/javascript" src="js/edit.js">  </script>
     </div>
    
 </body>
-</html>
+</html>-

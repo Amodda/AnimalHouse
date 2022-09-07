@@ -82,6 +82,21 @@ if (isset($_GET['register'])) {
                 }
         }
 
+        # scrivo l'username nel file favourites.
+        $jsonData = file_get_contents("../favourites.json");
+        $favourites = json_decode($jsonData, true);
+        if($userExists == false){
+            $usFav = [
+                "username" => $username,
+                "preferences" => [""]
+            ];
+            array_push($favourites, $usFav);
+            $json = json_encode($favourites);
+            //write json to file
+            if (file_put_contents("../favourites.json", $json)){
+            }
+        }
+        
     }
     if(isset($msg)){
         $_SESSION['auth_error'] = $msg; 

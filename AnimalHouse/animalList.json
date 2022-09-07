@@ -8,5 +8,15 @@
         "horse",
         "reptile",
         "amphibian"
+    ],
+    "pictures":[
+        "cani.jpg",
+        "gatti.jpg",
+        "conigli.jpg",
+        "pesci.jpg",
+        "uccelli.jpg",
+        "cavalli.jpg",
+        "rettili.jpg",
+        "anfibi.png"
     ]
 }

@@ -1,15 +1,11 @@
 .body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content:space-between;
     margin: 2%;   
     border-radius: 10px;
 }
-#backgroundImg{
-    background-image: url("../animalBG.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
 #headButtons{
     width: 100%;
     display: flex;
@@ -28,7 +24,6 @@
     
 }
 #scheda  {
-    position:fixed;
     padding: 10px 10px 10px 10px;
     border-radius: 10px;
     border-style:solid;
@@ -36,12 +31,9 @@
     top: 20vh;
     left: 10vh;
     right: 10vh;
-    z-index: 1;
-    height: 60vh;
+   
 }
-.row{
-    padding: 5px 0px 5px 0;
-}
+
 #boxUtenti{
     height: 80vh;
     border-radius: 10px;
@@ -55,10 +47,11 @@
     height: 50vh;
 }
 
-
-
-h3{
-    font-size: 15px;
+#favBody tr {
+    text-align: center;
+}
+h5{
+    font-size: 18px;
 }
 
 #titleS{
@@ -74,16 +67,36 @@ h3{
     position:relative;
     height: 50vh;
     overflow: auto;
-
     }
+.my-custom-scrollbar-scheda {
+    position:relative;
+    height: 20vh;
+    overflow: auto;
+}
 .table-wrapper-scroll-y {
     display: block;
     }
 
-
+.open{
+    text-decoration: none;
+    border-radius: 10px;
+}
 #close{
     margin-left: 20vh;
     text-align: right;
     max-width: 7vh;
     max-height: 7vh;
 }
+#choiceFav{
+    height: 30vh;
+}
+#password{
+    height: 50px;
+    z-index: 2;
+}
+@media screen and (max-width: 800px) {
+    #password{
+        height: auto;    
+        z-index: 0;
+    }
+  }

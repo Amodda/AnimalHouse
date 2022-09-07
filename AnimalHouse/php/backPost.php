@@ -4,21 +4,21 @@
     $pos = $_POST["num"];
     $newP = $_POST["npwd"];
     $oldP = $_POST["olpwd"];
-    
+    #$confP = $_POST["confnewPwd"];
     if(password_verify($oldP, $users[$pos]["password"]) === true){
+        
         $password_hash = password_hash($newP, PASSWORD_BCRYPT);
         $users[$pos]['password'] = $password_hash;
         
         $newUsers = $users;
         $_SESSION["users"] = $newUsers;
         $jsonUs = json_encode($newUsers);
-        if(file_put_contents("../usersTest.json", $jsonUs)){
-            echo "Operazione riuscita!";
+        if(file_put_contents("../users.json", $jsonUs)){
+            echo "Yes";
         }else{
-            echo "Aggiornamento password fallito...";
+            echo "No";
         }
     }else{
-        echo "Vecchia password non corretta";
-        echo $pos;
+        echo "Old";
     }
 ?>
