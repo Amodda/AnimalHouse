@@ -26,9 +26,6 @@ session_start();
               <li class="nav-item active">
                 <a class="nav-link" href="#">Home</a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="authentication.html">Sign in</a>
-              </li>
     
             </ul>
           </div>
